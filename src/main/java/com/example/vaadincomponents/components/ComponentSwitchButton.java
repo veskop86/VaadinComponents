@@ -12,7 +12,7 @@ import com.vaadin.flow.shared.Registration;
 
 
 @Tag("switch-button-test")
-@JsModule("./generated/components/switchbutton/CompSwitchButton.ts")
+@JsModule("./components/switchbutton/CompSwitchButton.ts")
 public class ComponentSwitchButton extends LitTemplate implements HasStyle, HasEnabled, HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
     public ComponentSwitchButton() {
 
