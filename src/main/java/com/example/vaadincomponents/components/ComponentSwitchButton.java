@@ -1,0 +1,94 @@
+package com.example.vaadincomponents.components;
+
+import com.vaadin.flow.component.*;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.shared.HasThemeVariant;
+import com.vaadin.flow.component.shared.ThemeVariant;
+import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.dom.ElementFactory;
+import com.vaadin.flow.shared.Registration;
+
+
+@Tag("switch-button-test")
+@JsModule("./generated/components/switchbutton/CompSwitchButton.ts")
+public class ComponentSwitchButton extends LitTemplate implements HasStyle, HasEnabled, HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
+    public ComponentSwitchButton() {
+
+    }
+
+    public void setBothStatesVisible(){
+        getElement().setAttribute("statesVisible","both");
+    }
+
+    public void setFirstString(String text){
+        getElement().setProperty("value2", text);
+    }
+    public void setSecondString(String text){
+        getElement().setProperty("value1", text);
+    }
+
+    public void setFirstComponent(Icon icon){
+        icon.getElement().setAttribute("slot", "firstPart");
+        getElement().appendChild(icon.getElement());
+    }
+
+    public void setFirstComponent(String string){
+        Element span =  ElementFactory.createSpan(string);
+        span.setAttribute("slot", "firstPart");
+        getElement().appendChild(span);
+    }
+
+
+    public void setSecondComponent(String string){
+        Element span = ElementFactory.createSpan();
+        span.setAttribute("slot", "secondPart");
+        getElement().appendChild(span);
+    }
+
+    public void setSecondComponent(Icon icon){
+        icon.getElement().setAttribute("slot", "secondPart");
+        getElement().appendChild(icon.getElement());
+    }
+
+    public void removeSecondComponent(){
+        getElement().removeAttribute("secondPart");
+    }
+
+    public void setChecked(Boolean checked){
+        getElement().setProperty("checked", checked);
+        //Nisam siguran da li treba
+        fireEvent(new ComponentSwitchButton.SwitchStateChanged(this,false, this.getChecked()));
+    }
+
+    public Boolean getChecked(){
+        return getElement().getProperty("checked",true);
+    }
+
+
+    public void setRoundness(String roundness){
+        getElement().setAttribute("roundness", roundness);
+    }
+
+    @Override
+    public String getVariantName() {
+        return null;
+    }
+
+    @DomEvent("switch-state-change")
+    public static class SwitchStateChanged extends ComponentEvent<ComponentSwitchButton>{
+        private Boolean value;
+        public SwitchStateChanged(ComponentSwitchButton source, boolean fromClient, @EventData("event.detail.value") Boolean checked) {
+            super(source, fromClient);
+            this.value = checked;
+        }
+        public Boolean getValue(){
+            return this.value;
+        }
+    }
+
+    public Registration addValueChangeListener(ComponentEventListener<ComponentSwitchButton.SwitchStateChanged> listener){
+        return addListener(ComponentSwitchButton.SwitchStateChanged.class, listener);
+    }
+}
