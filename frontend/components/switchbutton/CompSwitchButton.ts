@@ -106,7 +106,7 @@ hasChanged(value:boolean, oldValue:boolean ) {
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
-
+        border: 1px solid hsl(0 0% 0% / 15%);
             }
 
       .slider:before {
@@ -121,8 +121,11 @@ hasChanged(value:boolean, oldValue:boolean ) {
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
         z-index: 3;
-            box-sizing: border-box;
-
+       box-sizing: border-box;
+        box-shadow:
+              0 0 0 1px hsl(0 0% 0% / 15%),
+              0px 3px 4px 1px hsl(0 0% 0% / 20%)
+            ;
 
 }
 
@@ -318,6 +321,8 @@ input:checked ~ .text-container > .right{
        :host([theme~='redGreen']) .slider:before{
              --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
+
+
 
             `;}
 
