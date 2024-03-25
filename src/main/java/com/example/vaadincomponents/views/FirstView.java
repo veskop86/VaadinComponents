@@ -4,6 +4,7 @@ import com.example.vaadincomponents.components.ComponentSwitchButton;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -19,13 +20,24 @@ public class FirstView extends VerticalLayout {
                 getDisabledSwitchButton(),
                 getButtonWithOnOff(),
                 getButtonWithBothStatesVisible(),
-                getButtonWithSomeValues()
+                getButtonWithSomeValues(),
+                getButtonWithIcons()
         );
     }
+
+    private Component getButtonWithIcons() {
+            ComponentSwitchButton buttonWithIcons = new ComponentSwitchButton();
+            buttonWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
+            buttonWithIcons.setSecondComponent(VaadinIcon.CTRL.create());
+            return buttonWithIcons;
+    }
+
 
     private Component addTitle() {
         return new H2("Examples of Switch Buttons:");
     }
+
+
 
     private Component getButtonWithOnOff() {
         ComponentSwitchButton onOffButton = new ComponentSwitchButton();

@@ -29,37 +29,47 @@ hasChanged(value:boolean, oldValue:boolean ) {
     static get styles(){
         return css`
           :host{
-        --border-radius: 1.5rem;
-        /* text-width 26px  */
-        --text-height: 1.625rem;
-        --text-width: 1.625rem;
-       /* Slider padding mora biti paran.To je ovo oko teksta */
-            /* slider-padding:4px */
-        --slider-padding:  calc(1rem / 4);
-        --slider--height: calc(var(--text-height) + var(--slider-padding));
-        /*Kvadratic je slider   */
-        --slider-width: var(--slider--height);
-     /*   --button-height: calc(var(--slider--height) + 8px ); */
-         --button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
-        /* Length of slider translation is text-width + slider-padding */
-        --slider-transitionx-length: calc(var(--text-width) + var(--slider-padding)) ;
+        --highlight-color: hsl(0, 0%, 100%, 0.29);
+        --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
-
-    /*    --button-width: calc(var(--text-height) * 2 + 16px); */
-        --button-width: calc(var(--text-height) * 2 +  4 * var(--slider-padding));
-
         --lumo-size-m: 2.25rem;
-        --lumo-border-radius-m: 0.25em;
+        --lumo-space-xs: 0.25rem;
+        --lumo-space-xs: 0.25rem;
+        --lumo-base-color: #fff;
         --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         --lumo-space-xs: 0.25rem;
-        --margin: var(--lumo-space-xs);
-        font-family: var(--lumo-font-family);
-        --vaadin-button-font-weight: 500;
-        font-weight: var(--vaadin-button-font-weight, 500);
         --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
         --lumo-contrast-90pct: var(--lumo-tint-90pct);
         --_lumo-button-text-color: var(--vaadin-button-text-color, var(--lumo-primary-text-color));
         --lumo-body-text-color: var(--lumo-contrast-90pct);
+
+        --vaadin-focus-ring-color: var(--lumo-primary-color-50pct);
+        --vaadin-focus-ring-width: 2px;
+        --vaadin-button-font-weight: 500;
+
+        --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
+        --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
+        --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
+
+        --border-radius: 1.5rem;
+        /* text-width 26px  */
+        --text-height: 1.625rem;
+        --text-width: 1.625rem;
+        /* Slider padding mora biti paran.To je ovo oko teksta */
+        /* slider-padding:4px */
+        --slider-padding:  calc(1rem / 4);
+        --slider--height: calc(var(--text-height) + var(--slider-padding));
+        --slider-width: var(--slider--height);
+     /* --button-height: calc(var(--slider--height) + 8px ); */
+        --button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
+        /* Length of slider translation is text-width + slider-padding */
+        --slider-transitionx-length: calc(var(--text-width) + var(--slider-padding)) ;
+    /*  --button-width: calc(var(--text-height) * 2 + 16px); */
+        --button-width: calc(var(--text-height) * 2 +  4 * var(--slider-padding));
+
+        --margin: var(--lumo-space-xs);
+        font-family: var(--lumo-font-family);
+        font-weight: var(--vaadin-button-font-weight, 500);
         color: var(--lumo-body-text-color);
         /* User can't select  */
         -webkit-touch-callout: none;
@@ -72,28 +82,31 @@ hasChanged(value:boolean, oldValue:boolean ) {
           }
 
      .switch {
-            position: relative;
-            display: inline-block;
-         /*   width: var(--button-width); */
-            width: 4.25rem;
-            height: var(--button-height);
+        position: relative;
+        display: inline-block;
+   /*   width: var(--button-width); */
+        width: 4.25rem;
+        height: var(--button-height);
+
             }
       .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        opacity: 0;
+        width: 0;
+        height: 0;
+
                 }
       .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: var(--lumo-border-radius-m);
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: var(--lumo-border-radius-m);
+
             }
 
       .slider:before {
@@ -108,6 +121,9 @@ hasChanged(value:boolean, oldValue:boolean ) {
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
         z-index: 3;
+            box-sizing: border-box;
+
+
 }
 
 input:checked + .slider {
@@ -123,33 +139,31 @@ input:checked + .slider:before {
        transform: translateX(var(--slider-transitionx-length));
 }
 
-
 .text{
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    top: calc( 0.5 *  var(--slider-padding));
-    height: calc(var(--text-height));
-    width: calc(var(--text-width));
-    box-sizing: border-box;
-    text-align: center;
-    /* Hide text */
-    overflow: hidden;
-    cursor: pointer;
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        top: calc( 0.5 *  var(--slider-padding));
+        height: calc(var(--text-height));
+        width: calc(var(--text-width));
+        box-sizing: border-box;
+        text-align: center;
+        /* Hide text */
+        overflow: hidden;
+        cursor: pointer;
 }
 
   .left{
-       left: calc(var(--slider-padding) );
+        left: calc(var(--slider-padding) );
             }
   .right{
-          right: calc( -1 * var(--slider-padding));
+        right: calc( -1 * var(--slider-padding));
             }
 
 .text-container{
-  position: absolute;
-  bottom: calc(var(--slider-padding) );
- /* width: 64px;  */
-  width: calc(var(--button-width) - var(--slider-padding));
+        position: absolute;
+        bottom: calc(var(--slider-padding) );
+        width: calc(var(--button-width) - var(--slider-padding));
    left: calc(var(--slider-padding) /2);
   z-index: 1;
   box-sizing: border-box;
@@ -216,6 +230,7 @@ input:checked ~ .text-container > .right{
           :host([statesVisible~='both']) input:checked + .slider{
               background-color: #ccc;
             }
+
             :host([statesVisible~='both']) .slider:before {
               z-index: 1;
             }
@@ -256,8 +271,9 @@ input:checked ~ .text-container > .right{
                 display: inline-block;
                 width: var(--lumo-icon-size-m);
                 height: var(--lumo-icon-size-m);
-                padding: 0.25em;
+              /*  padding: 0.25em; */
                 }
+
         :host([flatRaised~='flat']){
               color:black;
             }
@@ -277,9 +293,33 @@ input:checked ~ .text-container > .right{
                 cursor: not-allowed;
                 opacity: 0.7;
           }
+
+        :host([focus-ring]) {
+            box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
+                }
+        :host([theme~='primary'][focus-ring]) {
+            box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
+        }
+
+         /* Hover state  */
+
+          label:hover .slider:before{
+            box-shadow: 0 0 0 .3rem var(--highlight-color);
+            }
+
+
+       :host([theme~='redGreen'])  .slider{
+           background-color: #ff0000;
+            }
+      :host([theme~='redGreen'])  input:checked + .slider{
+            background-color: #00ff00;
+
+            }
+       :host([theme~='redGreen']) .slider:before{
+             --highlight-color: hsl(0, 0%, 100%, 0.47);
+            }
+
             `;}
-
-
 
 
     _changeCheckedState = (event: Event) =>{
@@ -294,7 +334,7 @@ input:checked ~ .text-container > .right{
     render(){
         return html`
     <label class="switch">
-       <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox"  .checked="${this.checked}">
+       <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox" .checked="${this.checked}">
           <span class="slider"></span>
           <div class="text-container">
             <span  class='text left'>
