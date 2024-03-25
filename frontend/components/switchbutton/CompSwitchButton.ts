@@ -29,6 +29,9 @@ hasChanged(value:boolean, oldValue:boolean ) {
     static get styles(){
         return css`
           :host{
+        --lumo-success-color: hsl(145, 72%, 30%);
+        --lumo-shade: hsl(214, 35%, 15%);   
+        --lumo-error-color: hsl(3, 85%, 48%);
         --highlight-color: hsl(0, 0%, 100%, 0.29);
         --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
@@ -87,7 +90,7 @@ hasChanged(value:boolean, oldValue:boolean ) {
    /*   width: var(--button-width); */
         width: 4.25rem;
         height: var(--button-height);
-
+            
             }
       .switch input {
         opacity: 0;
@@ -106,7 +109,6 @@ hasChanged(value:boolean, oldValue:boolean ) {
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
-        border: 1px solid hsl(0 0% 0% / 15%);
             }
 
       .slider:before {
@@ -121,12 +123,8 @@ hasChanged(value:boolean, oldValue:boolean ) {
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
         z-index: 3;
-       box-sizing: border-box;
-        box-shadow:
-              0 0 0 1px hsl(0 0% 0% / 15%),
-              0px 3px 4px 1px hsl(0 0% 0% / 20%)
-            ;
-
+        box-sizing: border-box;
+            ;           
 }
 
 input:checked + .slider {
@@ -203,7 +201,7 @@ input:checked ~ .text-container > .right{
 
            /* Button theming */
              :host([theme~='primary']) {
-
+                
               }
 
             :host([theme~='tertiary']) {
@@ -228,12 +226,11 @@ input:checked ~ .text-container > .right{
             --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
             }
 
-        /* Atributte for both visible */
-
+          /* Atributte for both visible */
           :host([statesVisible~='both']) input:checked + .slider{
               background-color: #ccc;
             }
-
+            
             :host([statesVisible~='both']) .slider:before {
               z-index: 1;
             }
@@ -303,27 +300,36 @@ input:checked ~ .text-container > .right{
         :host([theme~='primary'][focus-ring]) {
             box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
         }
-
-         /* Hover state  */
-
+         
+         /* Hover state  */  
+                  
           label:hover .slider:before{
             box-shadow: 0 0 0 .3rem var(--highlight-color);
             }
-
-
+            
+            
        :host([theme~='redGreen'])  .slider{
-           background-color: #ff0000;
-            }
+           background-color: #ff0000; 
+            }    
       :host([theme~='redGreen'])  input:checked + .slider{
             background-color: #00ff00;
-
+            
             }
        :host([theme~='redGreen']) .slider:before{
              --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
-
-
-
+      
+        :host([theme~='error']) input:checked + .slider{
+            background-color: var(--lumo-error-color);
+            }
+            
+       :host([theme~='contrast'])  input:checked + .slider{
+            background-color: var(--lumo-shade);     
+            }   
+                 
+       :host([theme~='success']) input:checked + .slider{
+            background-color: var(--lumo-success-color);
+            }            
             `;}
 
 
@@ -335,7 +341,7 @@ input:checked ~ .text-container > .right{
         });
         this.dispatchEvent(e);
     }
-
+  
     render(){
         return html`
     <label class="switch">

@@ -1,6 +1,7 @@
 package com.example.vaadincomponents.components;
 
 import com.vaadin.flow.component.*;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.littemplate.LitTemplate;
@@ -66,6 +67,10 @@ public class ComponentSwitchButton extends LitTemplate implements HasStyle, HasE
         return getElement().getProperty("checked",true);
     }
 
+   public void setRedGreenTheme(){
+        getElement().setAttribute("theme","redGreen");
+   }
+
 
     public void setRoundness(String roundness){
         getElement().setAttribute("roundness", roundness);
@@ -74,6 +79,10 @@ public class ComponentSwitchButton extends LitTemplate implements HasStyle, HasE
     @Override
     public String getVariantName() {
         return null;
+    }
+
+    public void addThemeVariants(ButtonVariant buttonVariant) {
+            getElement().setAttribute("theme", buttonVariant.getVariantName());
     }
 
     @DomEvent("switch-state-change")

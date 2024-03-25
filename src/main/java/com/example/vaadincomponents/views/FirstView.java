@@ -3,6 +3,7 @@ package com.example.vaadincomponents.views;
 import com.example.vaadincomponents.components.ComponentSwitchButton;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -21,8 +22,32 @@ public class FirstView extends VerticalLayout {
                 getButtonWithOnOff(),
                 getButtonWithBothStatesVisible(),
                 getButtonWithSomeValues(),
-                getButtonWithIcons()
+                getButtonWithIcons(),
+                getRedGrinSwitchButton(),
+                getContrastButton(),
+                getSuccessThemeVariantButton()
         );
+    }
+
+    private Component getSuccessThemeVariantButton() {
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+        componentSwitchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        componentSwitchButton.setRoundness("round");
+        return componentSwitchButton;
+    }
+
+    private Component getContrastButton(){
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+        componentSwitchButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        componentSwitchButton.setRoundness("round");
+        return componentSwitchButton;
+    }
+
+    private Component getRedGrinSwitchButton() {
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+        componentSwitchButton.setRedGreenTheme();
+        componentSwitchButton.setRoundness("round");
+        return componentSwitchButton;
     }
 
     private Component getButtonWithIcons() {
