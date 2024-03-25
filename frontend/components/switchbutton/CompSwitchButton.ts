@@ -280,19 +280,18 @@ input:checked ~ .text-container > .right{
 
         :host([disabled]) {
               pointer-events: none;
+
               color: var(--lumo-disabled-text-color);
           }
-
+        /* TODO  Change colors for disabled state   */
         :host([disabled]) input + .slider {
-              background-color: var(--lumo-tint-30pct);
+              background-color: gray;
               cursor: not-allowed;
               opacity: 0.7;
           }
-          :host([disabled])  input + .slider{
-                background-color: var(--lumo-tint-30pct);
-                cursor: not-allowed;
-                opacity: 0.7;
-          }
+        :host([disabled]) input:checked + .slider{
+            background-color:gray;
+}
 
         :host([focus-ring]) {
             box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
