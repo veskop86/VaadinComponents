@@ -46,7 +46,10 @@ public class MainLayout extends AppLayout {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
         SideNavItem switchButton = new SideNavItem("SwitchButton", FirstView.class);
-        nav.addItem(switchButton);
+        SideNavItem forms = new SideNavItem("Forms", FormView.class);
+
+        nav.addItem(switchButton, forms);
+
         return nav;
     }
 
