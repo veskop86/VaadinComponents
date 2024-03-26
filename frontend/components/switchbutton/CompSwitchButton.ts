@@ -335,7 +335,7 @@ input:checked ~ .text-container > .right{
     _changeCheckedState = (event: Event) =>{
         this.checked = (event.target as HTMLInputElement).checked;
       console.log("test");
-        const e = new CustomEvent("switch-state-changed", {
+        const e = new CustomEvent("checked-changed", {
             detail: {value: this.checked}, bubbles: true, composed: true
         });
         this.dispatchEvent(e);

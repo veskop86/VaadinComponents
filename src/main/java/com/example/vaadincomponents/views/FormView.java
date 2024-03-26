@@ -1,26 +1,15 @@
 package com.example.vaadincomponents.views;
 
-import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.charts.model.Select;
-import com.vaadin.flow.component.customfield.CustomField;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.router.Route;
-import org.apache.commons.io.input.TeeInputStream;
-
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Route(layout = MainLayout.class)
 public class FormView extends VerticalLayout{
