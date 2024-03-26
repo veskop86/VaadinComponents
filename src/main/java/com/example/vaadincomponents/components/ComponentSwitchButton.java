@@ -11,7 +11,7 @@ import com.vaadin.flow.dom.ElementFactory;
 
 @Tag("switch-button-test")
 @JsModule("./components/switchbutton/CompSwitchButton.ts")
-public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements HasStyle, HasEnabled, HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
+public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements   HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
     public ComponentSwitchButton() {
         super("checked",true, true);
 
