@@ -7,8 +7,16 @@ public class Person {
     private String lastName;
     private String emailAddress;
     private LocalDate dateOfBirth;
-    private Boolean
+    private Boolean isStudent;
     public Person() {
+    }
+
+    public Boolean getStudent() {
+        return isStudent;
+    }
+
+    public void setStudent(Boolean student) {
+        isStudent = student;
     }
 
     public String getFirstName() {
