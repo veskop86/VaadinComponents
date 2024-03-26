@@ -1,5 +1,6 @@
 package com.example.vaadincomponents.views;
 
+import com.example.vaadincomponents.components.ComponentSwitchButton;
 import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -10,6 +11,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.validator.EmailValidator;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "personForm", layout = MainLayout.class)
@@ -28,11 +31,16 @@ public class FormPersonView extends VerticalLayout {
         TextField lastName = new TextField("Last Name");
         EmailField emailField = new EmailField("Email");
         DatePicker dateOfBirth =  new DatePicker("Date of birth");
+
         Button savePerson = new Button("Save");
-        formLayout.add(firstName, lastName, emailField, dateOfBirth, savePerson);
+        Button resetData = new Button("Reset");
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+
+        formLayout.add(firstName, lastName, emailField, dateOfBirth, savePerson, resetData);
+
 
         Binder<Person> binder = new Binder<>(Person.class);
-        binder.forField(firstName)
+        binder.forField(firstName).withValidator(name -> name.matches("[A-Z]+[a-z]+"), "Not good name")
                 .bind(
                         Person::getFirstName,
                         Person::setFirstName
@@ -42,13 +50,29 @@ public class FormPersonView extends VerticalLayout {
                         Person::getLastName,
                         Person::setLastName
                 );
-        binder.forField(emailField).bind(
+
+        binder.forField(emailField).withValidator(new EmailValidator("Not looks like email"))
+                .bind(
                 Person::getEmailAddress,
                 Person::setEmailAddress
         );
+
         binder.forField(dateOfBirth)
                 .bind(Person::getDateOfBirth, Person::setDateOfBirth);
+        Person person = new Person("Marko", "Markovic","marko@hotmail.com", false);
 
+        binder.readBean(person);
+
+        savePerson.addClickListener(event -> {
+            try {
+                binder.writeBean(person);
+            } catch (ValidationException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        resetData.addClickListener(event -> {
+            binder.readBean(person);
+        });
         return formLayout;
     }
 

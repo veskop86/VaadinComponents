@@ -1,5 +1,6 @@
 package com.example.vaadincomponents.views;
 
+import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.charts.model.Select;
 import com.vaadin.flow.component.customfield.CustomField;
@@ -115,6 +116,7 @@ public class FormView extends VerticalLayout{
 
         formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
         formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("500px", 2));
+
 
         formLayout.setColspan(userName, 2);
 

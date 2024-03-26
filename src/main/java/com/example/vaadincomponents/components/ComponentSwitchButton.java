@@ -9,7 +9,6 @@ import com.vaadin.flow.component.shared.HasThemeVariant;
 import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.ElementFactory;
-import com.vaadin.flow.shared.Registration;
 
 
 @Tag("switch-button-test")
@@ -97,7 +96,7 @@ public class ComponentSwitchButton extends LitTemplate implements HasStyle, HasE
         }
     }
 
-    public Registration addValueChangeListener(ComponentEventListener<ComponentSwitchButton.SwitchStateChanged> listener){
+/*    public Registration addValueChangeListener(ComponentEventListener<ComponentSwitchButton.SwitchStateChanged> listener){
         return addListener(ComponentSwitchButton.SwitchStateChanged.class, listener);
-    }
+    }*/
 }

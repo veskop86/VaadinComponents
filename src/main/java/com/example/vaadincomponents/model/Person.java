@@ -11,6 +11,13 @@ public class Person {
     public Person() {
     }
 
+    public Person(String firstName, String lastName, String emailAddress, Boolean isStudent) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.isStudent = isStudent;
+    }
+
     public Boolean getStudent() {
         return isStudent;
     }
