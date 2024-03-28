@@ -1,12 +1,14 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.ComponentSwitchButton;
+import com.example.vaadincomponents.components.MyGreeting;
 import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -22,8 +24,15 @@ public class FormPersonView extends VerticalLayout {
 
         add(
                 getTitle(),
-                getForm()
+                getForm(),
+                getTwoFields()
         );
+    }
+
+    private Component getTwoFields() {
+        MyGreeting myGreeting = new MyGreeting();
+
+        return new Div(myGreeting);
     }
 
     private Component getForm() {
@@ -36,11 +45,11 @@ public class FormPersonView extends VerticalLayout {
         isStudent.setRoundness("round");
         isStudent.addThemeVariants(ButtonVariant.LUMO_ERROR);
 
-
         Button savePerson = new Button("Save");
+        savePerson.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         Button resetData = new Button("Reset");
 
-        formLayout.add(firstName, lastName, emailField, dateOfBirth, isStudent,savePerson, resetData);
+        formLayout.add(firstName, lastName, emailField,isStudent, dateOfBirth,savePerson, resetData);
 
 
         Binder<Person> binder = new Binder<>(Person.class);

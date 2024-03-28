@@ -1,6 +1,7 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.ComponentSwitchButton;
+import com.example.vaadincomponents.components.MyGreeting;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -25,8 +26,16 @@ public class FirstView extends VerticalLayout {
                 getButtonWithIcons(),
                 getRedGrinSwitchButton(),
                 getContrastButton(),
-                getSuccessThemeVariantButton()
+                getSuccessThemeVariantButton(),
+                getGreetingAndButton()
         );
+    }
+
+    private Component getGreetingAndButton() {
+        MyGreeting myGreeting = new MyGreeting();
+        Button button = new Button("test");
+        return new HorizontalLayout(button, myGreeting);
+
     }
 
     private Component getSuccessThemeVariantButton() {
