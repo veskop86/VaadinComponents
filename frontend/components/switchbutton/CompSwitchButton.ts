@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { styleMap } from 'lit/directives/style-map.js';
+
 
 @customElement("switch-button-test")
 export class SwitchButtonTest extends LitElement{
@@ -33,6 +33,7 @@ export class SwitchButtonTest extends LitElement{
         --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
         --lumo-size-m: 2.25rem;
+        
         --lumo-space-xs: 0.25rem;
         --lumo-base-color: #fff;
         --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -47,11 +48,14 @@ export class SwitchButtonTest extends LitElement{
 
         --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
         --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
-        --border-radius: 1.5rem;      
-     /*   --text-height: 1.625rem; */
-        --text-height: calc(var(--lumo-size-m ) / 1.5);    
+        --border-radius: 1.5rem;
+              --button-size: var(--lumo-size-m);
+              /*   --text-height: 1.625rem; */
+        --text-height: calc(var(--button-size) / 1.5);    
      /*   --text-width: 1.625rem; */
-        --text-width: calc(var(--lumo-size-m ) / 1.5);
+        --text-width: calc(var(--button-size) / 1.5);
+              
+                 
             
         /* Slider padding mora biti paran.To je ovo oko teksta */
         /* slider-padding:4px */
@@ -81,8 +85,8 @@ export class SwitchButtonTest extends LitElement{
             .container{
                 display:inline-block;
                 position: relative;
+                padding: var(--lumo-space-xs) 0;
                 bottom: 4px;
-               
             }
     
      .switch {
@@ -332,7 +336,9 @@ input:checked ~ .text-container > .right{
        :host([theme~='success']) input:checked + .slider{
             background-color: var(--lumo-success-color);
             }
-       :host(theme~='small')     
+       :host([theme~='small'])  {
+           
+       }   
             
             `;}
 
@@ -348,7 +354,10 @@ input:checked ~ .text-container > .right{
 
     render(){
         return html`
-            <div class="container"> 
+            <div class="container">
+                <div>
+                    <slot></slot>
+                </div>
             <label class="switch">
                 <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox" .checked="${this.checked}">
                 <span class="slider"></span>

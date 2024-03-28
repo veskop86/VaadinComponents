@@ -48,7 +48,6 @@ public class FormPersonView extends VerticalLayout {
         Button savePerson = new Button("Save");
         savePerson.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         Button resetData = new Button("Reset");
-
         formLayout.add(firstName, lastName, emailField,isStudent, dateOfBirth,savePerson, resetData);
 
 
