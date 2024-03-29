@@ -6,11 +6,14 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+
+import java.text.CollationKey;
 
 @Route(value = "", layout = MainLayout.class)
 public class FirstView extends VerticalLayout {
@@ -29,8 +32,26 @@ public class FirstView extends VerticalLayout {
                 getSuccessThemeVariantButton(),
                 getGreetingAndButton(),
                 getTextFieldwithButton(),
+                getTextFieldwithButton2(),
+                getSwitchButtonTextFieldWithLabels(),
                 getTextFieldwithButton2()
         );
+    }
+
+    private Component getSwitchButtonTextFieldWithLabels() {
+        TextField textField = new TextField();
+        textField.setLabel("Test");
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+        componentSwitchButton.setLabel("Test");
+        componentSwitchButton.setRoundness("round");
+        H3 title = new H3("TextField and Button with labels - Positioning");
+        return new HorizontalLayout(textField, componentSwitchButton);
+    }
+    private Component getSwitchButtonAndTextField(){
+        TextField textField = new TextField();
+        ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
+        componentSwitchButton.setRoundness("round");
+        return new HorizontalLayout(textField, componentSwitchButton);
     }
 
     private Component getTextFieldwithButton2() {
@@ -44,6 +65,7 @@ public class FirstView extends VerticalLayout {
         Button button = new Button("button");
         return new HorizontalLayout(button, textField);
     }
+
 
     private Component getGreetingAndButton() {
         MyGreeting myGreeting = new MyGreeting();

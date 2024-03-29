@@ -20,13 +20,6 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
         getElement().setAttribute("statesVisible","both");
     }
 
-    public void setFirstString(String text){
-        getElement().setProperty("value2", text);
-    }
-    public void setSecondString(String text){
-        getElement().setProperty("value1", text);
-    }
-
     public void setFirstComponent(Icon icon){
         icon.getElement().setAttribute("slot", "firstPart");
         getElement().appendChild(icon.getElement());
@@ -37,7 +30,6 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
         span.setAttribute("slot", "firstPart");
         getElement().appendChild(span);
     }
-
 
     public void setSecondComponent(String string){
         Element span = ElementFactory.createSpan(string);
@@ -56,7 +48,7 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
 
     public void setLabel(String label){
         Element labelSpan =  ElementFactory.createSpan(label);
-        labelSpan.setAttribute("slot", "label");
+        labelSpan.setAttribute("slot", "");
         getElement().appendChild(labelSpan);
     }
 
@@ -73,7 +65,6 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
    public void setRedGreenTheme(){
         getElement().setAttribute("theme","redGreen");
    }
-
 
     public void setRoundness(String roundness){
         getElement().setAttribute("roundness", roundness);
