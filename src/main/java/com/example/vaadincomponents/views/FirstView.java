@@ -44,6 +44,7 @@ public class FirstView extends VerticalLayout {
         ComponentSwitchButton componentSwitchButton = new ComponentSwitchButton();
         componentSwitchButton.setLabel("Test");
         componentSwitchButton.setRoundness("round");
+
         H3 title = new H3("TextField and Button with labels - Positioning");
         return new HorizontalLayout(textField, componentSwitchButton);
     }

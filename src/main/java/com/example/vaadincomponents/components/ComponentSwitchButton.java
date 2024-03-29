@@ -11,13 +11,18 @@ import com.vaadin.flow.dom.ElementFactory;
 
 @Tag("switch-button-test")
 @JsModule("./components/switchbutton/CompSwitchButton.ts")
-public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
+public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant, HasLabel {
     public ComponentSwitchButton() {
         super("checked",true, true);
     }
 
     public void setBothStatesVisible(){
         getElement().setAttribute("statesVisible","both");
+    }
+    public void setLabel(String label){
+        Element span =  ElementFactory.createSpan(label);
+        span.setAttribute("slot","label");
+        getElement().appendChild(span);
     }
 
     public void setFirstComponent(Icon icon){
@@ -46,11 +51,6 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
         getElement().removeAttribute("secondPart");
     }
 
-    public void setLabel(String label){
-        Element labelSpan =  ElementFactory.createSpan(label);
-        labelSpan.setAttribute("slot", "");
-        getElement().appendChild(labelSpan);
-    }
 
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);

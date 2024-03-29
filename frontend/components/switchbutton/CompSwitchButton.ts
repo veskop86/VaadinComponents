@@ -83,6 +83,38 @@ export class SwitchButtonTest extends LitElement{
               margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
         
           }
+            [part='label'] {
+                align-self: flex-start;
+                color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
+                font-weight: var(--vaadin-input-field-label-font-weight, 500);
+                font-size: var(--vaadin-input-field-label-font-size, var(--lumo-font-size-s));
+                margin-left: calc(var(--lumo-border-radius-m) / 4);
+                transition: color 0.2s;
+                line-height: 1;
+                padding-right: 1em;
+                padding-bottom: 0.5em;
+                /* As a workaround for diacritics being cut off, add a top padding and a
+                negative margin to compensate */
+                padding-top: 0.25em;
+                margin-top: -0.25em;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                position: relative;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            :host([has-label])::before {
+                margin-top: calc(var(--lumo-font-size-s) * 1.5);
+            }
+
+
+            :host([has-label]) {
+                padding-top: var(--lumo-space-m);
+            }
+            
+            
             .container{
                 display:inline-block;
                 position: relative;
@@ -366,8 +398,11 @@ input:checked ~ .text-container > .right{
     render(){
         return html`
             <div class="container">
-                <div class="label">
-                    <slot></slot>
+                <div part="label">
+                    <slot name="label">
+                        
+                    </slot>
+                    <span part="required-indicator" aria-hidden="true" on-click="focus"></span>
                 </div>
             <label class="switch">
                 <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox" .checked="${this.checked}">
