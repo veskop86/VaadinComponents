@@ -40,7 +40,7 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
 
 
     public void setSecondComponent(String string){
-        Element span = ElementFactory.createSpan();
+        Element span = ElementFactory.createSpan(string);
         span.setAttribute("slot", "secondPart");
         getElement().appendChild(span);
     }
@@ -52,6 +52,12 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
 
     public void removeSecondComponent(){
         getElement().removeAttribute("secondPart");
+    }
+
+    public void setLabel(String label){
+        Element labelSpan =  ElementFactory.createSpan(label);
+        labelSpan.setAttribute("slot", "label");
+        getElement().appendChild(labelSpan);
     }
 
     public void setChecked(Boolean checked){

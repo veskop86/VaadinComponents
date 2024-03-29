@@ -43,12 +43,13 @@ public class FormPersonView extends VerticalLayout {
         DatePicker dateOfBirth =  new DatePicker("Date of birth");
         ComponentSwitchButton isStudent = new ComponentSwitchButton();
         isStudent.setRoundness("round");
+        isStudent.setLabel("isStudent");
         isStudent.addThemeVariants(ButtonVariant.LUMO_ERROR);
 
         Button savePerson = new Button("Save");
         savePerson.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         Button resetData = new Button("Reset");
-        formLayout.add(firstName, lastName, emailField,isStudent, dateOfBirth,savePerson, resetData);
+        formLayout.add(firstName, lastName, emailField, isStudent, dateOfBirth, savePerson, resetData);
 
 
         Binder<Person> binder = new Binder<>(Person.class);

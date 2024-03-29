@@ -118,8 +118,6 @@ public class FormView extends VerticalLayout{
         return  new VerticalLayout(new H2("First form"), formLayout);
     }
 
-
-
     private Component getTitle() {
         return new H1("Forms");
     }

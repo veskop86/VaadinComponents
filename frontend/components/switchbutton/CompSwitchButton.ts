@@ -17,11 +17,12 @@ export class SwitchButtonTest extends LitElement{
     @property({type: Boolean, reflect: true})
     bothVisible: boolean = true;
 
-    @property({})
+  /*  @property({})
     value1?: String;
 
     @property({})
-    value2?: String;
+    value2?: String;*/
+
 
     static get styles(){
         return css`
@@ -80,15 +81,27 @@ export class SwitchButtonTest extends LitElement{
         -ms-user-select: none;
               user-select: none;   
               margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
-              
-          } 
+        
+          }
             .container{
                 display:inline-block;
                 position: relative;
                 padding: var(--lumo-space-xs) 0;
                 bottom: 4px;
             }
-    
+
+            .label{
+                color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
+                font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
+                font-weight: var(--vaadin-input-field-value-font-weight, 400);
+                color: hsla(214, 42%, 18%, 0.69);
+                
+            }
+            .container:hover > .label{
+                color:hsla(214, 40%, 16%, 0.94);
+            }
+         
+        
      .switch {
         position: relative;
         display: inline-block;
@@ -177,10 +190,8 @@ input:checked + .slider:before {
   box-sizing: border-box;
   height: var(--slider--height);
   cursor: pointer;
-
             }
-
-
+            
 :host([hidden]) {
     display: none !important;
   }
@@ -339,7 +350,7 @@ input:checked ~ .text-container > .right{
        :host([theme~='small'])  {
            
        }   
-            
+   
             `;}
 
 
@@ -355,7 +366,7 @@ input:checked ~ .text-container > .right{
     render(){
         return html`
             <div class="container">
-                <div>
+                <div class="label">
                     <slot></slot>
                 </div>
             <label class="switch">
@@ -363,10 +374,10 @@ input:checked ~ .text-container > .right{
                 <span class="slider"></span>
                 <div class="text-container">
             <span  class='text left'>
-                <slot name="firstPart" >${this.value1}</slot>
+                <slot name="firstPart" ></slot>
             </span>
                     <span  class='text right'>
-                <slot name="secondPart" >${this.value2}</slot>
+                <slot name="secondPart" ></slot>
             </span>
                 </div>
             </label>
