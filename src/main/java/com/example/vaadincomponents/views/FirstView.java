@@ -25,10 +25,8 @@ public class FirstView extends VerticalLayout {
                 getButtonWithBothStatesVisible(),
                 getButtonWithSomeValues(),
                 getButtonWithIcons(),
-                getRedGrinSwitchButton(),
                 getContrastButton(),
                 getSuccessThemeVariantButton(),
-                getGreetingAndButton(),
                 getTextFieldwithButton(),
                 getSwitchButtonTextFieldWithLabels(),
                 fieldAndButtonWithLabel(),
@@ -76,13 +74,6 @@ public class FirstView extends VerticalLayout {
     }
 
 
-    private Component getGreetingAndButton() {
-        MyGreeting myGreeting = new MyGreeting();
-        Button button = new Button("test");
-        return new HorizontalLayout(button, myGreeting);
-
-    }
-
     private Component getSuccessThemeVariantButton() {
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
@@ -98,12 +89,6 @@ public class FirstView extends VerticalLayout {
         return switchButton;
     }
 
-    private Component getRedGrinSwitchButton() {
-        SwitchButton switchButton = new SwitchButton();
-        switchButton.setRedGreenTheme();
-        switchButton.setRoundness("round");
-        return switchButton;
-    }
 
     private Component getButtonWithIcons() {
             SwitchButton buttonWithIcons = new SwitchButton();

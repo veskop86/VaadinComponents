@@ -63,10 +63,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         return getElement().getProperty("checked",true);
     }
 
-   public void setRedGreenTheme(){
-        getElement().setAttribute("theme","redGreen");
-   }
-
     public void setRoundness(String roundness){
         getElement().setAttribute("roundness", roundness);
     }

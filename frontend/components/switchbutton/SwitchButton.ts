@@ -129,7 +129,6 @@ export class SwitchButtonTest extends LitElement{
                 display: none !important;
             }
 
-          
             
             .container{
                 display:inline-block;
@@ -139,7 +138,7 @@ export class SwitchButtonTest extends LitElement{
                bottom: 4px;  
         
             }
-
+            
             .label{
                 color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
                 font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
@@ -158,6 +157,7 @@ export class SwitchButtonTest extends LitElement{
         width: var(--button-width);
         height: var(--button-height);         
             }
+            
       .switch input {
         opacity: 0;
         width: 0;
@@ -373,33 +373,29 @@ input:checked ~ .text-container > .right{
             box-shadow: 0 0 0 .3rem var(--highlight-color);
             }
             
-            
-       :host([theme~='redGreen'])  .slider{
-           background-color: #ff0000; 
-            }    
-      :host([theme~='redGreen'])  input:checked + .slider{
-            background-color: #00ff00;
-            
-            }
-       :host([theme~='redGreen']) .slider:before{
-             --highlight-color: hsl(0, 0%, 100%, 0.47);
-            }
-      
         :host([theme~='error']) input:checked + .slider{
             background-color: var(--lumo-error-color);
             }
             
        :host([theme~='contrast'])  input:checked + .slider{
             background-color: var(--lumo-shade);     
-            }   
-                 
-       :host([theme~='success']) input:checked + .slider{
-            background-color: var(--lumo-success-color);
             }
-       :host([theme~='small'])  {
-           
-       }   
-   
+            
+            :host([theme~='success'])  .slider{
+                background-color: #ff0000;
+            }
+            :host([theme~='success']) input:checked + .slider{
+                    background-color: #00ff00;
+            }
+            :host([theme~='success']) .slider:before{
+                --highlight-color: hsl(0, 0%, 100%, 0.47);
+            }
+
+
+            :host([theme~='small'])  {
+                    
+                 }   
+    
             `;}
 
 
