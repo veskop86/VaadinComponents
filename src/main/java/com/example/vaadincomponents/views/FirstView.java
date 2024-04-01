@@ -1,7 +1,6 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.SwitchButton;
-import com.example.vaadincomponents.components.MyGreeting;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -17,22 +16,36 @@ import com.vaadin.flow.router.Route;
 public class FirstView extends VerticalLayout {
     FirstView(){
         add(
-                addTitle(),
+                title(),
                 getBasicSwitchButton(),
                 getRoundedSwitchButton(),
                 getDisabledSwitchButton(),
                 getButtonWithOnOff(),
                 getButtonWithBothStatesVisible(),
                 getButtonWithSomeValues(),
-                getButtonWithIcons(),
-                getContrastButton(),
-                getSuccessThemeVariantButton(),
-                getTextFieldwithButton(),
-                getSwitchButtonTextFieldWithLabels(),
+                buttonWithIcons(),
+                contrastLumoVariantTheme(),
+                successThemeVariantButton(),
+                textFieldwithButton(),
+                switchButtonTextFieldWithLabels(),
                 fieldAndButtonWithLabel(),
                 switchAndTextFieldWithoutLabels(),
-                switchAndFieldWithLabel()
+                switchAndFieldWithLabel(),
+                switchButtonAndTextField(),
+                smallButton()
         );
+    }
+
+    private Component smallButton() {
+        SwitchButton small = new SwitchButton();
+        small.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        small.setRoundness("round");
+        SwitchButton large = new SwitchButton();
+        large.setRoundness("round");
+        large.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        SwitchButton switchButton = new SwitchButton();
+        switchButton.setRoundness("round");
+        return  new HorizontalLayout( large ,switchButton, small);
     }
 
     private Component switchAndFieldWithLabel() {
@@ -46,7 +59,7 @@ public class FirstView extends VerticalLayout {
         return new HorizontalLayout(new TextField(), switchButton);
     }
 
-    private Component getSwitchButtonTextFieldWithLabels() {
+    private Component switchButtonTextFieldWithLabels() {
         TextField textField = new TextField();
         textField.setLabel("Test");
         SwitchButton switchButton = new SwitchButton();
@@ -56,7 +69,7 @@ public class FirstView extends VerticalLayout {
         H3 title = new H3("TextField and Button with labels - Positioning");
         return new HorizontalLayout(textField, switchButton);
     }
-    private Component getSwitchButtonAndTextField(){
+    private Component switchButtonAndTextField(){
         TextField textField = new TextField();
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("round");
@@ -67,14 +80,14 @@ public class FirstView extends VerticalLayout {
         return new HorizontalLayout(new Button("Text"), new TextField("Text"));
     }
 
-    private Component getTextFieldwithButton() {
+    private Component textFieldwithButton() {
         TextField textField = new TextField();
         Button button = new Button("button");
         return new HorizontalLayout(button, textField);
     }
 
 
-    private Component getSuccessThemeVariantButton() {
+    private Component successThemeVariantButton() {
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         switchButton.setRoundness("round");
@@ -82,7 +95,7 @@ public class FirstView extends VerticalLayout {
         return switchButton;
     }
 
-    private Component getContrastButton(){
+    private Component contrastLumoVariantTheme(){
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         switchButton.setRoundness("round");
@@ -90,7 +103,7 @@ public class FirstView extends VerticalLayout {
     }
 
 
-    private Component getButtonWithIcons() {
+    private Component buttonWithIcons() {
             SwitchButton buttonWithIcons = new SwitchButton();
             buttonWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
             buttonWithIcons.setSecondComponent(VaadinIcon.CTRL.create());
@@ -98,7 +111,7 @@ public class FirstView extends VerticalLayout {
     }
 
 
-    private Component addTitle() {
+    private Component title() {
         return new H2("Examples of Switch Buttons:");
     }
 

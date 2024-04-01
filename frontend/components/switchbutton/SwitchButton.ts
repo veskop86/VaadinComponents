@@ -42,8 +42,11 @@ export class SwitchButtonTest extends LitElement{
         --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
         --lumo-size-m: 2.25rem;
+              --lumo-size-l: 2.75rem;
+
+              --lumo-size-s: 1.875rem; 
         
-        --lumo-space-xs: 0.25rem;
+              --lumo-space-xs: 0.25rem;
         --lumo-base-color: #fff;
         --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
@@ -393,9 +396,13 @@ input:checked ~ .text-container > .right{
 
 
             :host([theme~='small'])  {
-                    
+                --button-size: var(--lumo-size-s);
                  }   
-    
+            
+            :host([theme~='large']){
+                --button-size: var(--lumo-size-l);
+            }
+            
             `;}
 
 
