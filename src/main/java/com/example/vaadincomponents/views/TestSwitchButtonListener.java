@@ -1,6 +1,6 @@
 package com.example.vaadincomponents.views;
 
-import com.example.vaadincomponents.components.ComponentSwitchButton;
+import com.example.vaadincomponents.components.SwitchButton;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
@@ -21,7 +21,7 @@ public class TestSwitchButtonListener extends VerticalLayout {
     }
 
     private Component getSwitchButton() {
-        ComponentSwitchButton switchButton = new ComponentSwitchButton();
+        SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("round");
         switchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 

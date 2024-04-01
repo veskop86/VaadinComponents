@@ -1,9 +1,17 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import {ElementMixin} from "@vaadin/component-base";
+import {PolylitMixin} from "@vaadin/component-base/src/polylit-mixin";
 
+import {SwitchButtonMixin} from './switch-button-mixin';
 
-@customElement("switch-button-test")
+@customElement("switch-button")
 export class SwitchButtonTest extends LitElement{
+
+   static get is(){
+       return 'switch-button';
+
+   }
 
 //checked property represents state of switch button.
     @property({type: Boolean, reflect: true,
@@ -81,7 +89,7 @@ export class SwitchButtonTest extends LitElement{
         -ms-user-select: none;
               user-select: none;   
               margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
-        
+              padding: var(--lumo-space-xs) 0;
           }
             [part='label'] {
                 align-self: flex-start;
@@ -115,13 +123,21 @@ export class SwitchButtonTest extends LitElement{
             }
             :host(:not([has-label])) [part='label'] {
                      display: none; 
-            }   
+            }
+            
+            :host([hidden]) {
+                display: none !important;
+            }
+
+          
             
             .container{
                 display:inline-block;
                 position: relative;
-                padding: var(--lumo-space-xs) 0;
-                bottom: 4px;
+          /*      padding: var(--lumo-space-xs) 0; */
+               bottom: 4px;  
+               bottom: 4px;  
+        
             }
 
             .label{
@@ -135,12 +151,11 @@ export class SwitchButtonTest extends LitElement{
                 color:hsla(214, 40%, 16%, 0.94);
             }
          
-        
+            
      .switch {
         position: relative;
         display: inline-block;
-        width: var(--button-width); 
-      /*  width: 4.25rem; */
+        width: var(--button-width);
         height: var(--button-height);         
             }
       .switch input {

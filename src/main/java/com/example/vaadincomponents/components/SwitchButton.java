@@ -9,10 +9,10 @@ import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.ElementFactory;
 
-@Tag("switch-button-test")
-@JsModule("./components/switchbutton/CompSwitchButton.ts")
-public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant, HasLabel {
-    public ComponentSwitchButton() {
+@Tag("switch-button")
+@JsModule("./components/switchbutton/SwitchButton.ts")
+public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasTheme, HasThemeVariant<SwitchButton>,ThemeVariant, HasLabel {
+    public SwitchButton() {
         super("checked",true, true);
     }
 
@@ -22,7 +22,7 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
     public void setLabel(String label){
         Element span =  ElementFactory.createSpan(label);
         span.setAttribute("slot","label");
-        getElement().setAttribute("has-label","true");
+        getElement().setAttribute("has-label","");
         getElement().appendChild(span);
     }
 

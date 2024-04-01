@@ -1,6 +1,6 @@
 package com.example.vaadincomponents.views;
 
-import com.example.vaadincomponents.components.ComponentSwitchButton;
+import com.example.vaadincomponents.components.SwitchButton;
 import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -40,7 +40,7 @@ public class FormPersonView extends VerticalLayout {
         lastName.setReadOnly(true);
         EmailField emailField = new EmailField();
         emailField.setReadOnly(true);
-        ComponentSwitchButton isStudent = new ComponentSwitchButton();
+        SwitchButton isStudent = new SwitchButton();
         isStudent.setRoundness("round");
         isStudent.setEnabled(false);
         DatePicker datePicker = new DatePicker("Date of birth");
@@ -72,7 +72,7 @@ public class FormPersonView extends VerticalLayout {
         TextField lastName = new TextField("Last Name");
         EmailField emailField = new EmailField("Email");
         DatePicker dateOfBirth =  new DatePicker("Date of birth");
-        ComponentSwitchButton isStudent = new ComponentSwitchButton();
+        SwitchButton isStudent = new SwitchButton();
         isStudent.setRoundness("round");
         isStudent.setLabel("Student?");
         isStudent.addThemeVariants(ButtonVariant.LUMO_ERROR);
