@@ -22,6 +22,7 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
     public void setLabel(String label){
         Element span =  ElementFactory.createSpan(label);
         span.setAttribute("slot","label");
+        getElement().setAttribute("has-label","true");
         getElement().appendChild(span);
     }
 

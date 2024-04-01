@@ -1,7 +1,6 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.ComponentSwitchButton;
-import com.example.vaadincomponents.components.MyGreeting;
 import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;

@@ -113,7 +113,9 @@ export class SwitchButtonTest extends LitElement{
             :host([has-label]) {
                 padding-top: var(--lumo-space-m);
             }
-            
+            :host(:not([has-label])) [part='label'] {
+                     display: none; 
+            }   
             
             .container{
                 display:inline-block;
