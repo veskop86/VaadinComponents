@@ -80,19 +80,13 @@ public class FormPersonView extends VerticalLayout {
         Button savePerson = new Button("Save");
         savePerson.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         Button resetData = new Button("Reset");
-        formLayout.add(firstName, lastName, emailField, isStudent, dateOfBirth, savePerson, resetData);
+        formLayout.add(firstName, lastName, emailField, isStudent, dateOfBirth);
 
         Binder<Person> binder = new Binder<>(Person.class);
         binder.forField(firstName).withValidator(name -> name.matches("[A-Z]+[a-z]+"), "Not good name")
-                .bind(
-                        Person::getFirstName,
-                        Person::setFirstName
-                );
-        binder.forField(lastName)
-                .bind(
-                        Person::getLastName,
-                        Person::setLastName
-                );
+                .bind(Person::getFirstName, Person::setFirstName);
+        binder.forField(lastName).
+                bind(Person::getLastName, Person::setLastName);
 
         binder.forField(emailField).withValidator(new EmailValidator("Not looks like email"))
                 .bind(
@@ -119,7 +113,7 @@ public class FormPersonView extends VerticalLayout {
             binder.readBean(person);
             binderForData.readBean(person);
         });
-        return new Div(new H2("Sava data to see changes"), formLayout);
+        return new Div(new H2("Sava data to see changes"), formLayout, savePerson, resetData);
     }
 
     private Component getTitle() {
