@@ -9,23 +9,21 @@ import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.ElementFactory;
 
-@Tag("switch-button-test")
-@JsModule("./components/switchbutton/CompSwitchButton.ts")
-public class ComponentSwitchButton extends AbstractSinglePropertyField<ComponentSwitchButton, Boolean> implements   HasTheme, HasThemeVariant<ComponentSwitchButton>,ThemeVariant {
-    public ComponentSwitchButton() {
+@Tag("switch-button")
+@JsModule("./components/switchbutton/SwitchButton.ts")
+public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasTheme, HasThemeVariant<SwitchButton>,ThemeVariant, HasLabel {
+    public SwitchButton() {
         super("checked",true, true);
-
     }
 
     public void setBothStatesVisible(){
         getElement().setAttribute("statesVisible","both");
     }
-
-    public void setFirstString(String text){
-        getElement().setProperty("value2", text);
-    }
-    public void setSecondString(String text){
-        getElement().setProperty("value1", text);
+    public void setLabel(String label){
+        Element span =  ElementFactory.createSpan(label);
+        span.setAttribute("slot","label");
+        getElement().setAttribute("has-label","");
+        getElement().appendChild(span);
     }
 
     public void setFirstComponent(Icon icon){
@@ -39,9 +37,8 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
         getElement().appendChild(span);
     }
 
-
     public void setSecondComponent(String string){
-        Element span = ElementFactory.createSpan();
+        Element span = ElementFactory.createSpan(string);
         span.setAttribute("slot", "secondPart");
         getElement().appendChild(span);
     }
@@ -55,6 +52,7 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
         getElement().removeAttribute("secondPart");
     }
 
+
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);
         //Nisam siguran da li treba
@@ -64,11 +62,6 @@ public class ComponentSwitchButton extends AbstractSinglePropertyField<Component
     public Boolean getChecked(){
         return getElement().getProperty("checked",true);
     }
-
-   public void setRedGreenTheme(){
-        getElement().setAttribute("theme","redGreen");
-   }
-
 
     public void setRoundness(String roundness){
         getElement().setAttribute("roundness", roundness);

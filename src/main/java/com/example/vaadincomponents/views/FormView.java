@@ -1,5 +1,6 @@
 package com.example.vaadincomponents.views;
 
+import com.example.vaadincomponents.components.MyGreeting;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -77,8 +78,8 @@ public class FormView extends VerticalLayout{
 
     private Component getForm2() {
         FormLayout formLayout = new FormLayout();
-        TextField userName = new TextField("User Name");
-        TextField lastName = new TextField("Last Name");
+        TextField userName = new TextField("username");
+        TextField lastName = new TextField("Last name");
         EmailField emailField = new EmailField("Email");
         formLayout.add(userName, lastName, emailField);
         formLayout.setResponsiveSteps(
@@ -100,7 +101,12 @@ public class FormView extends VerticalLayout{
         PasswordField passwordField = new PasswordField("Enter password");
         PasswordField confirmPassword = new PasswordField("Repeat password");
 
-        formLayout.add(firstName, lastName,userName ,passwordField, confirmPassword);
+        /* */
+       TextField textField = new TextField("test");
+        MyGreeting myGreeting = new MyGreeting();
+        /* */
+        formLayout.add(firstName, lastName,userName ,passwordField, confirmPassword, textField);
+        formLayout.addFormItem(myGreeting, "test");
         // Forma po defaultu ima dvije kolone. Kada se smanji sirina onda ima jednu kolonu
 
         formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
@@ -111,8 +117,6 @@ public class FormView extends VerticalLayout{
 
         return  new VerticalLayout(new H2("First form"), formLayout);
     }
-
-
 
     private Component getTitle() {
         return new H1("Forms");
