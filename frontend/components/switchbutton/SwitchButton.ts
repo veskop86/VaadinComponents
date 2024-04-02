@@ -41,12 +41,11 @@ export class SwitchButtonTest extends LitElement{
         --highlight-color: hsl(0, 0%, 100%, 0.29);
         --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
-        --lumo-size-m: 2.25rem;
+              --lumo-size-m: 2.25rem;
               --lumo-size-l: 2.75rem;
-
-              --lumo-size-s: 1.875rem; 
-        
+              --lumo-size-s: 1.875rem;
               --lumo-space-xs: 0.25rem;
+              --button-size: var(--lumo-size-m);
         --lumo-base-color: #fff;
         --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
@@ -57,21 +56,18 @@ export class SwitchButtonTest extends LitElement{
         --vaadin-focus-ring-color: var(--lumo-primary-color-50pct);
         --vaadin-focus-ring-width: 2px;
         --vaadin-button-font-weight: 500;
-
         --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
         --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
         --border-radius: 1.5rem;
-              --button-size: var(--lumo-size-m);
-              /*   --text-height: 1.625rem; */
-        --text-height: calc(var(--button-size) / 1.5);    
-     /*   --text-width: 1.625rem; */
+              
+        --text-height: calc(var(--button-size) / 1.5);
         --text-width: calc(var(--button-size) / 1.5);
               
                  
             
         /* Slider padding mora biti paran.To je ovo oko teksta */
         /* slider-padding:4px */
-        --slider-padding:  calc(1rem / 4);
+        --slider-padding:  calc(var(--button-size) / 9);
         --slider--height: calc(var(--text-height) + var(--slider-padding));
         --slider-width: var(--slider--height);
      /* --button-height: calc(var(--slider--height) + 8px ); */
@@ -94,6 +90,7 @@ export class SwitchButtonTest extends LitElement{
               margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
               padding: var(--lumo-space-xs) 0;
           }
+            
             [part='label'] {
                 align-self: flex-start;
                 color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
@@ -131,15 +128,12 @@ export class SwitchButtonTest extends LitElement{
             :host([hidden]) {
                 display: none !important;
             }
-
             
             .container{
+                
                 display:inline-block;
                 position: relative;
-          /*      padding: var(--lumo-space-xs) 0; */
-               bottom: 4px;  
-               bottom: 4px;  
-        
+                bottom: var(--slider-padding);
             }
             
             .label{
@@ -219,7 +213,6 @@ input:checked + .slider:before {
         top: calc( 0.5 *  var(--slider-padding));
         height: calc(var(--text-height));
         width: calc(var(--text-width));
-        box-sizing: border-box;
         text-align: center;
         /* Hide text */
         overflow: hidden;
@@ -237,17 +230,13 @@ input:checked + .slider:before {
         position: absolute;
         bottom: calc(var(--slider-padding) );
         width: calc(var(--button-width) - var(--slider-padding));
-   left: calc(var(--slider-padding) /2);
-  z-index: 1;
-  box-sizing: border-box;
-  height: var(--slider--height);
-  cursor: pointer;
+        left: calc(var(--slider-padding) /2);
+        z-index: 1;
+         box-sizing: border-box;
+         height: var(--slider--height);
+    cursor: pointer;
             }
             
-:host([hidden]) {
-    display: none !important;
-  }
-
  input ~ .text-container > .left {
      /*     visibility: hidden;  */
      /*     opacity: 0; */
@@ -284,11 +273,11 @@ input:checked ~ .text-container > .right{
 
 
             :host([roundness~='round'])  .slider:before {
-                   border-radius: calc(var(--lumo-size-m) / 2);
+                   border-radius: calc(var(--button-size) / 2);
             }
 
            :host([roundness~='round']) input + .slider {
-                 border-radius: calc(var(--lumo-size-m) / 2);
+                 border-radius: calc(var(--button-size) / 2);
             }
 
            :host([flatRaised~='flat']) input:checked + .slider {
