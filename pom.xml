@@ -93,6 +93,11 @@
             <artifactId>vaadin-custom-field-flow</artifactId>
             <version>24.3.7</version>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-icons-flow</artifactId>
+            <version>24.3.7</version>
+        </dependency>
     </dependencies>
 
     <build>

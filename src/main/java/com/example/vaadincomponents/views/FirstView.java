@@ -6,6 +6,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -32,8 +34,26 @@ public class FirstView extends VerticalLayout {
                 switchAndTextFieldWithoutLabels(),
                 switchAndFieldWithLabel(),
                 switchButtonAndTextField(),
-                smallButton()
+                smallButton(),
+                badgeAndButton()
         );
+    }
+
+    private Component badgeAndButton() {
+        Span confirmed2 = new Span(new Span("Confirmed"),
+                createIcon(VaadinIcon.CHECK));
+        confirmed2.getElement().getThemeList().add("badge success");
+
+        SwitchButton switchButton = new SwitchButton();
+        switchButton.setRoundness("round");
+        Span pending = new Span("Pending");
+        pending.getElement().getThemeList().add("badge");
+        return new HorizontalLayout(switchButton, confirmed2, pending);
+    }
+    private Icon createIcon(VaadinIcon vaadinIcon) {
+        Icon icon = vaadinIcon.create();
+        icon.getStyle().set("padding", "var(--lumo-space-xs)");
+        return icon;
     }
 
     private Component smallButton() {
@@ -49,6 +69,7 @@ public class FirstView extends VerticalLayout {
     }
 
     private Component switchAndFieldWithLabel() {
+
             return new HorizontalLayout(new TextField("Label"), new SwitchButton());
     }
 

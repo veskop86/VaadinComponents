@@ -188,7 +188,7 @@ export class SwitchButtonTest extends LitElement{
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
-  /*      z-index: 3; */
+        z-index: 1; 
     /*    box-sizing: border-box; */
 }
 
