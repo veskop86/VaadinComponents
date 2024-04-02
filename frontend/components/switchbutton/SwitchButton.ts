@@ -133,7 +133,7 @@ export class SwitchButtonTest extends LitElement{
                 
                 display:inline-block;
                 position: relative;
-                bottom: var(--slider-padding);
+               bottom: var(--slider-padding);
             }
             
             .label{
