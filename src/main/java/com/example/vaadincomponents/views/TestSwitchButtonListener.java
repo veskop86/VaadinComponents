@@ -26,7 +26,7 @@ public class TestSwitchButtonListener extends VerticalLayout {
         switchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 
         switchButton.addValueChangeListener(event -> {
-            Notification.show("Value of switch button" + switchButton.getValue());
+            Notification.show("Value of switch button - " + switchButton.getValue());
         });
         return new Div(switchButton);
     }

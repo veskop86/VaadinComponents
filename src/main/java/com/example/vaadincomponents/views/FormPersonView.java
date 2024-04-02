@@ -16,6 +16,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.validator.EmailValidator;
+import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "personForm", layout = MainLayout.class)
@@ -68,19 +69,28 @@ public class FormPersonView extends VerticalLayout {
 
     private Component getForm() {
         FormLayout formLayout = new FormLayout();
+
         TextField firstName = new TextField("First Name");
         TextField lastName = new TextField("Last Name");
+
         EmailField emailField = new EmailField("Email");
+
         DatePicker dateOfBirth =  new DatePicker("Date of birth");
+
         SwitchButton isStudent = new SwitchButton();
         isStudent.setRoundness("round");
         isStudent.setLabel("Student?");
         isStudent.addThemeVariants(ButtonVariant.LUMO_ERROR);
 
+        SwitchButton rigthSideButton = new SwitchButton();
+        rigthSideButton.setRoundness("round");
+        rigthSideButton.getStyle().setTextAlign(Style.TextAlign.RIGHT);
+        rigthSideButton.setLabel("Student?");
+
         Button savePerson = new Button("Save");
         savePerson.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         Button resetData = new Button("Reset");
-        formLayout.add(firstName, lastName, emailField, isStudent, dateOfBirth);
+        formLayout.add(firstName, lastName, emailField, isStudent, dateOfBirth, rigthSideButton);
 
         Binder<Person> binder = new Binder<>(Person.class);
         binder.forField(firstName).withValidator(name -> name.matches("[A-Z]+[a-z]+"), "Not good name")
@@ -101,6 +111,16 @@ public class FormPersonView extends VerticalLayout {
 
         binder.readBean(person);
 
+        isStudent.addValueChangeListener(event -> {
+            try {
+                binder.writeBean(person);
+                binderForData.readBean(person);
+            } catch (ValidationException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+
         savePerson.addClickListener(event -> {
             try {
                 binder.writeBean(person);
@@ -109,6 +129,8 @@ public class FormPersonView extends VerticalLayout {
                 throw new RuntimeException(e);
             }
         });
+
+
         resetData.addClickListener(event -> {
             binder.readBean(person);
             binderForData.readBean(person);
@@ -117,6 +139,6 @@ public class FormPersonView extends VerticalLayout {
     }
 
     private Component getTitle() {
-       return  new H2("Person form");
+       return  new Div(new H2("Person form"));
     }
 }

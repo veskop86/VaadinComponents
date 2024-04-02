@@ -133,7 +133,8 @@ export class SwitchButtonTest extends LitElement{
                 
                 display:inline-block;
                 position: relative;
-               bottom: var(--slider-padding);
+            /*   bottom: var(--slider-padding); */
+                bottom: 4px;
             }
             
             .label{
@@ -187,8 +188,8 @@ export class SwitchButtonTest extends LitElement{
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
-        z-index: 3;
-        box-sizing: border-box;
+  /*      z-index: 3; */
+    /*    box-sizing: border-box; */
 }
 
 input:checked + .slider {
@@ -234,7 +235,7 @@ input:checked + .slider:before {
         z-index: 1;
          box-sizing: border-box;
          height: var(--slider--height);
-    cursor: pointer;
+        cursor: pointer;
             }
             
  input ~ .text-container > .left {
