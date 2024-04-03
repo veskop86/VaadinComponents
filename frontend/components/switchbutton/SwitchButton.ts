@@ -2,6 +2,11 @@ import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import {ElementMixin} from "@vaadin/component-base";
 import {PolylitMixin} from "@vaadin/component-base/src/polylit-mixin";
+import {} from '../color.js';
+import {} from '../sizing.js';
+import {} from '../spacing.js';
+import {} from '../typography';
+import {} from '../style';
 
 import {SwitchButtonMixin} from './switch-button-mixin';
 
@@ -62,8 +67,6 @@ export class SwitchButtonTest extends LitElement{
               
         --text-height: calc(var(--button-size) / 1.5);
         --text-width: calc(var(--button-size) / 1.5);
-              
-                 
             
         /* Slider padding mora biti paran.To je ovo oko teksta */
         /* slider-padding:4px */
@@ -73,9 +76,10 @@ export class SwitchButtonTest extends LitElement{
      /* --button-height: calc(var(--slider--height) + 8px ); */
         --button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
         /* Length of slider translation is text-width + slider-padding */
-        --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
+        
     /*  --button-width: calc(var(--text-height) * 2 + 16px); */
         --button-width: calc( 2 * var(--slider-width) +  3 * var(--slider-padding));
+              --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
         --margin: var(--lumo-space-xs);
         font-family: var(--lumo-font-family);
         font-weight: var(--vaadin-button-font-weight, 500);
@@ -101,8 +105,6 @@ export class SwitchButtonTest extends LitElement{
                 line-height: 1;
                 padding-right: 1em;
                 padding-bottom: 0.5em;
-                /* As a workaround for diacritics being cut off, add a top padding and a
-                negative margin to compensate */
                 padding-top: 0.25em;
                 margin-top: -0.25em;
                 overflow: hidden;
@@ -130,7 +132,7 @@ export class SwitchButtonTest extends LitElement{
             }
             
             .container{
-                
+                   
                 display:inline-block;
                 position: relative;
             /*   bottom: var(--slider-padding); */
@@ -144,9 +146,7 @@ export class SwitchButtonTest extends LitElement{
                 color: hsla(214, 42%, 18%, 0.69);
                 
             }
-            .container:hover > .label{
-                color:hsla(214, 40%, 16%, 0.94);
-            }
+        
          
             
      .switch {
@@ -174,6 +174,7 @@ export class SwitchButtonTest extends LitElement{
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
+          box-sizing: border-box;
          }
 
       .slider:before {
@@ -181,24 +182,20 @@ export class SwitchButtonTest extends LitElement{
         content: "";
         height: var(--slider--height);
         width: var(--slider-width);
-        left: calc(var(--slider-padding));
+        left: calc( var(--slider-padding));
         bottom: var(--slider-padding);
         top: var(--slider-padding);    
         background-color: white;
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: var(--lumo-border-radius-m);
-        z-index: 1; 
-    /*    box-sizing: border-box; */
-}
+        z-index: 1;
+          box-sizing: border-box;
+      }
 
 input:checked + .slider {
-        background-color: var(--lumo-primary-color);
+    background-color: var(--lumo-primary-color); 
             }
-
- :host([focus-ring]) .slider{
-      box-shadow: 0 0 0 2px red;
-  }
             
            
 input:checked + .slider:before {
@@ -206,37 +203,43 @@ input:checked + .slider:before {
        -ms-transform: translateX(var(--slider-transitionx-length));
        transform: translateX(var(--slider-transitionx-length));
 }
-
-.text{
-        position: relative;
-        display: inline-block;
-        box-sizing: border-box;
-        top: calc( 0.5 *  var(--slider-padding));
-        height: calc(var(--text-height));
-        width: calc(var(--text-width));
-        text-align: center;
-        /* Hide text */
-        overflow: hidden;
-        cursor: pointer;
-}
-
-  .left{
-        left: calc(var(--slider-padding) );
-            }
-  .right{
-        right: calc( -1 * var(--slider-padding));
-            }
-
+            
 .text-container{
         position: absolute;
         bottom: calc(var(--slider-padding) );
         width: calc(var(--button-width) - var(--slider-padding));
-        left: calc(var(--slider-padding) /2);
+        left: calc(var(--slider-padding) / 2);
         z-index: 1;
-         box-sizing: border-box;
-         height: var(--slider--height);
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        height: var(--slider--height);
         cursor: pointer;
+ /*       border: 2px solid black;   */
             }
+                
+            .text{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                
+                box-sizing: border-box;
+                   top: calc( 0.5 *  var(--slider-padding)); 
+                height: calc(var(--text-height));
+                width: calc(var(--text-width));
+                text-align: center;
+                /* Hide text */
+                overflow: hidden;
+                cursor: pointer;
+              /*  border: 2px solid yellow;   */
+            }
+            .left{
+                left: calc(var(--slider-padding) * 0.75 ) ;
+
+            }
+            .right{
+                right: calc(var(--slider-padding) * 0.75 );
+            }       
             
  input ~ .text-container > .left {
      /*     visibility: hidden;  */
@@ -331,7 +334,8 @@ input:checked ~ .text-container > .right{
                 display: inline-block;
                 width: var(--lumo-icon-size-m);
                 height: var(--lumo-icon-size-m);
-              /*  padding: 0.25em; */
+                box-sizing: border-box;
+                padding: 0.2rem;
                 }
 
         :host([flatRaised~='flat']){
@@ -340,7 +344,6 @@ input:checked ~ .text-container > .right{
 
         :host([disabled]) {
               pointer-events: none;
-
               color: var(--lumo-disabled-text-color);
           }
         /* TODO  Change colors for disabled state   */
@@ -351,17 +354,20 @@ input:checked ~ .text-container > .right{
           }
         :host([disabled]) input:checked + .slider{
             background-color:gray;
-}
-
-        :host([focus-ring]) {
-            box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
+        }
+        
+        :host([focus-ring]) > .container{
+            box-shadow: 0 0 0 2px red;
                 }
         :host([theme~='primary'][focus-ring]) {
             box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
         }
          
          /* Hover state  */  
-                  
+          
+            
+            
+            
           label:hover .slider:before{
             box-shadow: 0 0 0 .3rem var(--highlight-color);
             }
@@ -393,7 +399,28 @@ input:checked ~ .text-container > .right{
                 --button-size: var(--lumo-size-l);
             }
             
-            `;}
+            :host([focused]:not([readonly])) [part="label"] {
+                color: var(--lumo-primary-text-color);
+            }
+      
+            :host(:hover:not([readonly]):not([focused])) [part="label"]
+           {
+                color:  hsla(214, 40%, 16%, 0.94);
+            }
+            :host([disabled]) [part='label']
+           {
+                color: var(--lumo-disabled-text-color);
+                -webkit-text-fill-color: var(--lumo-disabled-text-color);
+            }
+            :host([theme~='small']) [part='label'] {
+                font-size: var(--lumo-font-size-xs);
+            }
+
+            :host:focus  .container    .switch  {
+                box-shadow: 0 0 0 2px red;
+            }
+             
+        `;}
 
 
     _changeCheckedState = (event: Event) =>{

@@ -9,6 +9,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -35,27 +36,62 @@ public class FirstView extends VerticalLayout {
                 switchAndFieldWithLabel(),
                 switchButtonAndTextField(),
                 smallButton(),
-                badgeAndButton()
+                badgeAndButton(),
+                smallSwtichWithIcon(),
+                largeIcongWithIcon(),
+                smallRoundedButton(),
+                largeRoundedButtonWithIcon()
         );
     }
 
+
+    private Component largeRoundedButtonWithIcon() {
+        SwitchButton largeRoundedWithIcons = new SwitchButton();
+        largeRoundedWithIcons.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        largeRoundedWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
+        largeRoundedWithIcons.setSecondComponent(VaadinIcon.CAMERA.create());
+        largeRoundedWithIcons.setRoundness("round");
+        return new VerticalLayout(new H3("Large rounded button with icons"), largeRoundedWithIcons);
+        
+    }
+
+    private Component smallRoundedButton() {
+        SwitchButton smallRoundedIconWithIcon = new SwitchButton();
+        smallRoundedIconWithIcon.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        smallRoundedIconWithIcon.setFirstComponent(VaadinIcon.ALARM.create());
+        smallRoundedIconWithIcon.setSecondComponent(VaadinIcon.CAMERA.create());
+        smallRoundedIconWithIcon.setRoundness("round");
+        return new VerticalLayout(new H3("Small rounded button with icon"), smallRoundedIconWithIcon);
+    }
+
+    private Component largeIcongWithIcon() {
+        SwitchButton largeButton = new SwitchButton();
+        largeButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        largeButton.setFirstComponent(VaadinIcon.SUN_RISE.create());
+        return new VerticalLayout(new H3("Large button with icon"), largeButton);
+    }
+
+    private Component smallSwtichWithIcon() {
+        SwitchButton smallSwitch = new SwitchButton();
+        smallSwitch.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        smallSwitch.setFirstComponent(VaadinIcon.ALARM.create());
+        return new VerticalLayout(new H3("Small button  with icon"),  smallSwitch );
+    }
+
     private Component badgeAndButton() {
-        Span confirmed2 = new Span(new Span("Confirmed"),
-                createIcon(VaadinIcon.CHECK));
-        confirmed2.getElement().getThemeList().add("badge success");
+        Span pending1 = new Span(createIcon(VaadinIcon.CLOCK),
+                new Span("Pending"));
+        pending1.getElement().getThemeList().add("badge");
 
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("round");
-        Span pending = new Span("Pending");
-        pending.getElement().getThemeList().add("badge");
-        return new HorizontalLayout(switchButton, confirmed2, pending);
+        return new HorizontalLayout(switchButton, pending1);
     }
     private Icon createIcon(VaadinIcon vaadinIcon) {
         Icon icon = vaadinIcon.create();
         icon.getStyle().set("padding", "var(--lumo-space-xs)");
         return icon;
     }
-
     private Component smallButton() {
         SwitchButton small = new SwitchButton();
         small.addThemeVariants(ButtonVariant.LUMO_SMALL);
@@ -69,7 +105,6 @@ public class FirstView extends VerticalLayout {
     }
 
     private Component switchAndFieldWithLabel() {
-
             return new HorizontalLayout(new TextField("Label"), new SwitchButton());
     }
 
