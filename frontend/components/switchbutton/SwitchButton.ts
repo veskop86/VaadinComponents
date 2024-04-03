@@ -212,10 +212,11 @@ input:checked + .slider:before {
         z-index: 1;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         box-sizing: border-box;
         height: var(--slider--height);
         cursor: pointer;
- /*       border: 2px solid black;   */
+ /*       border: 1px solid black;   */
             }
                 
             .text{
@@ -224,21 +225,21 @@ input:checked + .slider:before {
                 justify-content: center;
                 
                 box-sizing: border-box;
-                   top: calc( 0.5 *  var(--slider-padding)); 
+      /*             top: calc( 0.5 *  var(--slider-padding));   */
                 height: calc(var(--text-height));
                 width: calc(var(--text-width));
                 text-align: center;
                 /* Hide text */
                 overflow: hidden;
                 cursor: pointer;
-              /*  border: 2px solid yellow;   */
+        /*         border: 1px solid yellow;    */
             }
             .left{
-                left: calc(var(--slider-padding) * 0.75 ) ;
+                left: calc(var(--slider-padding) * 0.75) ;
 
             }
             .right{
-                right: calc(var(--slider-padding) * 0.75 );
+                right: calc(var(--slider-padding) * 0.75);
             }       
             
  input ~ .text-container > .left {
@@ -335,10 +336,17 @@ input:checked ~ .text-container > .right{
                 width: var(--lumo-icon-size-m);
                 height: var(--lumo-icon-size-m);
                 box-sizing: border-box;
-                padding: 0.2rem;
+                
                 }
-
-        :host([flatRaised~='flat']){
+        :host([theme~='small']) [part]::slotted(vaadin-icon){
+            display: inline-block;
+            width: var(--lumo-icon-size-s);
+            height: var(--lumo-icon-size-s);
+            box-sizing: border-box;
+           
+        }    
+            
+        :host([flatRaised~='flat']) [part]::slotted(vaadin-icon){
               color:black;
             }
 
