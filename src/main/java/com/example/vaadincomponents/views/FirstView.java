@@ -12,7 +12,9 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "", layout = MainLayout.class)
@@ -29,6 +31,7 @@ public class FirstView extends VerticalLayout {
                 buttonWithIcons(),
                 contrastLumoVariantTheme(),
                 successThemeVariantButton(),
+                errorThemeVariantSwitchButton(),
                 textFieldwithButton(),
                 switchButtonTextFieldWithLabels(),
                 fieldAndButtonWithLabel(),
@@ -40,10 +43,59 @@ public class FirstView extends VerticalLayout {
                 smallSwtichWithIcon(),
                 largeIcongWithIcon(),
                 smallRoundedButton(),
-                largeRoundedButtonWithIcon()
+                largeRoundedButtonWithIcon(),
+                disbledButtonithLabel(),
+                smallDisabledButtonWithLabel(),
+                threeNormalButtons()
         );
     }
 
+    private Component errorThemeVariantSwitchButton() {
+        SwitchButton errorSwitchButton = new SwitchButton();
+        errorSwitchButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        return errorSwitchButton;
+    }
+
+    private Component threeNormalButtons() {
+        SwitchButton small = new SwitchButton();
+        small.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        SwitchButton large = new SwitchButton();
+        large.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        SwitchButton switchButton = new SwitchButton();
+        return  new HorizontalLayout( large ,switchButton, small);
+    }
+
+    private Component smallDisabledButtonWithLabel() {
+        SwitchButton switchButton = getDisabledButton();
+        switchButton.addThemeVariants(ButtonVariant.LUMO_SMALL);
+
+        TextField textField = getDisabledTextField();
+        textField.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+
+        return new HorizontalLayout(textField, switchButton);
+    }
+
+    private static TextField getDisabledTextField() {
+        TextField textField = new TextField("Label");
+        textField.setEnabled(false);
+        return textField;
+    }
+
+    private static SwitchButton getDisabledButton() {
+        SwitchButton switchButton = new SwitchButton();
+        switchButton.setLabel("Label");
+        switchButton.setEnabled(false);
+        return switchButton;
+    }
+
+
+    public Component disbledButtonithLabel(){
+        SwitchButton switchButton = getDisabledButton();
+
+        TextField textField = getDisabledTextField();
+        return new HorizontalLayout(textField, switchButton);
+
+    }
 
     private Component largeRoundedButtonWithIcon() {
         SwitchButton largeRoundedWithIcons = new SwitchButton();

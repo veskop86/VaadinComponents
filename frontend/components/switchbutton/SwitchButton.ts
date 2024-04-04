@@ -11,7 +11,7 @@ import {} from '../style';
 import {SwitchButtonMixin} from './switch-button-mixin';
 
 @customElement("switch-button")
-export class SwitchButtonTest extends LitElement{
+export class SwitchButton extends LitElement{
 
    static get is(){
        return 'switch-button';
@@ -44,6 +44,7 @@ export class SwitchButtonTest extends LitElement{
         --lumo-shade: hsl(214, 35%, 15%);   
         --lumo-error-color: hsl(3, 85%, 48%);
         --highlight-color: hsl(0, 0%, 100%, 0.29);
+              --highlight-width: .3rem;    
         --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
         --lumo-primary-text-color: hsl(214, 100%, 43%);
               --lumo-size-m: 2.25rem;
@@ -81,6 +82,8 @@ export class SwitchButtonTest extends LitElement{
         --button-width: calc( 2 * var(--slider-width) +  3 * var(--slider-padding));
               --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
         --margin: var(--lumo-space-xs);
+              
+              
         font-family: var(--lumo-font-family);
         font-weight: var(--vaadin-button-font-weight, 500);
         color: var(--lumo-body-text-color);
@@ -118,8 +121,7 @@ export class SwitchButtonTest extends LitElement{
             :host([has-label])::before {
                 margin-top: calc(var(--lumo-font-size-s) * 1.5);
             }
-
-
+            
             :host([has-label]) {
                 padding-top: var(--lumo-space-m);
             }
@@ -132,7 +134,6 @@ export class SwitchButtonTest extends LitElement{
             }
             
             .container{
-                   
                 display:inline-block;
                 position: relative;
             /*   bottom: var(--slider-padding); */
@@ -144,10 +145,7 @@ export class SwitchButtonTest extends LitElement{
                 font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
                 font-weight: var(--vaadin-input-field-value-font-weight, 400);
                 color: hsla(214, 42%, 18%, 0.69);
-                
             }
-        
-         
             
      .switch {
         position: relative;
@@ -160,7 +158,6 @@ export class SwitchButtonTest extends LitElement{
         opacity: 0;
         width: 0;
         height: 0;
-        
                 }
       .slider {
         position: absolute;
@@ -177,7 +174,7 @@ export class SwitchButtonTest extends LitElement{
           box-sizing: border-box;
          }
 
-      .slider:before {
+      .slider::before {
         position: absolute;
         content: "";
         height: var(--slider--height);
@@ -188,15 +185,14 @@ export class SwitchButtonTest extends LitElement{
         background-color: white;
         -webkit-transition: .4s;
         transition: .4s;
-        border-radius: var(--lumo-border-radius-m);
+        border-radius: calc( var(--lumo-border-radius-m) / 2);
         z-index: 1;
           box-sizing: border-box;
       }
-
+    
 input:checked + .slider {
     background-color: var(--lumo-primary-color); 
             }
-            
            
 input:checked + .slider:before {
        -webkit-transform: translateX(var(--slider-transitionx-length));
@@ -216,7 +212,6 @@ input:checked + .slider:before {
         box-sizing: border-box;
         height: var(--slider--height);
         cursor: pointer;
- /*       border: 1px solid black;   */
             }
                 
             .text{
@@ -280,7 +275,7 @@ input:checked ~ .text-container > .right{
             :host([roundness~='round'])  .slider:before {
                    border-radius: calc(var(--button-size) / 2);
             }
-
+                
            :host([roundness~='round']) input + .slider {
                  border-radius: calc(var(--button-size) / 2);
             }
@@ -336,7 +331,6 @@ input:checked ~ .text-container > .right{
                 width: var(--lumo-icon-size-m);
                 height: var(--lumo-icon-size-m);
                 box-sizing: border-box;
-                
                 }
         :host([theme~='small']) [part]::slotted(vaadin-icon){
             display: inline-block;
@@ -372,12 +366,10 @@ input:checked ~ .text-container > .right{
         }
          
          /* Hover state  */  
-          
-            
             
             
           label:hover .slider:before{
-            box-shadow: 0 0 0 .3rem var(--highlight-color);
+            box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
             }
             
         :host([theme~='error']) input:checked + .slider{
@@ -389,10 +381,10 @@ input:checked ~ .text-container > .right{
             }
             
             :host([theme~='success'])  .slider{
-                background-color: #ff0000;
+                background-color: #ccc;
             }
             :host([theme~='success']) input:checked + .slider{
-                    background-color: #00ff00;
+                    background-color:  var(--lumo-success-color);
             }
             :host([theme~='success']) .slider:before{
                 --highlight-color: hsl(0, 0%, 100%, 0.47);
@@ -401,16 +393,29 @@ input:checked ~ .text-container > .right{
 
             :host([theme~='small'])  {
                 --button-size: var(--lumo-size-s);
-                 }   
+                 }
+                
+            :host([theme~='small']:not([roundness='round']))  .slider:before)  {
+                
+                --highlight-width: .28rem;   
+            } 
             
+            :host([theme~='small']) [part='label'] {
+                font-size: var(--lumo-font-size-xs);
+            }
+                  
             :host([theme~='large']){
                 --button-size: var(--lumo-size-l);
+                --highlight-width: .33rem;
+            }
+            :host([theme~='large']:not([roundness='round']))  .slider:before{
+                border-radius: calc( var(--lumo-border-radius-m) / 4);     
             }
             
             :host([focused]:not([readonly])) [part="label"] {
                 color: var(--lumo-primary-text-color);
             }
-      
+            
             :host(:hover:not([readonly]):not([focused])) [part="label"]
            {
                 color:  hsla(214, 40%, 16%, 0.94);
@@ -426,6 +431,12 @@ input:checked ~ .text-container > .right{
 
             :host:focus  .container    .switch  {
                 box-shadow: 0 0 0 2px red;
+            }
+            
+            :host([disabled]) [part='label']
+             {
+                color: var(--lumo-disabled-text-color);
+                -webkit-text-fill-color: var(--lumo-disabled-text-color);
             }
              
         `;}
@@ -445,22 +456,21 @@ input:checked ~ .text-container > .right{
             <div class="container">
                 <div part="label">
                     <slot name="label">
-                        
                     </slot>
                     <span part="required-indicator" aria-hidden="true" on-click="focus"></span>
                 </div>
-            <label class="switch">
-                <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox" .checked="${this.checked}">
-                <span class="slider"></span>
-                <div class="text-container">
-            <span  class='text left'>
-                <slot name="firstPart" ></slot>
-            </span>
-                    <span  class='text right'>
-                <slot name="secondPart" ></slot>
-            </span>
-                </div>
-            </label>
+                <label class="switch">
+                    <input id="switchButtonCheck"  @change=${this._changeCheckedState} type="checkbox" .checked="${this.checked}">
+                    <span class="slider"></span>
+                    <div class="text-container">
+                        <span  class='text left'>
+                            <slot name="firstPart" ></slot>
+                        </span>
+                        <span  class='text right'>
+                            <slot name="secondPart" ></slot>
+                        </span>
+                    </div>
+                </label>
             </div>
         `;
     }

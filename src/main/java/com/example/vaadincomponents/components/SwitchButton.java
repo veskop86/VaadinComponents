@@ -13,7 +13,7 @@ import com.vaadin.flow.dom.ElementFactory;
 @JsModule("./components/switchbutton/SwitchButton.ts")
 public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasTheme, HasThemeVariant<SwitchButton>,ThemeVariant, HasLabel {
     public SwitchButton() {
-        super("checked",true, true);
+        super("checked", false, true);
     }
 
     public void setBothStatesVisible(){
