@@ -389,7 +389,7 @@ input:checked ~ .text-container > .right{
             :host([theme~='success']) .slider:before{
                 --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
-
+            
 
             :host([theme~='small'])  {
                 --button-size: var(--lumo-size-s);
@@ -399,7 +399,7 @@ input:checked ~ .text-container > .right{
                 
                 --highlight-width: .28rem;   
             } 
-            
+              
             :host([theme~='small']) [part='label'] {
                 font-size: var(--lumo-font-size-xs);
             }

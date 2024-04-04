@@ -4,6 +4,7 @@ import com.example.vaadincomponents.components.SwitchButton;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
@@ -16,6 +17,7 @@ import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Route(value = "", layout = MainLayout.class)
 public class FirstView extends VerticalLayout {
@@ -46,8 +48,16 @@ public class FirstView extends VerticalLayout {
                 largeRoundedButtonWithIcon(),
                 disbledButtonithLabel(),
                 smallDisabledButtonWithLabel(),
-                threeNormalButtons()
+                threeNormalButtons(),
+                smallErrorButton()
         );
+    }
+
+    private Component smallErrorButton() {
+        SwitchButton error = new SwitchButton();
+        error.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        error.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        return new Div(new H3("Small contrast button"), error);
     }
 
     private Component errorThemeVariantSwitchButton() {
