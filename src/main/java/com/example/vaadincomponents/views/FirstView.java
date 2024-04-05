@@ -72,7 +72,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton large = new SwitchButton();
         large.addThemeVariants(ButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
-        return  new HorizontalLayout( large ,switchButton, small);
+        return  new HorizontalLayout(large ,switchButton, small);
     }
 
     private Component smallDisabledButtonWithLabel() {

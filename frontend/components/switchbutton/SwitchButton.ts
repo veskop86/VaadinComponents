@@ -81,8 +81,8 @@ export class SwitchButton extends LitElement{
     /*  --button-width: calc(var(--text-height) * 2 + 16px); */
         --button-width: calc( 2 * var(--slider-width) +  3 * var(--slider-padding));
               --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
-        --margin: var(--lumo-space-xs);
-              
+              --transition-duration: .4s;
+              --margin: var(--lumo-space-xs);
               
         font-family: var(--lumo-font-family);
         font-weight: var(--vaadin-button-font-weight, 500);
@@ -117,7 +117,7 @@ export class SwitchButton extends LitElement{
                 max-width: 100%;
                 box-sizing: border-box;
             }
-            
+            /* If component has label styling */
             :host([has-label])::before {
                 margin-top: calc(var(--lumo-font-size-s) * 1.5);
             }
@@ -128,15 +128,14 @@ export class SwitchButton extends LitElement{
             :host(:not([has-label])) [part='label'] {
                      display: none; 
             }
-            
+            /*  Hidden attribute  */
             :host([hidden]) {
                 display: none !important;
             }
-            
+                
             .container{
                 display:inline-block;
                 position: relative;
-            /*   bottom: var(--slider-padding); */
                 bottom: 4px;
             }
             
@@ -160,17 +159,17 @@ export class SwitchButton extends LitElement{
         height: 0;
                 }
       .slider {
-        position: absolute;
-        display:inline-block;    
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-        border-radius: var(--lumo-border-radius-m);
+          position: absolute;
+          display:inline-block;    
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: var(--transition-duration);
+          transition: var(--transition-duration);
+          border-radius: var(--lumo-border-radius-m);
           box-sizing: border-box;
          }
 
@@ -183,28 +182,29 @@ export class SwitchButton extends LitElement{
         bottom: var(--slider-padding);
         top: var(--slider-padding);    
         background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
+        -webkit-transition: var(--transition-duration);
+        transition: var(--transition-duration);
         border-radius: calc( var(--lumo-border-radius-m) / 2);
         z-index: 1;
           box-sizing: border-box;
       }
     
 input:checked + .slider {
-    background-color: var(--lumo-primary-color); 
+    background-color: var(--lumo-primary-color);
+    
             }
            
 input:checked + .slider:before {
        -webkit-transform: translateX(var(--slider-transitionx-length));
        -ms-transform: translateX(var(--slider-transitionx-length));
        transform: translateX(var(--slider-transitionx-length));
+        box-sizing: border-box;
 }
             
 .text-container{
         position: absolute;
-        bottom: calc(var(--slider-padding) );
-        width: calc(var(--button-width) - var(--slider-padding));
-        left: calc(var(--slider-padding) / 2);
+        bottom: calc(var(--slider-padding));
+        width: calc(var(--button-width));
         z-index: 1;
         display: flex;
         justify-content: space-between;
@@ -212,41 +212,38 @@ input:checked + .slider:before {
         box-sizing: border-box;
         height: var(--slider--height);
         cursor: pointer;
+        padding-left: calc(var(--slider-padding) * 1.5);
+        padding-right: calc(var(--slider-padding) * 1.5);
+        
             }
                 
             .text{
                 position: relative;
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 
                 box-sizing: border-box;
       /*             top: calc( 0.5 *  var(--slider-padding));   */
                 height: calc(var(--text-height));
                 width: calc(var(--text-width));
                 text-align: center;
-                /* Hide text */
+              
                 overflow: hidden;
                 cursor: pointer;
         /*         border: 1px solid yellow;    */
             }
-            .left{
-                left: calc(var(--slider-padding) * 0.75) ;
-
-            }
-            .right{
-                right: calc(var(--slider-padding) * 0.75);
-            }       
             
  input ~ .text-container > .left {
      /*     visibility: hidden;  */
      /*     opacity: 0; */
-          transition: all .7s;
+          transition: all var(--transition-duration);
             }
 
  input ~ .text-container > .right{
         visibilty: visible;
      /*   opacity:1; */
-        transition: all .7s;
+        transition: all var(--transition-duration);
            }
  input:checked ~ .text-container > .left{
         visibility: visible;
@@ -390,13 +387,11 @@ input:checked ~ .text-container > .right{
                 --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
             
-
             :host([theme~='small'])  {
                 --button-size: var(--lumo-size-s);
                  }
                 
             :host([theme~='small']:not([roundness='round']))  .slider:before)  {
-                
                 --highlight-width: .28rem;   
             } 
               
@@ -438,13 +433,17 @@ input:checked ~ .text-container > .right{
                 color: var(--lumo-disabled-text-color);
                 -webkit-text-fill-color: var(--lumo-disabled-text-color);
             }
+
+            :host([focus-ring]) .slider  {
+                box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
+            }
              
         `;}
 
 
     _changeCheckedState = (event: Event) =>{
         this.checked = (event.target as HTMLInputElement).checked;
-        console.log("test");
+
         const e = new CustomEvent("checked-changed", {
             detail: {value: this.checked}, bubbles: true, composed: true
         });
