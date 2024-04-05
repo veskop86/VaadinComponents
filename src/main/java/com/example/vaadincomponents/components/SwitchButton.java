@@ -46,9 +46,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().appendChild(icon.getElement());
     }
 
-    public void removeSecondComponent(){
-        getElement().removeAttribute("secondPart");
-    }
 
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);
