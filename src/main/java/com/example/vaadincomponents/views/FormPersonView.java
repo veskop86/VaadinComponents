@@ -43,7 +43,7 @@ public class FormPersonView extends VerticalLayout {
         EmailField emailField = new EmailField();
         emailField.setReadOnly(true);
         SwitchButton isStudent = new SwitchButton();
-        isStudent.setRoundness("round");
+        isStudent.setRoundness("rounded");
         isStudent.setEnabled(false);
         DatePicker datePicker = new DatePicker("Date of birth");
 
@@ -79,12 +79,12 @@ public class FormPersonView extends VerticalLayout {
         DatePicker dateOfBirth =  new DatePicker("Date of birth");
 
         SwitchButton isStudent = new SwitchButton();
-        isStudent.setRoundness("round");
+        isStudent.setRoundness("rounded");
         isStudent.setLabel("Student?");
         isStudent.addThemeVariants(SwitchButtonVariant.LUMO_ERROR);
 
         SwitchButton rigthSideButton = new SwitchButton();
-        rigthSideButton.setRoundness("round");
+        rigthSideButton.setRoundness("rounded");
         rigthSideButton.getStyle().setTextAlign(Style.TextAlign.RIGHT);
         rigthSideButton.setLabel("Student?");
 

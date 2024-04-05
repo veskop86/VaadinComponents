@@ -23,7 +23,7 @@ public class TestSwitchButtonListener extends VerticalLayout {
 
     private Component getSwitchButton() {
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_SUCCESS);
 
         switchButton.addValueChangeListener(event -> {

@@ -11,7 +11,6 @@ export class SwitchButton extends LitElement{
             return value !== oldValue;
         }
     })
-
     checked: boolean = true;
 
     @property({type: Boolean, reflect: true})

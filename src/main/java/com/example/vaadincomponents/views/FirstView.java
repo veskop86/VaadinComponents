@@ -64,12 +64,12 @@ public class FirstView extends VerticalLayout {
     }
 
     private Component threeNormalButtons() {
-        SwitchButton small = new SwitchButton();
-        small.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
+        SwitchButton smallSwitchButton = new SwitchButton();
+        smallSwitchButton.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         SwitchButton large = new SwitchButton();
         large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
-        return  new HorizontalLayout(large ,switchButton, small);
+        return  new HorizontalLayout(large ,switchButton, smallSwitchButton);
     }
 
     private Component smallDisabledButtonWithLabel() {
@@ -106,9 +106,9 @@ public class FirstView extends VerticalLayout {
     private Component largeRoundedButtonWithIcon() {
         SwitchButton largeRoundedWithIcons = new SwitchButton();
         largeRoundedWithIcons.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
-        largeRoundedWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
-        largeRoundedWithIcons.setSecondComponent(VaadinIcon.CAMERA.create());
-        largeRoundedWithIcons.setRoundness("round");
+        largeRoundedWithIcons.setLeftValue(VaadinIcon.ALARM.create());
+        largeRoundedWithIcons.setRigthValue(VaadinIcon.CAMERA.create());
+        largeRoundedWithIcons.setRoundness("rounded");
         return new VerticalLayout(new H3("Large rounded button with icons"), largeRoundedWithIcons);
         
     }
@@ -116,23 +116,23 @@ public class FirstView extends VerticalLayout {
     private Component smallRoundedButton() {
         SwitchButton smallRoundedIconWithIcon = new SwitchButton();
         smallRoundedIconWithIcon.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
-        smallRoundedIconWithIcon.setFirstComponent(VaadinIcon.ALARM.create());
-        smallRoundedIconWithIcon.setSecondComponent(VaadinIcon.CAMERA.create());
-        smallRoundedIconWithIcon.setRoundness("round");
+        smallRoundedIconWithIcon.setLeftValue(VaadinIcon.ALARM.create());
+        smallRoundedIconWithIcon.setRigthValue(VaadinIcon.CAMERA.create());
+        smallRoundedIconWithIcon.setRoundness("rounded");
         return new VerticalLayout(new H3("Small rounded button with icon"), smallRoundedIconWithIcon);
     }
 
     private Component largeIcongWithIcon() {
         SwitchButton largeButton = new SwitchButton();
         largeButton.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
-        largeButton.setFirstComponent(VaadinIcon.SUN_RISE.create());
+        largeButton.setLeftValue(VaadinIcon.SUN_RISE.create());
         return new VerticalLayout(new H3("Large button with icon"), largeButton);
     }
 
     private Component smallSwtichWithIcon() {
         SwitchButton smallSwitch = new SwitchButton();
         smallSwitch.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
-        smallSwitch.setFirstComponent(VaadinIcon.ALARM.create());
+        smallSwitch.setLeftValue(VaadinIcon.ALARM.create());
         return new VerticalLayout(new H3("Small button  with icon"),  smallSwitch );
     }
 
@@ -142,7 +142,7 @@ public class FirstView extends VerticalLayout {
         pending1.getElement().getThemeList().add("badge");
 
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         return new HorizontalLayout(switchButton, pending1);
     }
     private Icon createIcon(VaadinIcon vaadinIcon) {
@@ -153,12 +153,12 @@ public class FirstView extends VerticalLayout {
     private Component smallButton() {
         SwitchButton small = new SwitchButton();
         small.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
-        small.setRoundness("round");
+        small.setRoundness("rounded");
         SwitchButton large = new SwitchButton();
-        large.setRoundness("round");
+        large.setRoundness("rounded");
         large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         return  new HorizontalLayout( large ,switchButton, small);
     }
 
@@ -169,7 +169,7 @@ public class FirstView extends VerticalLayout {
 
     private Component switchAndTextFieldWithoutLabels() {
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         return new HorizontalLayout(new TextField(), switchButton);
     }
 
@@ -178,7 +178,7 @@ public class FirstView extends VerticalLayout {
         textField.setLabel("Test");
         SwitchButton switchButton = new SwitchButton();
         switchButton.setLabel("Test");
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
 
         H3 title = new H3("TextField and Button with labels - Positioning");
         return new HorizontalLayout(textField, switchButton);
@@ -186,7 +186,7 @@ public class FirstView extends VerticalLayout {
     private Component switchButtonAndTextField(){
         TextField textField = new TextField();
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         return new HorizontalLayout(textField, switchButton);
     }
 
@@ -204,7 +204,7 @@ public class FirstView extends VerticalLayout {
     private Component successThemeVariantButton() {
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_SUCCESS);
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         switchButton.setLabel("Label");
         return switchButton;
     }
@@ -212,15 +212,15 @@ public class FirstView extends VerticalLayout {
     private Component contrastLumoVariantTheme(){
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         return switchButton;
     }
 
 
     private Component buttonWithIcons() {
             SwitchButton buttonWithIcons = new SwitchButton();
-            buttonWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
-            buttonWithIcons.setSecondComponent(VaadinIcon.CTRL.create());
+            buttonWithIcons.setLeftValue(VaadinIcon.ALARM.create());
+            buttonWithIcons.setRigthValue(VaadinIcon.CTRL.create());
             return buttonWithIcons;
     }
 
@@ -233,16 +233,16 @@ public class FirstView extends VerticalLayout {
 
     private Component getButtonWithOnOff() {
         SwitchButton onOffButton = new SwitchButton();
-        onOffButton.setFirstComponent("On");
-        onOffButton.setSecondComponent("Off");
+        onOffButton.setLeftValue("On");
+        onOffButton.setRightValue("Off");
         Button enableDisable = new Button("Enable/Disable" ,event -> onOffButton.setEnabled(!onOffButton.isEnabled()));
         return new HorizontalLayout(onOffButton, enableDisable);
     }
 
     private Component getButtonWithSomeValues() {
         SwitchButton buttonWithDollarAndPercentage = new SwitchButton();
-        buttonWithDollarAndPercentage.setFirstComponent("€");
-        buttonWithDollarAndPercentage.setSecondComponent("%");
+        buttonWithDollarAndPercentage.setRightValue("€");
+        buttonWithDollarAndPercentage.setLeftValue("%");
         buttonWithDollarAndPercentage.setBothStatesVisible();
         Button enableDisable = new Button("Enable/Disable" ,event -> buttonWithDollarAndPercentage.setEnabled(!buttonWithDollarAndPercentage.isEnabled()));
         return new HorizontalLayout(buttonWithDollarAndPercentage, enableDisable);
@@ -265,7 +265,7 @@ public class FirstView extends VerticalLayout {
 
     private HorizontalLayout getRoundedSwitchButton() {
         SwitchButton roundedSwitchButton = new SwitchButton();
-        roundedSwitchButton.setRoundness("round");
+        roundedSwitchButton.setRoundness("rounded");
         Button enableDisable = new Button("Enable/Disable" ,event -> roundedSwitchButton.setEnabled(!roundedSwitchButton.isEnabled()));
         return new HorizontalLayout(roundedSwitchButton, enableDisable);
     }

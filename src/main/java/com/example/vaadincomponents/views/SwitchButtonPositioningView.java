@@ -33,18 +33,18 @@ public class SwitchButtonPositioningView extends VerticalLayout {
         formLayout.addFormItem(textField1 , "company");
 
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         switchButton.getStyle().setTextAlign(Style.TextAlign.RIGHT);
 
         SwitchButton switchButton1 = new SwitchButton();
-        switchButton1.setRoundness("round");
+        switchButton1.setRoundness("rounded");
         switchButton1.getStyle().setTextAlign(Style.TextAlign.RIGHT);
         formLayout.addFormItem(switchButton, "label");
         formLayout.addFormItem(switchButton1, "label");
 
         return new Div(new H2("Form with buttons on right side"), formLayout);
     }
-
+    
     private Component form1() {
         FormLayout formLayout = new FormLayout();
 
@@ -53,11 +53,11 @@ public class SwitchButtonPositioningView extends VerticalLayout {
 
         SwitchButton switchButton = new SwitchButton();
         switchButton.setLabel("Left");
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
         SwitchButton rightSideButton = new SwitchButton();
         rightSideButton.setLabel("Right");
         rightSideButton.getStyle().setTextAlign(Style.TextAlign.RIGHT);
-        rightSideButton.setRoundness("round");
+        rightSideButton.setRoundness("rounded");
 
         PasswordField passwordField = new  PasswordField("Password");
         formLayout.setColspan(passwordField, 2);
@@ -65,7 +65,7 @@ public class SwitchButtonPositioningView extends VerticalLayout {
         SwitchButton switchButtonCentered = new SwitchButton();
         switchButtonCentered.setLabel("center");
         switchButtonCentered.getStyle().setTextAlign(Style.TextAlign.CENTER);
-        switchButtonCentered.setRoundness("round");
+        switchButtonCentered.setRoundness("rounded");
         formLayout.setColspan(switchButtonCentered, 2);
 
 
@@ -83,10 +83,10 @@ public class SwitchButtonPositioningView extends VerticalLayout {
 
         TextField textField1 = new TextField();
         SwitchButton switchButton = new SwitchButton();
-        switchButton.setRoundness("round");
+        switchButton.setRoundness("rounded");
 
         SwitchButton switchButton1 = new SwitchButton();
-        switchButton1.setRoundness("round");
+        switchButton1.setRoundness("rounded");
 
 
         formLayout.addFormItem(textField, "First name");

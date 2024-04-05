@@ -25,23 +25,23 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().appendChild(span);
     }
 
-    public void setFirstComponent(Icon icon){
+    public void setLeftValue(Icon icon){
         icon.getElement().setAttribute("slot", "firstPart");
         getElement().appendChild(icon.getElement());
     }
-    public void setFirstComponent(String string){
+    public void setLeftValue(String string){
         Element span =  ElementFactory.createSpan(string);
         span.setAttribute("slot", "firstPart");
         getElement().appendChild(span);
     }
 
-    public void setSecondComponent(String string){
+    public void setRightValue(String string){
         Element span = ElementFactory.createSpan(string);
         span.setAttribute("slot", "secondPart");
         getElement().appendChild(span);
     }
 
-    public void setSecondComponent(Icon icon){
+    public void setRigthValue(Icon icon){
         icon.getElement().setAttribute("slot", "secondPart");
         getElement().appendChild(icon.getElement());
     }
