@@ -1,7 +1,6 @@
 package com.example.vaadincomponents.components;
 
 import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.shared.HasThemeVariant;
@@ -11,7 +10,7 @@ import com.vaadin.flow.dom.ElementFactory;
 
 @Tag("switch-button")
 @JsModule("./components/switchbutton/SwitchButton.ts")
-public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasTheme, HasThemeVariant<SwitchButton>,ThemeVariant, HasLabel {
+public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasThemeVariant<SwitchButtonVariant>,ThemeVariant, HasLabel {
     public SwitchButton() {
         super("checked", false, true);
     }
@@ -30,7 +29,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         icon.getElement().setAttribute("slot", "firstPart");
         getElement().appendChild(icon.getElement());
     }
-
     public void setFirstComponent(String string){
         Element span =  ElementFactory.createSpan(string);
         span.setAttribute("slot", "firstPart");
@@ -52,7 +50,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().removeAttribute("secondPart");
     }
 
-
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);
         //Nisam siguran da li treba
@@ -66,15 +63,11 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
     public void setRoundness(String roundness){
         getElement().setAttribute("roundness", roundness);
     }
-
     @Override
     public String getVariantName() {
         return null;
     }
 
-    public void addThemeVariants(ButtonVariant buttonVariant) {
-            getElement().setAttribute("theme", buttonVariant.getVariantName());
-    }
 
 /*    @DomEvent("switch-state-change")
     public static class SwitchStateChanged extends ComponentEvent<ComponentSwitchButton>{

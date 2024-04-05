@@ -1,23 +1,20 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.SwitchButton;
+import com.example.vaadincomponents.components.SwitchButtonVariant;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Route(value = "", layout = MainLayout.class)
 public class FirstView extends VerticalLayout {
@@ -55,29 +52,29 @@ public class FirstView extends VerticalLayout {
 
     private Component smallErrorButton() {
         SwitchButton error = new SwitchButton();
-        error.addThemeVariants(ButtonVariant.LUMO_SMALL);
-        error.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        error.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
+        error.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
         return new Div(new H3("Small contrast button"), error);
     }
 
     private Component errorThemeVariantSwitchButton() {
         SwitchButton errorSwitchButton = new SwitchButton();
-        errorSwitchButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        errorSwitchButton.addThemeVariants(SwitchButtonVariant.LUMO_ERROR);
         return errorSwitchButton;
     }
 
     private Component threeNormalButtons() {
         SwitchButton small = new SwitchButton();
-        small.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        small.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         SwitchButton large = new SwitchButton();
-        large.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
         return  new HorizontalLayout(large ,switchButton, small);
     }
 
     private Component smallDisabledButtonWithLabel() {
         SwitchButton switchButton = getDisabledButton();
-        switchButton.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        switchButton.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
 
         TextField textField = getDisabledTextField();
         textField.addThemeVariants(TextFieldVariant.LUMO_SMALL);
@@ -101,7 +98,6 @@ public class FirstView extends VerticalLayout {
 
     public Component disbledButtonithLabel(){
         SwitchButton switchButton = getDisabledButton();
-
         TextField textField = getDisabledTextField();
         return new HorizontalLayout(textField, switchButton);
 
@@ -109,7 +105,7 @@ public class FirstView extends VerticalLayout {
 
     private Component largeRoundedButtonWithIcon() {
         SwitchButton largeRoundedWithIcons = new SwitchButton();
-        largeRoundedWithIcons.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        largeRoundedWithIcons.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         largeRoundedWithIcons.setFirstComponent(VaadinIcon.ALARM.create());
         largeRoundedWithIcons.setSecondComponent(VaadinIcon.CAMERA.create());
         largeRoundedWithIcons.setRoundness("round");
@@ -119,7 +115,7 @@ public class FirstView extends VerticalLayout {
 
     private Component smallRoundedButton() {
         SwitchButton smallRoundedIconWithIcon = new SwitchButton();
-        smallRoundedIconWithIcon.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        smallRoundedIconWithIcon.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         smallRoundedIconWithIcon.setFirstComponent(VaadinIcon.ALARM.create());
         smallRoundedIconWithIcon.setSecondComponent(VaadinIcon.CAMERA.create());
         smallRoundedIconWithIcon.setRoundness("round");
@@ -128,14 +124,14 @@ public class FirstView extends VerticalLayout {
 
     private Component largeIcongWithIcon() {
         SwitchButton largeButton = new SwitchButton();
-        largeButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        largeButton.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         largeButton.setFirstComponent(VaadinIcon.SUN_RISE.create());
         return new VerticalLayout(new H3("Large button with icon"), largeButton);
     }
 
     private Component smallSwtichWithIcon() {
         SwitchButton smallSwitch = new SwitchButton();
-        smallSwitch.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        smallSwitch.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         smallSwitch.setFirstComponent(VaadinIcon.ALARM.create());
         return new VerticalLayout(new H3("Small button  with icon"),  smallSwitch );
     }
@@ -156,11 +152,11 @@ public class FirstView extends VerticalLayout {
     }
     private Component smallButton() {
         SwitchButton small = new SwitchButton();
-        small.addThemeVariants(ButtonVariant.LUMO_SMALL);
+        small.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         small.setRoundness("round");
         SwitchButton large = new SwitchButton();
         large.setRoundness("round");
-        large.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("round");
         return  new HorizontalLayout( large ,switchButton, small);
@@ -207,7 +203,7 @@ public class FirstView extends VerticalLayout {
 
     private Component successThemeVariantButton() {
         SwitchButton switchButton = new SwitchButton();
-        switchButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        switchButton.addThemeVariants(SwitchButtonVariant.LUMO_SUCCESS);
         switchButton.setRoundness("round");
         switchButton.setLabel("Label");
         return switchButton;
@@ -215,7 +211,7 @@ public class FirstView extends VerticalLayout {
 
     private Component contrastLumoVariantTheme(){
         SwitchButton switchButton = new SwitchButton();
-        switchButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        switchButton.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
         switchButton.setRoundness("round");
         return switchButton;
     }

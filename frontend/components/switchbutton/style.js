@@ -32,29 +32,23 @@ export  const switchbuttonstyles = css`
         --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
         --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
         --border-radius: 1.5rem;
-
         --text-height: calc(var(--button-size) / 1.5);
         --text-width: calc(var(--button-size) / 1.5);
-
-        /* Slider padding mora biti paran.To je ovo oko teksta */
-        /* slider-padding:4px */
+                
         --slider-padding:  calc(var(--button-size) / 9);
         --slider--height: calc(var(--text-height) + var(--slider-padding));
-        --slider-width: var(--slider--height);
-        /* --button-height: calc(var(--slider--height) + 8px ); */
-        --button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
-        /* Length of slider translation is text-width + slider-padding */
-
-        /*  --button-width: calc(var(--text-height) * 2 + 16px); */
+        --slider-width: var(--slider--height);--button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
+        
         --button-width: calc( 2 * var(--slider-width) +  3 * var(--slider-padding));
         --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
         --transition-duration: .4s;
         --margin: var(--lumo-space-xs);
-
+        --unchecked-slider-color: #ccc;
+        --label-color:  hsla(214, 42%, 18%, 0.69); 
+               
         font-family: var(--lumo-font-family);
         font-weight: var(--vaadin-button-font-weight, 500);
         color: var(--lumo-body-text-color);
-        /* User can't select. Important when text exists */
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
@@ -63,8 +57,9 @@ export  const switchbuttonstyles = css`
         user-select: none;
         margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
         padding: var(--lumo-space-xs) 0;
+        --text-container-padding: calc(var(--slider-padding) * 1.5);
     }
-
+    
     [part='label'] {
         align-self: flex-start;
         color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
@@ -84,22 +79,22 @@ export  const switchbuttonstyles = css`
         max-width: 100%;
         box-sizing: border-box;
     }
-    /* If component has label styling */
+    
     :host([has-label])::before {
         margin-top: calc(var(--lumo-font-size-s) * 1.5);
     }
-
+        
     :host([has-label]) {
         padding-top: var(--lumo-space-m);
     }
     :host(:not([has-label])) [part='label'] {
         display: none;
     }
-    /*  Hidden attribute  */
+
     :host([hidden]) {
         display: none !important;
     }
-
+    
     .container{
         display:inline-block;
         position: relative;
@@ -110,9 +105,9 @@ export  const switchbuttonstyles = css`
         color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
         font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
         font-weight: var(--vaadin-input-field-value-font-weight, 400);
-        color: hsla(214, 42%, 18%, 0.69);
+        color: var(--label-color);
     }
-
+    
     .switch {
         position: relative;
         display: inline-block;
@@ -133,13 +128,13 @@ export  const switchbuttonstyles = css`
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: var(--unchecked-slider-color);
         -webkit-transition: var(--transition-duration);
         transition: var(--transition-duration);
         border-radius: var(--lumo-border-radius-m);
-        box-sizing: border-box;
+        box-sizing: border-box; 
     }
-
+    
     .slider::before {
         position: absolute;
         content: "";
@@ -153,21 +148,20 @@ export  const switchbuttonstyles = css`
         transition: var(--transition-duration);
         border-radius: calc( var(--lumo-border-radius-m) / 2);
         z-index: 1;
-        box-sizing: border-box;
+        box-sizing: border-box; 
     }
 
     input:checked + .slider {
         background-color: var(--lumo-primary-color);
-
     }
 
     input:checked + .slider:before {
         -webkit-transform: translateX(var(--slider-transitionx-length));
         -ms-transform: translateX(var(--slider-transitionx-length));
         transform: translateX(var(--slider-transitionx-length));
-        box-sizing: border-box;
+        box-sizing: border-box; 
     }
-
+    
     .text-container{
         position: absolute;
         bottom: calc(var(--slider-padding));
@@ -179,37 +173,32 @@ export  const switchbuttonstyles = css`
         box-sizing: border-box;
         height: var(--slider--height);
         cursor: pointer;
-        padding-left: calc(var(--slider-padding) * 1.5);
-        padding-right: calc(var(--slider-padding) * 1.5);
-
+        padding-left: calc(var(--text-container-padding));
+        padding-right: calc(var(--text-container-padding));
     }
-
+        
     .text{
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-
         box-sizing: border-box;
-        /*             top: calc( 0.5 *  var(--slider-padding));   */
         height: calc(var(--text-height));
         width: calc(var(--text-width));
         text-align: center;
-
         overflow: hidden;
         cursor: pointer;
-        /*         border: 1px solid yellow;    */
     }
 
     input ~ .text-container > .left {
-        /*     visibility: hidden;  */
-        /*     opacity: 0; */
+        visibility: hidden;  
+        opacity: 0; 
         transition: all var(--transition-duration);
     }
 
     input ~ .text-container > .right{
         visibilty: visible;
-        /*   opacity:1; */
+        opacity:1;
         transition: all var(--transition-duration);
     }
     input:checked ~ .text-container > .left{
@@ -217,43 +206,34 @@ export  const switchbuttonstyles = css`
         opacity:1;
     }
 
-    input:checked ~ .text-container > .right{
-        /*      visibility: hidden;   */
-        /*        opacity: 0;   */
+    input:checked ~ .text-container > .right {
+        visibility: hidden;
+        opacity: 0; 
     }
 
     /* Button theming */
     :host([theme~='primary']) {
-
     }
-
     :host([theme~='tertiary']) {
-
     }
-
     :host([theme~='tertiary-inline']) {
-
     }
-
 
     :host([roundness~='round'])  .slider:before {
         border-radius: calc(var(--button-size) / 2);
     }
-
     :host([roundness~='round']) input + .slider {
         border-radius: calc(var(--button-size) / 2);
     }
-
     :host([flatRaised~='flat']) input:checked + .slider {
         --lumo-tint-5pct: hsla(214, 65%, 85%, 0.06);
         --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
     }
 
-    /* Atributte for both visible */
     :host([statesVisible~='both']) input:checked + .slider{
         background-color: #ccc;
     }
-
+    
     :host([statesVisible~='both']) .slider:before {
         z-index: 1;
     }
@@ -273,23 +253,21 @@ export  const switchbuttonstyles = css`
 
     :host([statesVisible~='both'])  input ~ .text-container > .right{
         color: black;
-        z-index:10;
+     /*   z-index: 10; */
         visibility: visible;
         opacity: 1;
         transition: none;
     }
-
     :host([statesVisible~='both'])  input:checked ~ .text-container > .right {
         visibility: visible;
         opacity: 1;
-        z-index:10;
+    /*    z-index: 10;   */
         transition: none;
     }
-
     :host([flatRaised~='flat']){
         color:black;
     }
-
+    
     [part]::slotted(vaadin-icon) {
         display: inline-block;
         width: var(--lumo-icon-size-m);
@@ -301,7 +279,6 @@ export  const switchbuttonstyles = css`
         width: var(--lumo-icon-size-s);
         height: var(--lumo-icon-size-s);
         box-sizing: border-box;
-
     }
 
     :host([flatRaised~='flat']) [part]::slotted(vaadin-icon){
@@ -328,10 +305,7 @@ export  const switchbuttonstyles = css`
     :host([theme~='primary'][focus-ring]) {
         box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
     }
-
     /* Hover state  */
-
-
     label:hover .slider:before{
         box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
     }
@@ -339,7 +313,7 @@ export  const switchbuttonstyles = css`
     :host([theme~='error']) input:checked + .slider{
         background-color: var(--lumo-error-color);
     }
-
+    
     :host([theme~='contrast'])  input:checked + .slider{
         background-color: var(--lumo-shade);
     }
@@ -353,19 +327,17 @@ export  const switchbuttonstyles = css`
     :host([theme~='success']) .slider:before{
         --highlight-color: hsl(0, 0%, 100%, 0.47);
     }
-
+    
     :host([theme~='small'])  {
         --button-size: var(--lumo-size-s);
     }
 
     :host([theme~='small']:not([roundness='round']))  .slider:before)  {
     --highlight-width: .28rem;
-}
-
+    }
     :host([theme~='small']) [part='label'] {
         font-size: var(--lumo-font-size-xs);
     }
-
     :host([theme~='large']){
         --button-size: var(--lumo-size-l);
         --highlight-width: .33rem;
@@ -373,17 +345,14 @@ export  const switchbuttonstyles = css`
     :host([theme~='large']:not([roundness='round']))  .slider:before{
         border-radius: calc( var(--lumo-border-radius-m) / 4);
     }
-
     :host([focused]:not([readonly])) [part="label"] {
         color: var(--lumo-primary-text-color);
     }
 
-    :host(:hover:not([readonly]):not([focused])) [part="label"]
-    {
+    :host(:hover:not([readonly]):not([focused])) [part="label"] {
         color:  hsla(214, 40%, 16%, 0.94);
     }
-    :host([disabled]) [part='label']
-    {
+    :host([disabled]) [part='label'] {
         color: var(--lumo-disabled-text-color);
         -webkit-text-fill-color: var(--lumo-disabled-text-color);
     }
@@ -395,8 +364,7 @@ export  const switchbuttonstyles = css`
         box-shadow: 0 0 0 2px red;
     }
 
-    :host([disabled]) [part='label']
-    {
+    :host([disabled]) [part='label'] {
         color: var(--lumo-disabled-text-color);
         -webkit-text-fill-color: var(--lumo-disabled-text-color);
     }
@@ -404,5 +372,4 @@ export  const switchbuttonstyles = css`
     :host([focus-ring]) .slider  {
         box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
     }
-    
 `;

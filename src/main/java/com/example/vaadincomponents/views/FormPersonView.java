@@ -1,6 +1,7 @@
 package com.example.vaadincomponents.views;
 
 import com.example.vaadincomponents.components.SwitchButton;
+import com.example.vaadincomponents.components.SwitchButtonVariant;
 import com.example.vaadincomponents.model.Person;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -80,7 +81,7 @@ public class FormPersonView extends VerticalLayout {
         SwitchButton isStudent = new SwitchButton();
         isStudent.setRoundness("round");
         isStudent.setLabel("Student?");
-        isStudent.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        isStudent.addThemeVariants(SwitchButtonVariant.LUMO_ERROR);
 
         SwitchButton rigthSideButton = new SwitchButton();
         rigthSideButton.setRoundness("round");
@@ -129,7 +130,6 @@ public class FormPersonView extends VerticalLayout {
                 throw new RuntimeException(e);
             }
         });
-
 
         resetData.addClickListener(event -> {
             binder.readBean(person);

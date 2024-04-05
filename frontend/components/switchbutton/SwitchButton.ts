@@ -5,10 +5,6 @@ import { switchbuttonstyles } from "./style";
 @customElement("switch-button")
 export class SwitchButton extends LitElement{
 
-   static get is(){
-       return 'switch-button';
-   }
-
 //checked property represents value of switch button
     @property({type: Boolean, reflect: true,
         hasChanged(value:boolean, oldValue:boolean ) {
@@ -27,7 +23,6 @@ export class SwitchButton extends LitElement{
 
     _changeCheckedState = (event: Event) =>{
         this.checked = (event.target as HTMLInputElement).checked;
-
         const e = new CustomEvent("checked-changed", {
             detail: {value: this.checked}, bubbles: true, composed: true
         });
