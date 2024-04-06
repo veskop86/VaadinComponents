@@ -107,7 +107,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton largeRoundedWithIcons = new SwitchButton();
         largeRoundedWithIcons.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         largeRoundedWithIcons.setLeftValue(VaadinIcon.ALARM.create());
-        largeRoundedWithIcons.setRigthValue(VaadinIcon.CAMERA.create());
+        largeRoundedWithIcons.setRightValue(VaadinIcon.CAMERA.create());
         largeRoundedWithIcons.setRoundness("rounded");
         return new VerticalLayout(new H3("Large rounded button with icons"), largeRoundedWithIcons);
         
@@ -117,7 +117,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton smallRoundedIconWithIcon = new SwitchButton();
         smallRoundedIconWithIcon.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         smallRoundedIconWithIcon.setLeftValue(VaadinIcon.ALARM.create());
-        smallRoundedIconWithIcon.setRigthValue(VaadinIcon.CAMERA.create());
+        smallRoundedIconWithIcon.setRightValue(VaadinIcon.CAMERA.create());
         smallRoundedIconWithIcon.setRoundness("rounded");
         return new VerticalLayout(new H3("Small rounded button with icon"), smallRoundedIconWithIcon);
     }
@@ -181,7 +181,7 @@ public class FirstView extends VerticalLayout {
         switchButton.setRoundness("rounded");
 
         H3 title = new H3("TextField and Button with labels - Positioning");
-        return new HorizontalLayout(textField, switchButton);
+        return new HorizontalLayout(title, textField, switchButton);
     }
     private Component switchButtonAndTextField(){
         TextField textField = new TextField();
@@ -220,7 +220,7 @@ public class FirstView extends VerticalLayout {
     private Component buttonWithIcons() {
             SwitchButton buttonWithIcons = new SwitchButton();
             buttonWithIcons.setLeftValue(VaadinIcon.ALARM.create());
-            buttonWithIcons.setRigthValue(VaadinIcon.CTRL.create());
+            buttonWithIcons.setRightValue(VaadinIcon.CTRL.create());
             return buttonWithIcons;
     }
 

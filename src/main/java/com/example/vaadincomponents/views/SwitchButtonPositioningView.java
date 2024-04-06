@@ -99,9 +99,6 @@ public class SwitchButtonPositioningView extends VerticalLayout {
 
     }
 
-
-    
-
     private Component title() {
         return new H2("Positioning button");
     }

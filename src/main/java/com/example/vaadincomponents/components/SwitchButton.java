@@ -41,7 +41,7 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().appendChild(span);
     }
 
-    public void setRigthValue(Icon icon){
+    public void setRightValue(Icon icon){
         icon.getElement().setAttribute("slot", "secondPart");
         getElement().appendChild(icon.getElement());
     }
