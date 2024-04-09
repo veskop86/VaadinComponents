@@ -9,7 +9,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route("buttonWithIcons")
+@Route(value = "buttonWithIcons", layout = MainLayout.class)
 public class SwitchButtonWithIcons extends VerticalLayout {
 
     SwitchButtonWithIcons(){

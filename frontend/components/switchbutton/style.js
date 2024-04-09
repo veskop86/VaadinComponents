@@ -38,28 +38,34 @@
                 --text-height: calc(var(--button-size) / 1.5);
                 --text-width: calc(var(--button-size) / 1.5);
 
-                /* Padding depends of button-size var */
+                /* Padding depends of button-size var depends of buttons-size varibla */
                 --slider-padding:  calc(var(--button-size) / 9);
 
-                /* Height is of sum text-height and slider-padding */
-                /* Slider should hover text span and it's also should be square with border-radius */
+                /* Height of thumb is of sum text-height and slider-padding */
+                /* Thumb should hover text span and it's also should be square with border-radius */
                 --thumb-height: calc(var(--text-height) + var(--slider-padding));
                 --thumb-width: var(--thumb-height);
 
                 /* Button width is sum of double thumb width and 3 * slider-padding   */
-                /* Height of thumb  */
+
                --button-height: calc(var(--thumb-height) + 2 * var(--slider-padding));
                --button-width: calc( 2 * var(--thumb-width) +  3 * var(--slider-padding));
 
-                --slider-transitionx-length: calc(var(--thumb-width) + var(--slider-padding)) ;
-                --transition-duration: .4s;
+                 /* Length for transitioning thumb */
+                --slider-transitionx-length: calc(var(--thumb-width) + var(--slider-padding));
+
+               /* Duration of thumb transition in seconds*/
+                 --transition-duration: .4s;
+
                 --margin: var(--lumo-space-xs);
                 --unchecked-slider-color: #ccc;
                 --label-color:  hsla(214, 42%, 18%, 0.69);
 
+                /* Font styling */
                 font-family: var(--lumo-font-family);
                 font-weight: var(--vaadin-button-font-weight, 500);
                 color: var(--lumo-body-text-color);
+
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
                 -khtml-user-select: none;
@@ -98,7 +104,7 @@
                 width: 0;
                 height: 0;
             }
-            /* Slider is place where thumb is moving */
+            /* Slider is place where thumb is moving from one side to another */
 
             .slider {
                 position: absolute;
