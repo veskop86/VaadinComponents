@@ -62,37 +62,7 @@
             --label-hover-color: hsla(214, 40%, 16%, 0.94);
         }
 
-        [part='label'] {
-            align-self: flex-start;
-            color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
-            font-weight: var(--vaadin-input-field-label-font-weight, 500);
-            font-size: var(--vaadin-input-field-label-font-size, var(--lumo-font-size-s));
-            margin-left: calc(var(--lumo-border-radius-m) / 4);
-            transition: color 0.2s;
-            line-height: 1;
-            padding-right: 1em;
-            padding-bottom: 0.5em;
-            padding-top: 0.25em;
-            margin-top: -0.25em;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            position: relative;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        :host([has-label])::before {
-            margin-top: calc(var(--lumo-font-size-s) * 1.5);
-        }
-        :host([has-label]) {
-            padding-top: var(--lumo-space-m);
-        }
-        :host(:not([has-label])) [part='label'] {
-            display: none;
-        }
-        :host([hidden]) {
-            display: none !important;
-        }
+
         .container{
             display:inline-block;
             position: relative;
@@ -199,13 +169,55 @@
             visibility: hidden;
             opacity: 0;
         }
-        /* Button theming */
-        :host([theme~='primary']) {
+        // Component can have label, positioned above, like text field, and other vaadin field components
+
+        /* If label is added, padding-top must be added. Other vaadin field components(text field, email field, password field)
+           have same padding, if set label  */
+
+         :host([has-label]) {
+             padding-top: var(--lumo-space-m);
+         }
+
+        :host([has-label])::before {
+                    margin-top: calc(var(--lumo-font-size-s) * 1.5);
         }
-        :host([theme~='tertiary']) {
+
+        //
+        [part='label'] {
+            align-self: flex-start;
+            color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
+            font-weight: var(--vaadin-input-field-label-font-weight, 500);
+            font-size: var(--vaadin-input-field-label-font-size, var(--lumo-font-size-s));
+            margin-left: calc(var(--lumo-border-radius-m) / 4);
+            transition: color 0.2s;
+            line-height: 1;
+            padding-right: 1em;
+            padding-bottom: 0.5em;
+            padding-top: 0.25em;
+            margin-top: -0.25em;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            position: relative;
+            max-width: 100%;
+            box-sizing: border-box;
         }
-        :host([theme~='tertiary-inline']) {
+
+
+        :host(:not([has-label])) [part='label'] {
+            display: none;
         }
+
+        // Component can be hidden
+
+       /* Style for hidden component */
+        :host([hidden]) {
+           display: none !important;
+         }
+
+        // Normal component looks like rectangle with rounded corners with small border radius.
+
+        /* Roundness attribute defines rounded component with bigger border radius  */
 
         :host([roundness~='rounded'])  .slider:before {
             border-radius: calc(var(--button-size) / 2);
@@ -213,11 +225,10 @@
         :host([roundness~='rounded']) input + .slider {
             border-radius: calc(var(--button-size) / 2);
         }
-        :host([flatRaised~='flat']) input:checked + .slider {
-            --lumo-tint-5pct: hsla(214, 65%, 85%, 0.06);
-            --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
-        }
 
+        // Component can have both values visible. Attribute statesVisible defines that state.
+
+        /*  Style for both states visible.  */
         :host([statesVisible~='both']) input:checked + .slider{
             background-color: var(--unchecked-slider-color);
         }
@@ -252,50 +263,19 @@
         /*    z-index: 10;   */
             transition: none;
         }
-        :host([flatRaised~='flat']){
-            color:black;
+        // Component can have multiple attributes theme  with different states of theme attribute
+        // For example component could be small and error.
+
+        /* Themes primary,secondary and tertiary.  */
+        :host([theme~='primary']) {
+           }
+        :host([theme~='tertiary']) {
+          }
+
+        :host([theme~='tertiary-inline']) {
         }
 
-        [part]::slotted(vaadin-icon) {
-            display: inline-block;
-            width: var(--lumo-icon-size-m);
-            height: var(--lumo-icon-size-m);
-            box-sizing: border-box;
-        }
-        :host([theme~='small']) [part]::slotted(vaadin-icon){
-            display: inline-block;
-            width: var(--lumo-icon-size-s);
-            height: var(--lumo-icon-size-s);
-            box-sizing: border-box;
-        }
-        :host([flatRaised~='flat']) [part]::slotted(vaadin-icon){
-            color:black;
-        }
-        :host([disabled]) {
-            pointer-events: none;
-            color: var(--lumo-disabled-text-color);
-        }
-        /* TODO  Change colors for disabled state   */
-        :host([disabled]) input + .slider {
-            background-color: gray;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        :host([disabled]) input:checked + .slider{
-            background-color:var(--disabled-background-color);
-
-        }
-        :host([focus-ring]) > .container{
-            box-shadow: 0 0 0 2px red;
-        }
-        :host([theme~='primary'][focus-ring]) {
-            box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
-        }
-        /* Hover state  */
-        label:hover .slider:before{
-            box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
-        }
-
+        /* Themes error, succeess, contrast */
         :host([theme~='error']) input:checked + .slider{
             background-color: var(--lumo-error-color);
         }
@@ -316,54 +296,91 @@
             --highlight-color: hsl(0, 0%, 100%, 0.47);
         }
 
+       /* Themes small, normal, large */
         :host([theme~='small'])  {
             --button-size: var(--lumo-size-s);
         }
-
+       :host([theme~='small']) [part='label'] {
+                    font-size: var(--lumo-font-size-xs);
+        }
         :host([theme~='small']:not([roundness='rounded']))  .slider:before  {
                --highlight-width: .28rem;
         }
-
-        :host([theme~='small']) [part='label'] {
+        host([theme~='small']) [part='label'] {
             font-size: var(--lumo-font-size-xs);
-        
         }
-
         :host([theme~='large']){
             --button-size: var(--lumo-size-l);
             --highlight-width: .33rem;
         }
-
         :host([theme~='large']:not([roundness='rounded']))  .slider:before{
             border-radius: calc( var(--lumo-border-radius-m) / 4);
         }
-
+        /* Focused part label */
         :host([focused]:not([readonly])) [part="label"] {
             color: var(--lumo-primary-text-color);
         }
 
+        /* Hovered button labels color changes  */
         :host(:hover:not([readonly]):not([focused])) [part="label"] {
             color:  var(--label-hover-color);
         }
 
-        :host([disabled]) [part='label'] {
-            color: var(--lumo-disabled-text-color);
-            -webkit-text-fill-color: var(--lumo-disabled-text-color);
-        }
-        :host([theme~='small']) [part='label'] {
-            font-size: var(--lumo-font-size-xs);
-        }
+        /* Hovered  */
+        label:hover .slider:before{
+            box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
+         }
 
-        :host:focus  .container    .switch  {
-            box-shadow: 0 0 0 2px red;
-        }
-
+        /* Disabled button  */
         :host([disabled]) [part='label'] {
             color: var(--lumo-disabled-text-color);
             -webkit-text-fill-color: var(--lumo-disabled-text-color);
         }
 
+        :host([disabled]) [part='label'] {
+            color: var(--lumo-disabled-text-color);
+            -webkit-text-fill-color: var(--lumo-disabled-text-color);
+        }
+        :host([disabled]) {
+            pointer-events: none;
+            color: var(--lumo-disabled-text-color);
+        }
+
+        :host([disabled]) input + .slider {
+            background-color: gray;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        :host([disabled]) input:checked + .slider{
+                    background-color:var(--disabled-background-color);
+         }
+
+        /* Focus keyboard  on component */
         :host([focus-ring]) .slider  {
             box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
+        }
+
+        :host([focus-ring]) > .container{
+           box-shadow: 0 0 0 2px red;
+          }
+
+        :host([theme~='primary'][focus-ring]) {
+            box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
+            }
+
+       /*   */
+       [part]::slotted(vaadin-icon) {
+             display: inline-block;
+             width: var(--lumo-icon-size-m);
+             height: var(--lumo-icon-size-m);
+             box-sizing: border-box;
+        }
+
+        host([theme~='small']) [part]::slotted(vaadin-icon){
+             display: inline-block;
+             width: var(--lumo-icon-size-s);
+             height: var(--lumo-icon-size-s);
+             box-sizing: border-box;
         }
     `;
