@@ -98,12 +98,12 @@
             position: relative;
             bottom: 4px;
         }
-        .label{
-            color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
-            font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
-            font-weight: var(--vaadin-input-field-value-font-weight, 400);
-            color: var(--label-color);
-        }
+//        .label{
+//            color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
+//            font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
+//            font-weight: var(--vaadin-input-field-value-font-weight, 400);
+//            color: var(--label-color);
+//        }
         .switch {
             position: relative;
             display: inline-block;

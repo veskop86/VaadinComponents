@@ -3,7 +3,6 @@ package com.example.vaadincomponents.views;
 import com.example.vaadincomponents.components.SwitchButton;
 import com.example.vaadincomponents.components.SwitchButtonVariant;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
@@ -35,6 +34,5 @@ public class TestSwitchButtonListener extends VerticalLayout {
     private Component getTitle() {
         return new H2("View for testing switch button value listener");
     }
-
 
 }
