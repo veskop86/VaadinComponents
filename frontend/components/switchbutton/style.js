@@ -43,14 +43,15 @@
 
                 /* Height is of sum text-height and slider-padding */
                 /* Slider should hover text span and it's also should be square with border-radius */
-                --slider--height: calc(var(--text-height) + var(--slider-padding));
-                --slider-width: var(--slider--height);
+                --thumb-height: calc(var(--text-height) + var(--slider-padding));
+                --thumb-width: var(--thumb-height);
 
-                /* Button width and height   */
-               --button-height: calc(var(--slider--height) + 2 * var(--slider-padding));
-               --button-width: calc( 2 * var(--slider-width) +  3 * var(--slider-padding));
+                /* Button width is sum of double thumb width and 3 * slider-padding   */
+                /* Height of thumb  */
+               --button-height: calc(var(--thumb-height) + 2 * var(--slider-padding));
+               --button-width: calc( 2 * var(--thumb-width) +  3 * var(--slider-padding));
 
-                --slider-transitionx-length: calc(var(--slider-width) + var(--slider-padding)) ;
+                --slider-transitionx-length: calc(var(--thumb-width) + var(--slider-padding)) ;
                 --transition-duration: .4s;
                 --margin: var(--lumo-space-xs);
                 --unchecked-slider-color: #ccc;
@@ -120,8 +121,8 @@
             .slider::before {
                 position: absolute;
                 content: "";
-                height: var(--slider--height);
-                width: var(--slider-width);
+                height: var(--thumb-height);
+                width: var(--thumb-width);
                 left: calc( var(--slider-padding));
                 bottom: var(--slider-padding);
                 top: var(--slider-padding);
@@ -133,11 +134,12 @@
                 box-sizing: border-box;
             }
 
-            /*When input is checked. Slider slider background-color is changed  */
+            /* When input is checked. Slider slider background-color is changed  */
 
             input:checked + .slider {
                 background-color: var(--lumo-primary-color);
             }
+
             /* When input is checked slider::before or thumb should translate on x axis  */
 
             input:checked + .slider:before {
@@ -159,13 +161,13 @@
                 justify-content: space-between;
                 align-items: center;
                 box-sizing: border-box;
-                height: var(--slider--height);
+                height: var(--thumb-height);
                 cursor: pointer;
                 padding-left: calc(var(--text-container-padding));
                 padding-right: calc(var(--text-container-padding));
             }
 
-            /* Text spans are elements for placing text or icons.    */
+            /*  Text spans are elements for placing text or icons.    */
             /*  Display flex used to center component inside with justify-content and align-items */
 
             .text{
@@ -345,6 +347,7 @@
             :host([theme~='small']:not([roundness='rounded']))  .slider:before  {
                    --highlight-width: .28rem;
             }
+
             host([theme~='small']) [part='label'] {
                 font-size: var(--lumo-font-size-xs);
             }

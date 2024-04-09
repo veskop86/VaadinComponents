@@ -77,7 +77,8 @@
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.1.2",
-    "proj4": "2.9.2"
+    "proj4": "2.9.2",
+    "vanilla-colorful": "^0.7.2"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "5.0.5",
@@ -193,7 +194,7 @@
       "workbox-core": "7.0.0",
       "workbox-precaching": "7.0.0"
     },
-    "hash": "e61c3f82976214a634c6d814263efbfd409a6c2e6e6e91c234fc12d79905edd1"
+    "hash": "0095dba4cb7b9b60bef4a94c50f6f2afeab22e67038f3bfbdee4b86cdbff915b"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -270,6 +271,7 @@
     "@polymer/polymer": "$@polymer/polymer",
     "proj4": "$proj4",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
-    "date-fns": "$date-fns"
+    "date-fns": "$date-fns",
+    "vanilla-colorful": "$vanilla-colorful"
   }
 }
