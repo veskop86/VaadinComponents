@@ -1,11 +1,11 @@
-    import {css} from 'lit';
-    import {} from '../color.js';
-    import {} from '../sizing.js';
-    import {} from '../spacing.js';
-    import {} from '../typography';
-    import {} from '../style';
+import { css } from 'lit';
+import { } from '../color.js';
+import { } from '../sizing.js';
+import { } from '../spacing.js';
+import { } from '../typography';
+import { } from '../style';
 
-    export  const switchbuttonstyles = css`
+export const switchbuttonstyles = css`
         :host{
             --lumo-success-color: hsl(145, 72%, 30%);
             --lumo-shade: hsl(214, 35%, 15%);
@@ -62,29 +62,33 @@
             --label-hover-color: hsla(214, 40%, 16%, 0.94);
         }
 
+        /* Container is div element for placing whole html including part label.
+           This html structures is similar to vaadin field components  */
 
         .container{
             display:inline-block;
             position: relative;
             bottom: 4px;
         }
-//        .label{
-//            color: var(--vaadin-input-field-value-color, var(--lumo-body-text-color));
-//            font-size: var(--vaadin-input-field-value-font-size, var(--lumo-font-size-m));
-//            font-weight: var(--vaadin-input-field-value-font-weight, 400);
-//            color: var(--label-color);
-//        }
+
+        /*This is switch-button without label  */
+
         .switch {
             position: relative;
             display: inline-block;
             width: var(--button-width);
             height: var(--button-height);
         }
+
+        /* Rules for hiding checkbox */
+
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+        /* Slider is place where thumb is moving */
+
         .slider {
             position: absolute;
             display:inline-block;
@@ -99,6 +103,10 @@
             border-radius: var(--lumo-border-radius-m);
             box-sizing: border-box;
         }
+
+        /* Slider::before defines css style for thumb that is moving from one side to other */
+        /* Slider  height and width is defined on top of page */
+
         .slider::before {
             position: absolute;
             content: "";
@@ -114,15 +122,24 @@
             z-index: 1;
             box-sizing: border-box;
         }
+
+        /*When input is checked. Slider slider background-color is changed  */
+
         input:checked + .slider {
             background-color: var(--lumo-primary-color);
         }
+        /* When input is checked slider::before or thumb should translate on x axis  */
+
         input:checked + .slider:before {
             -webkit-transform: translateX(var(--slider-transitionx-length));
             -ms-transform: translateX(var(--slider-transitionx-length));
             transform: translateX(var(--slider-transitionx-length));
             box-sizing: border-box;
         }
+
+        /*  Text-container is div for placing both text left and right.   */
+        /* It has button width and slider-height. Flex display */
+
         .text-container{
             position: absolute;
             bottom: calc(var(--slider-padding));
@@ -137,6 +154,10 @@
             padding-left: calc(var(--text-container-padding));
             padding-right: calc(var(--text-container-padding));
         }
+
+        /* Text spans are elements for placing text or icons.    */
+        /*  Display flex used to center component inside with justify-content and align-items */
+
         .text{
             position: relative;
             display: flex;
@@ -150,17 +171,26 @@
             cursor: pointer;
         }
 
+        /*  Thumb is  (slider::before)
+            Css style for hide left, right text or icon. Default states - thumb on left side - unchecked, thumb on right side checked button */
+
+       /*  Left component - hidden. Thumb is on right side. Opacity is changed when thumb is moved to right side. Transition added to left element  */
         input ~ .text-container > .left {
             visibility: hidden;
             opacity: 0;
             transition: all var(--transition-duration);
         }
 
+        /* Right component visible when thumb is on right side. Opacity is 1. */
+
         input ~ .text-container > .right{
             visibility: visible;
             opacity:1;
             transition: all var(--transition-duration);
         }
+
+        /* input checked, thumb moved, states opacity should be changed */
+
         input:checked ~ .text-container > .left{
             visibility: visible;
             opacity:1;
@@ -169,7 +199,14 @@
             visibility: hidden;
             opacity: 0;
         }
-        // Component can have label, positioned above, like text field, and other vaadin field components
+
+        /* Component can have label, positioned above, like text field, and other vaadin field components
+            When label is set to component attribute has-label is added to host */
+
+       /* If label is not set then part label should not be displayed */
+       :host(:not([has-label])) [part='label'] {
+                    display: none;
+       }
 
         /* If label is added, padding-top must be added. Other vaadin field components(text field, email field, password field)
            have same padding, if set label  */
@@ -182,7 +219,7 @@
                     margin-top: calc(var(--lumo-font-size-s) * 1.5);
         }
 
-        //
+        /* This is rules for styling label part. Must be same as vaadin labels for fields */
         [part='label'] {
             align-self: flex-start;
             color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
@@ -203,32 +240,26 @@
             box-sizing: border-box;
         }
 
-
-        :host(:not([has-label])) [part='label'] {
-            display: none;
-        }
-
-        // Component can be hidden
+        /* Component can be hidden. Attribute hidden then is added. */
 
        /* Style for hidden component */
         :host([hidden]) {
            display: none !important;
          }
 
-        // Normal component looks like rectangle with rounded corners with small border radius.
+        /* Normal component looks like rectangle with rounded corners with small border radius.
 
-        /* Roundness attribute defines rounded component with bigger border radius  */
+            Roundness attribute defines rounded component with bigger border radius */
 
-        :host([roundness~='rounded'])  .slider:before {
+        :host([roundness~='rounded'])  .slider {
             border-radius: calc(var(--button-size) / 2);
         }
-        :host([roundness~='rounded']) input + .slider {
+        :host([roundness~='rounded']) .slider:before {
             border-radius: calc(var(--button-size) / 2);
         }
+        /* Component can have both values visible. Attribute statesVisible defines that state.
+           Rules for both states visible   */
 
-        // Component can have both values visible. Attribute statesVisible defines that state.
-
-        /*  Style for both states visible.  */
         :host([statesVisible~='both']) input:checked + .slider{
             background-color: var(--unchecked-slider-color);
         }
@@ -236,6 +267,7 @@
         :host([statesVisible~='both']) .slider:before {
             z-index: 1;
         }
+
         :host([statesVisible~='both']) input ~ .text-container > .left{
             visibility: visible;
             opacity: 1;
@@ -263,8 +295,8 @@
         /*    z-index: 10;   */
             transition: none;
         }
-        // Component can have multiple attributes theme  with different states of theme attribute
-        // For example component could be small and error.
+        /* Component can have multiple attributes theme with different states of theme attribute
+           For example component could be small and error. */
 
         /* Themes primary,secondary and tertiary.  */
         :host([theme~='primary']) {

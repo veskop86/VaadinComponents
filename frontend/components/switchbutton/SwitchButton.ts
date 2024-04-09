@@ -6,8 +6,8 @@ import { switchbuttonstyles } from "./style";
 export class SwitchButton extends LitElement{
 
 //checked property represents value of switch button
-    @property({type: Boolean, reflect: true,
-        hasChanged(value:boolean, oldValue:boolean ) {
+@property({type: Boolean, reflect: true,
+hasChanged(value:boolean, oldValue:boolean ) {
             return value !== oldValue;
         }
     })
