@@ -18,7 +18,10 @@
                 --lumo-size-l: 2.75rem;
                 --lumo-size-s: 1.875rem;
                 --lumo-space-xs: 0.25rem;
+
                 --button-size: var(--lumo-size-m);
+                --small-button-size: var(--lumo-size-s);
+
                 --lumo-base-color: #fff;
                 --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
                 --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
@@ -38,7 +41,7 @@
                 --text-height: calc(var(--button-size) / 1.5);
                 --text-width: calc(var(--button-size) / 1.5);
 
-                /* Padding depends of button-size var depends of buttons-size varibla */
+                /* Padding depends of button-size var depends of buttons-size variable */
                 --slider-padding:  calc(var(--button-size) / 9);
 
                 /* Height of thumb is of sum text-height and slider-padding */
@@ -51,7 +54,7 @@
                --button-height: calc(var(--thumb-height) + 2 * var(--slider-padding));
                --button-width: calc( 2 * var(--thumb-width) +  3 * var(--slider-padding));
 
-                 /* Length for transitioning thumb */
+                 /* Length of thumbs transition */
                 --slider-transitionx-length: calc(var(--thumb-width) + var(--slider-padding));
 
                /* Duration of thumb transition in seconds*/
@@ -59,6 +62,7 @@
 
                 --margin: var(--lumo-space-xs);
                 --unchecked-slider-color: #ccc;
+
                 --label-color:  hsla(214, 42%, 18%, 0.69);
 
                 /* Font styling */
@@ -74,9 +78,22 @@
                 user-select: none;
                 margin: var(--vaadin-button-margin, var(--lumo-space-xs) 0);
                 padding: var(--lumo-space-xs) 0;
+
                 --text-container-padding: calc(var(--slider-padding) * 1.5);
+
                 --disabled-background-color: gray;
+                --button-checked-background-color:var(--lumo-primary-color);
+                --slider-success-background-color: var(--lumo-success-color);
+
+                --thumb-background-color: white;
+                /*  Border-radius variables */
+                --thumb-border-radius: calc( var(--lumo-border-radius-m) / 2);
+                --slider-border-radius: var(--lumo-border-radius-m);
+                --button-rounded-border-radius: calc(var(--button-size) / 2);
+
+
                 --label-hover-color: hsla(214, 40%, 16%, 0.94);
+
             }
 
             /* Container is div element for placing whole html including part label.
@@ -117,7 +134,7 @@
                 background-color: var(--unchecked-slider-color);
                 -webkit-transition: var(--transition-duration);
                 transition: var(--transition-duration);
-                border-radius: var(--lumo-border-radius-m);
+                border-radius:  var(--slider-border-radius);
                 box-sizing: border-box;
             }
 
@@ -132,32 +149,32 @@
                 left: calc( var(--slider-padding));
                 bottom: var(--slider-padding);
                 top: var(--slider-padding);
-                background-color: white;
+                background-color: var(--thumb-background-color);
                 -webkit-transition: var(--transition-duration);
                 transition: var(--transition-duration);
-                border-radius: calc( var(--lumo-border-radius-m) / 2);
+                border-radius: var(--thumb-border-radius);
                 z-index: 1;
                 box-sizing: border-box;
             }
 
-            /* When input is checked. Slider slider background-color is changed  */
+           /* When input is checked. Slider slider background-color is changed  */
 
             input:checked + .slider {
-                background-color: var(--lumo-primary-color);
+                background-color: var(--button-checked-background-color);
             }
 
             /* When input is checked slider::before or thumb should translate on x axis  */
 
             input:checked + .slider:before {
-                -webkit-transform: translateX(var(--slider-transitionx-length));
-                -ms-transform: translateX(var(--slider-transitionx-length));
-                transform: translateX(var(--slider-transitionx-length));
-                box-sizing: border-box;
+                 -webkit-transform: translateX(var(--slider-transitionx-length));
+                 -ms-transform: translateX(var(--slider-transitionx-length));
+                 transform: translateX(var(--slider-transitionx-length));
+                 box-sizing: border-box;
             }
 
-            /*  Text-container is div for placing both text left and right.   */
+            /*  Text-container is div for placing both text left and right.It has display:flex */
             /* It has button width and slider-height. Flex display */
-
+            /* padding left and padding right push text-boxes on position where thumb is placed */
             .text-container{
                 position: absolute;
                 bottom: calc(var(--slider-padding));
@@ -218,12 +235,12 @@
                 opacity: 0;
             }
 
-            /* Component can have label, positioned above, like text field, and other vaadin field components
+            /* Component can have label, positioned above button, like text field, and other vaadin field components
                 When label is set to component attribute has-label is added to host */
 
            /* If label is not set then part label should not be displayed */
            :host(:not([has-label])) [part='label'] {
-                        display: none;
+               display: none;
            }
 
             /* If label is added, padding-top must be added. Other vaadin field components(text field, email field, password field)
@@ -234,7 +251,7 @@
              }
 
             :host([has-label])::before {
-                        margin-top: calc(var(--lumo-font-size-s) * 1.5);
+                  margin-top: calc(var(--lumo-font-size-s) * 1.5);
             }
 
             /* This is rules for styling label part. Must be same as vaadin labels for fields */
@@ -259,21 +276,23 @@
             }
 
             /* Component can be hidden. Attribute hidden then is added. */
-
-           /* Style for hidden component */
+            /* Style for hidden component */
             :host([hidden]) {
                display: none !important;
              }
 
             /* Normal component looks like rectangle with rounded corners with small border radius.
              Roundness attribute defines rounded component with bigger border radius */
+            /* Thumb and slider should change border-radius. */
 
             :host([roundness~='rounded'])  .slider {
-                border-radius: calc(var(--button-size) / 2);
+                border-radius: var(--button-rounded-border-radius);
             }
+
             :host([roundness~='rounded']) .slider:before {
-                border-radius: calc(var(--button-size) / 2);
+                border-radius: var(--button-rounded-border-radius);
             }
+
             /* Component can have both values visible. Attribute statesVisible defines that state.
             Rules for both states visible   */
 
@@ -318,10 +337,10 @@
 
             /* Themes primary,secondary and tertiary.  */
             :host([theme~='primary']) {}
-            :host([theme~='tertiary']) { }
-            :host([theme~='tertiary-inline']) { }
+            :host([theme~='tertiary']) {}
+            :host([theme~='tertiary-inline']) {}
 
-            /* Themes error, succeess, contrast */
+            /* Themes error, success, contrast */
             :host([theme~='error']) input:checked + .slider{
                 background-color: var(--lumo-error-color);
             }
@@ -329,22 +348,21 @@
             :host([theme~='success'])  .slider{
                 background-color: var(--disabled-background-color);
             }
+            :host([theme~='success']) input:checked + .slider{
+
+                 background-color:  var(--slider-success-background-color);
+            }
+            :host([theme~='success']) .slider:before{
+                 --highlight-color: hsl(0, 0%, 100%, 0.47);
+            }
 
             :host([theme~='contrast'])  input:checked + .slider{
                       background-color: var(--lumo-shade);
-                    }
-
-            :host([theme~='success']) input:checked + .slider{
-                background-color:  var(--lumo-success-color);
-            }
-
-            :host([theme~='success']) .slider:before{
-                --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
 
            /* Themes small, normal, large */
             :host([theme~='small'])  {
-                --button-size: var(--lumo-size-s);
+                --button-size: var(--small-button-size);
             }
            :host([theme~='small']) [part='label'] {
                  font-size: var(--lumo-font-size-xs);
@@ -374,7 +392,7 @@
                 color:  var(--label-hover-color);
             }
 
-            /* Hovered  */
+            /* Hovered   */
             label:hover .slider:before{
                 box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
              }
@@ -401,7 +419,7 @@
             }
 
             :host([disabled]) input:checked + .slider{
-                        background-color:var(--disabled-background-color);
+                background-color:var(--disabled-background-color);
              }
 
             /* Focus keyboard  on component */

@@ -18,7 +18,7 @@ public class SwitchButtonWithIcons extends VerticalLayout {
                 roundedButtonsWithIcons()
         );
     }
-        
+
     private Component roundedButtonsWithIcons() {
         SwitchButton smallSwitchButton = getSwitchButton();
         smallSwitchButton.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
@@ -69,5 +69,4 @@ public class SwitchButtonWithIcons extends VerticalLayout {
         switchButton.setRightValue(VaadinIcon.ADD_DOCK.create());
         return switchButton;
     }
-
 }
