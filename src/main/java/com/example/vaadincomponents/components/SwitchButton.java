@@ -46,6 +46,7 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().appendChild(icon.getElement());
     }
 
+
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);
         //Nisam siguran da li treba
