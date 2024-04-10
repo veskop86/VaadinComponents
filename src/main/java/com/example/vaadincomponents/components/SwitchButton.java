@@ -12,16 +12,16 @@ import com.vaadin.flow.dom.ElementFactory;
 @JsModule("./components/switchbutton/SwitchButton.ts")
 public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasThemeVariant<SwitchButtonVariant>,ThemeVariant, HasLabel {
     public SwitchButton() {
-        super("checked", false, true);
+        super("checked",  false, true);
     }
 
     public void setBothStatesVisible(){
-        getElement().setAttribute("statesVisible","both");
+        getElement().setAttribute("statesVisible", "both");
     }
     public void setLabel(String label){
         Element span =  ElementFactory.createSpan(label);
-        span.setAttribute("slot","label");
-        getElement().setAttribute("has-label","");
+        span.setAttribute("slot", "label");
+        getElement().setAttribute("has-label", "");
         getElement().appendChild(span);
     }
 
@@ -46,10 +46,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
         getElement().appendChild(icon.getElement());
     }
 
-    public void removeSecondComponent(){
-        getElement().removeAttribute("secondPart");
-    }
-
     public void setChecked(Boolean checked){
         getElement().setProperty("checked", checked);
         //Nisam siguran da li treba
@@ -57,7 +53,7 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
     }
 
     public Boolean getChecked(){
-        return getElement().getProperty("checked",true);
+        return getElement().getProperty("checked", true);
     }
 
     public void setRoundness(String roundness){
@@ -67,7 +63,7 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
     public String getVariantName() {
         return null;
     }
-
+    
 
 /*    @DomEvent("switch-state-change")
     public static class SwitchStateChanged extends ComponentEvent<ComponentSwitchButton>{
