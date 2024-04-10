@@ -10,7 +10,7 @@
 
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-     
+
 
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
@@ -25,8 +25,7 @@
                 --vaadin-button-font-weight: 500;
                 --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
                 --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
-                --border-radius: 1.5rem; 
-                
+
                 /* First defined span text width and height. It is elements where can be added text or icons
                 Text is square, which dimensions are depends of variable button-size   */
                 --text-height: calc(var(--button-size) / 1.5);
@@ -164,7 +163,7 @@
                 box-sizing: border-box;
             }
 
-           /* When input is checked. Slider slider background-color is changed  */
+           /* When input is checked,slider background-color is changed  */
 
             input:checked + .slider {
                 background-color: var(--button-checked-background-color);
@@ -178,7 +177,7 @@
                 transform: translateX(var(--slider-transitionx-length));
                 box-sizing: border-box;
             }
-
+            
             /*  Text-container is div for placing both text left and right.It has display:flex */
             /* It has button width and slider-height. Flex display */
             /* padding left and padding right push text-boxes on position where thumb is placed */
@@ -196,7 +195,7 @@
                 padding-left: calc(var(--text-container-padding));
                 padding-right: calc(var(--text-container-padding));
             }
-            
+
             /*  Text spans are elements for placing text or icons.    */
             /*  Display flex used to center component inside with justify-content and align-items */
 
@@ -317,7 +316,6 @@
             :host([statesVisible~='both']) input ~ .text-container > .left{
                 visibility: visible;
                 opacity: 1;
-                color:black;
                 transition: none;
             }
 
@@ -325,12 +323,10 @@
                 visibility: visible;
                 transition: none;
                 opacity: 1;
-                color: black;
             }
 
             :host([statesVisible~='both'])  input ~ .text-container > .right{
-                color: black;
-             /*   z-index: 10; */
+             
                 visibility: visible;
                 opacity: 1;
                 transition: none;
@@ -339,7 +335,6 @@
             :host([statesVisible~='both'])  input:checked ~ .text-container > .right {
                 visibility: visible;
                 opacity: 1;
-            /*    z-index: 10;   */
                 transition: none;
             }
             /* Component can have multiple attributes theme with different states of theme attribute
@@ -397,9 +392,9 @@
 
             /* Hovered button labels color changes  */
             :host(:hover:not([readonly]):not([focused])) [part="label"] {
-                color:  var(--label-hover-color);
+                color:var(--label-hover-color);
             }
-
+            
             /* Hovered   */
             label:hover .slider::before{
                 box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
@@ -415,17 +410,18 @@
                 color: var(--lumo-disabled-text-color);
                 -webkit-text-fill-color: var(--lumo-disabled-text-color);
             }
+
             :host([disabled]) {
                 pointer-events: none;
                 color: var(--lumo-disabled-text-color);
             }
-
+            
             :host([disabled]) input + .slider {
-                background-color: gray;
+                background-color: var(--lumo-contrast-30pct);
                 cursor: not-allowed;
                 opacity: 0.7;
             }
-
+            
             :host([disabled]) input:checked + .slider{
                 background-color:var(--disabled-background-color);
              }
