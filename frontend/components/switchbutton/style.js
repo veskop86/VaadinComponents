@@ -35,7 +35,7 @@
                 --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
                 --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
                 --border-radius: 1.5rem;
-
+                
                 /* First defined span text width and height. It is elements where can be added text or icons
                 Text is square, which dimensions are depends of variable button-size   */
                 --text-height: calc(var(--button-size) / 1.5);
@@ -181,7 +181,7 @@
 
             /* When input is checked slider::before or thumb should translate on x axis  */
 
-            input:checked + .slider:before {
+            input:checked + .slider::before {
                  -webkit-transform: translateX(var(--slider-transitionx-length));
                  -ms-transform: translateX(var(--slider-transitionx-length));
                  transform: translateX(var(--slider-transitionx-length));
@@ -309,7 +309,7 @@
                 border-radius: var(--button-rounded-border-radius);
             }
 
-            :host([roundness~='rounded']) .slider:before {
+            :host([roundness~='rounded']) .slider::before {
                 border-radius: var(--button-rounded-border-radius);
             }
 
@@ -320,7 +320,7 @@
                 background-color: var(--unchecked-slider-color);
             }
 
-            :host([statesVisible~='both']) .slider:before {
+            :host([statesVisible~='both']) .slider::before {
                 z-index: 1;
             }
 
@@ -369,7 +369,7 @@
 
                  background-color:  var(--slider-success-background-color);
             }
-            :host([theme~='success']) .slider:before{
+            :host([theme~='success']) .slider::before{
                  --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
 
@@ -386,7 +386,7 @@
                  font-size: var(--lumo-font-size-xs);
             }
 
-            :host([theme~='small']:not([roundness='rounded']))  .slider:before  {
+            :host([theme~='small']:not([roundness='rounded']))  .slider::before  {
                    --highlight-width: .28rem;
             }
 
@@ -397,7 +397,7 @@
                 --button-size: var(--lumo-size-l);
                 --highlight-width: .33rem;
             }
-            :host([theme~='large']:not([roundness='rounded']))  .slider:before{
+            :host([theme~='large']:not([roundness='rounded']))  .slider::before{
                 border-radius: calc( var(--lumo-border-radius-m) / 4);
             }
             /* Focused part label */
@@ -411,7 +411,7 @@
             }
 
             /* Hovered   */
-            label:hover .slider:before{
+            label:hover .slider::before{
                 box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
              }
 

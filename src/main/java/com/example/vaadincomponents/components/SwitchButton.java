@@ -64,7 +64,6 @@ public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Bool
     public String getVariantName() {
         return null;
     }
-    
 
 /*    @DomEvent("switch-state-change")
     public static class SwitchStateChanged extends ComponentEvent<ComponentSwitchButton>{
