@@ -156,7 +156,7 @@
 
             /* Slider::before defines css style for thumb that is moving from one side to other */
             /* Slider  height and width is defined on top of page */
-
+                
             .slider::before {
                 position: absolute;
                 content: "";
