@@ -1,5 +1,5 @@
     import { css } from 'lit';
-    import { } from '../color.js';
+    import { color, colorBase } from '../color.js';
     import { } from '../sizing.js';
     import { } from '../spacing.js';
     import { } from '../typography';
@@ -7,17 +7,10 @@
 
     export const switchbuttonstyles = css`
             :host{
-                --lumo-success-color: hsl(145, 72%, 30%);
-                --lumo-shade: hsl(214, 35%, 15%);
-                --lumo-error-color: hsl(3, 85%, 48%);
+
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-                --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
-                --lumo-primary-text-color: hsl(214, 100%, 43%);
-                --lumo-size-m: 2.25rem;
-                --lumo-size-l: 2.75rem;
-                --lumo-size-s: 1.875rem;
-                --lumo-space-xs: 0.25rem;
+     
 
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
@@ -27,14 +20,12 @@
                 --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
                 --lumo-contrast-90pct: var(--lumo-tint-90pct);
                 --_lumo-button-text-color: var(--vaadin-button-text-color, var(--lumo-primary-text-color));
-                --lumo-body-text-color: var(--lumo-contrast-90pct);
-                --lumo-primary-color: hsl(214, 100%, 48%);
                 --vaadin-focus-ring-color: var(--lumo-primary-color-50pct);
                 --vaadin-focus-ring-width: 2px;
                 --vaadin-button-font-weight: 500;
                 --_focus-ring-color: var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
                 --_focus-ring-width: var(--vaadin-focus-ring-width, 2px);
-                --border-radius: 1.5rem;
+                --border-radius: 1.5rem; 
                 
                 /* First defined span text width and height. It is elements where can be added text or icons
                 Text is square, which dimensions are depends of variable button-size   */
@@ -67,6 +58,7 @@
                 
                 --label-color:  hsla(214, 42%, 18%, 0.69);
 
+                --label-hover-color: var(--lumo-body-text-color);
                 /* Font styling */
                 font-family: var(--lumo-font-family);
                 font-weight: var(--vaadin-button-font-weight, 500);
@@ -107,7 +99,7 @@
                 /* Border-radius of thumb and slider for rounded button */
                 --button-rounded-border-radius: calc(var(--button-size) / 2);
 
-                --label-hover-color: hsla(214, 40%, 16%, 0.94);
+                
             }
 
             /* Container is div element for placing whole html including part label.
@@ -117,9 +109,8 @@
                 display:inline-block;
                 position: relative;
                 bottom: 4px;
-
             }
-
+            
             /*This is switch-button without label.   */
 
             .switch {
@@ -131,7 +122,7 @@
             }
 
             /* Rules for hiding checkbox */
-
+            
             .switch input {
                 opacity: 0;
                 width: 0;
@@ -182,10 +173,10 @@
             /* When input is checked slider::before or thumb should translate on x axis  */
 
             input:checked + .slider::before {
-                 -webkit-transform: translateX(var(--slider-transitionx-length));
-                 -ms-transform: translateX(var(--slider-transitionx-length));
-                 transform: translateX(var(--slider-transitionx-length));
-                 box-sizing: border-box;
+                -webkit-transform: translateX(var(--slider-transitionx-length));
+                -ms-transform: translateX(var(--slider-transitionx-length));
+                transform: translateX(var(--slider-transitionx-length));
+                box-sizing: border-box;
             }
 
             /*  Text-container is div for placing both text left and right.It has display:flex */
@@ -205,7 +196,7 @@
                 padding-left: calc(var(--text-container-padding));
                 padding-right: calc(var(--text-container-padding));
             }
-
+            
             /*  Text spans are elements for placing text or icons.    */
             /*  Display flex used to center component inside with justify-content and align-items */
 
@@ -301,7 +292,6 @@
              Roundness attribute defines rounded component with bigger border radius */
             /* Thumb and slider should change border-radius. */
 
-            /*  */
             :host([roundness~='rounded']) .switch {
                 border-radius: var(--button-rounded-border-radius);
             }
