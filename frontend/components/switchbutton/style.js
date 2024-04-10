@@ -386,7 +386,7 @@
                  font-size: var(--lumo-font-size-xs);
             }
 
-            :host([theme~='small']:not([roundness='rounded']))  .slider:before  {
+            :host([theme~='small']:not([roundness='rounded']))  .slider::before  {
                    --highlight-width: .28rem;
             }
 
