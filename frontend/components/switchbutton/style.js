@@ -7,19 +7,11 @@
 
     export const switchbuttonstyles = css`
             :host{
-                --lumo-success-color: hsl(145, 72%, 30%);
-                --lumo-shade: hsl(214, 35%, 15%);
-                --lumo-error-color: hsl(3, 85%, 48%);
+
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-                --lumo-primary-color-50pct: hsla(0, 0%, 100%, 0.64);
-                --lumo-primary-text-color: hsl(214, 100%, 43%);
-                --lumo-size-m: 2.25rem;
-                --lumo-size-l: 2.75rem;
-                --lumo-size-s: 1.875rem;
-                --lumo-space-xs: 0.25rem;
-                
-                /*  */
+     
+
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
 
@@ -28,8 +20,6 @@
                 --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
                 --lumo-contrast-90pct: var(--lumo-tint-90pct);
                 --_lumo-button-text-color: var(--vaadin-button-text-color, var(--lumo-primary-text-color));
-                --lumo-body-text-color: var(--lumo-contrast-90pct);
-         /*       --lumo-primary-color: hsl(214, 100%, 48%); */
                 --vaadin-focus-ring-color: var(--lumo-primary-color-50pct);
                 --vaadin-focus-ring-width: 2px;
                 --vaadin-button-font-weight: 500;
@@ -68,6 +58,7 @@
                 
                 --label-color:  hsla(214, 42%, 18%, 0.69);
 
+                --label-hover-color: var(--lumo-body-text-color);
                 /* Font styling */
                 font-family: var(--lumo-font-family);
                 font-weight: var(--vaadin-button-font-weight, 500);
@@ -108,7 +99,7 @@
                 /* Border-radius of thumb and slider for rounded button */
                 --button-rounded-border-radius: calc(var(--button-size) / 2);
 
-                --label-hover-color: hsla(214, 40%, 16%, 0.94);
+                
             }
 
             /* Container is div element for placing whole html including part label.
@@ -221,7 +212,7 @@
                 overflow: hidden;
                 cursor: pointer;
             }
-            
+
             /*  Thumb is  (slider::before)
                 Css style for hide left, right text or icon. Default states - thumb on left side - unchecked, thumb on right side checked button */
 

@@ -51,8 +51,9 @@ public class MainLayout extends AppLayout {
         SideNavItem testSwitchButton = new SideNavItem("TestSwitchButton", TestSwitchButtonListener.class);
         SideNavItem positioningSwitchButton = new SideNavItem("Positioning button", SwitchButtonPositioningView.class);
         SideNavItem switchButtonWithIcons = new SideNavItem("Switch buttons with Icons", SwitchButtonWithIcons.class);
+        SideNavItem themeChangeView = new SideNavItem("Theme change page", ThemeChangeView.class);
 
-        nav.addItem(switchButton, forms, personForm, testSwitchButton, positioningSwitchButton, switchButtonWithIcons);
+        nav.addItem(switchButton, forms, personForm, testSwitchButton, positioningSwitchButton, switchButtonWithIcons, themeChangeView);
 
         return nav;
     }
@@ -71,5 +72,6 @@ public class MainLayout extends AppLayout {
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
+        
     }
 }
