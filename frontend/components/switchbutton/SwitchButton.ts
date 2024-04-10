@@ -3,7 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import { switchbuttonstyles } from "./style";
 
 @customElement("switch-button")
-export class SwitchButton extends LitElement{
+export class SwitchButton extends LitElement {
+
 
 //checked property represents value of switch button
 @property({type: Boolean, reflect: true,

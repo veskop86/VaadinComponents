@@ -50,19 +50,21 @@
                 --thumb-width: var(--thumb-height);
 
                 /* Button width is sum of double thumb width and 3 * slider-padding   */
-
+                    
                --button-height: calc(var(--thumb-height) + 2 * var(--slider-padding));
                --button-width: calc( 2 * var(--thumb-width) +  3 * var(--slider-padding));
 
                  /* Length of thumbs transition */
                 --slider-transitionx-length: calc(var(--thumb-width) + var(--slider-padding));
-
+                
                /* Duration of thumb transition in seconds*/
                  --transition-duration: .4s;
-
+                
                 --margin: var(--lumo-space-xs);
-                --unchecked-slider-color: #ccc;
 
+                /* Background color of unchecked slider */
+                --unchecked-slider-color: #ccc;
+                
                 --label-color:  hsla(214, 42%, 18%, 0.69);
 
                 /* Font styling */
@@ -80,20 +82,32 @@
                 padding: var(--lumo-space-xs) 0;
 
                 --text-container-padding: calc(var(--slider-padding) * 1.5);
-
+                
+                /* sliders background color of disabled button */
                 --disabled-background-color: gray;
-                --button-checked-background-color:var(--lumo-primary-color);
-                --slider-success-background-color: var(--lumo-success-color);
 
+                --button-checked-background-color:var(--lumo-primary-color);
+
+                /* Colors for slider background,themes success error contrast */
+                --slider-success-background-color: var(--lumo-success-color);
+                --slider-contrast-background-color:var(--lumo-shade);
+                --slider-error-background-color: var(--lumo-error-color);
+
+                /* Thumbs backgroound color  */
                 --thumb-background-color: white;
+
                 /*  Border-radius variables */
+
+                /* Thumb border radius  */
                 --thumb-border-radius: calc( var(--lumo-border-radius-m) / 2);
+                
+                /* Slider border-radius  */
                 --slider-border-radius: var(--lumo-border-radius-m);
+                
+                /* Border-radius of thumb and slider for rounded button */
                 --button-rounded-border-radius: calc(var(--button-size) / 2);
 
-
                 --label-hover-color: hsla(214, 40%, 16%, 0.94);
-
             }
 
             /* Container is div element for placing whole html including part label.
@@ -103,15 +117,17 @@
                 display:inline-block;
                 position: relative;
                 bottom: 4px;
+
             }
 
-            /*This is switch-button without label  */
+            /*This is switch-button without label.   */
 
             .switch {
                 position: relative;
                 display: inline-block;
                 width: var(--button-width);
                 height: var(--button-height);
+                border-radius: var(--slider-border-radius);
             }
 
             /* Rules for hiding checkbox */
@@ -285,6 +301,10 @@
              Roundness attribute defines rounded component with bigger border radius */
             /* Thumb and slider should change border-radius. */
 
+            /*  */
+            :host([roundness~='rounded']) .switch {
+                border-radius: var(--button-rounded-border-radius);
+            }
             :host([roundness~='rounded'])  .slider {
                 border-radius: var(--button-rounded-border-radius);
             }
@@ -336,13 +356,10 @@
                For example component could be small and error. */
 
             /* Themes primary,secondary and tertiary.  */
-            :host([theme~='primary']) {}
-            :host([theme~='tertiary']) {}
-            :host([theme~='tertiary-inline']) {}
 
             /* Themes error, success, contrast */
             :host([theme~='error']) input:checked + .slider{
-                background-color: var(--lumo-error-color);
+                background-color: var(--slider-error-background-color);
             }
 
             :host([theme~='success'])  .slider{
@@ -357,13 +374,14 @@
             }
 
             :host([theme~='contrast'])  input:checked + .slider{
-                      background-color: var(--lumo-shade);
+                 background-color: var(--slider-contrast-background-color);
             }
 
-           /* Themes small, normal, large */
+           /* Themes for small and large buttons */
             :host([theme~='small'])  {
                 --button-size: var(--small-button-size);
             }
+
            :host([theme~='small']) [part='label'] {
                  font-size: var(--lumo-font-size-xs);
             }
@@ -372,7 +390,7 @@
                    --highlight-width: .28rem;
             }
 
-            host([theme~='small']) [part='label'] {
+            :host([theme~='small']) [part='label'] {
                 font-size: var(--lumo-font-size-xs);
             }
             :host([theme~='large']){
@@ -426,9 +444,10 @@
             :host([focus-ring]) .slider  {
                 box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
             }
-
-            :host([focus-ring]) > .container{
-               box-shadow: 0 0 0 2px red;
+              
+            :host([focus-ring])  {
+                box-shadow: 0 0 2px red;
+                
               }
 
             :host([theme~='primary'][focus-ring]) {
@@ -443,7 +462,7 @@
                  box-sizing: border-box;
             }
 
-            host([theme~='small']) [part]::slotted(vaadin-icon){
+            :host([theme~='small']) [part]::slotted(vaadin-icon){
                  display: inline-block;
                  width: var(--lumo-icon-size-s);
                  height: var(--lumo-icon-size-s);
