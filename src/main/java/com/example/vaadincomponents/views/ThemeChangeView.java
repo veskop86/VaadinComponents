@@ -29,7 +29,7 @@ public class ThemeChangeView extends VerticalLayout {
         changeThemeSwitchButton.addValueChangeListener(event -> {
             Notification.show("Button value - "  + event.getValue());
             setTheme(event.getValue());
-            ;
+
         });
         return new VerticalLayout(new H2("Change application theme using switch button"), changeThemeSwitchButton);
     }  
@@ -37,7 +37,7 @@ public class ThemeChangeView extends VerticalLayout {
     private void setTheme(boolean dark) {
         var js = "document.documentElement.setAttribute('theme', $0)";
         getElement().executeJs(js, dark ? Lumo.DARK : Lumo.LIGHT);
-        
+          
     }
 
  

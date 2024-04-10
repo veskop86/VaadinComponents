@@ -10,7 +10,7 @@
 
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-     
+
 
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
