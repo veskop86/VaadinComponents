@@ -3,7 +3,6 @@ package com.example.vaadincomponents.views;
 import com.example.vaadincomponents.components.SwitchButton;
 import com.example.vaadincomponents.components.SwitchButtonVariant;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -16,16 +15,16 @@ public class ThemeChangeView extends VerticalLayout {
 
     ThemeChangeView(){
         add(
-              changeThemeSwitchButton()
+           changeThemeSwitchButton()
         );   
     }
-
+    
     private Component changeThemeSwitchButton() {
         changeThemeSwitchButton = new SwitchButton();
         changeThemeSwitchButton.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
         changeThemeSwitchButton.setRoundness("rounded");
         changeThemeSwitchButton.setChecked(false);
-        
+
         changeThemeSwitchButton.addValueChangeListener(event -> {
             Notification.show("Button value - "  + event.getValue());
             setTheme(event.getValue());
@@ -39,6 +38,4 @@ public class ThemeChangeView extends VerticalLayout {
         getElement().executeJs(js, dark ? Lumo.DARK : Lumo.LIGHT);
           
     }
-
- 
 }

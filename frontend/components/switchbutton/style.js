@@ -10,8 +10,6 @@
 
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-
-
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
 
@@ -33,7 +31,7 @@
 
                 /* Padding depends of button-size var depends of buttons-size variable */
                 --slider-padding:  calc(var(--button-size) / 9);
-
+                
                 /* Height of thumb is of sum text-height and slider-padding */
                 /* Thumb should hover text span and it's also should be square with border-radius */
                 --thumb-height: calc(var(--text-height) + var(--slider-padding));
@@ -74,8 +72,11 @@
 
                 --text-container-padding: calc(var(--slider-padding) * 1.5);
                 
-                /* sliders background color of disabled button */
+                /* sliders background color input:checked of disabled button */
                 --disabled-background-color: gray;
+
+                /*sliders background-color input not checked disabled color   */    
+                --disabled-background-unchecked-color: var(--lumo-contrast-30pct);
 
                 --button-checked-background-color:var(--lumo-primary-color);
 
@@ -97,7 +98,6 @@
                 
                 /* Border-radius of thumb and slider for rounded button */
                 --button-rounded-border-radius: calc(var(--button-size) / 2);
-
                 
             }
 
@@ -236,6 +236,7 @@
                 visibility: visible;
                 opacity:1;
             }
+
             input:checked ~ .text-container > .right {
                 visibility: hidden;
                 opacity: 0;
@@ -417,7 +418,7 @@
             }
             
             :host([disabled]) input + .slider {
-                background-color: var(--lumo-contrast-30pct);
+                background-color: var(--disabled-background-unchecked-color);
                 cursor: not-allowed;
                 opacity: 0.7;
             }
