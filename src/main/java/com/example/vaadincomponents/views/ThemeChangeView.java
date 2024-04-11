@@ -36,6 +36,6 @@ public class ThemeChangeView extends VerticalLayout {
     private void setTheme(boolean dark) {
         var js = "document.documentElement.setAttribute('theme', $0)";
         getElement().executeJs(js, dark ? Lumo.DARK : Lumo.LIGHT);
-          
+            
     }
 }

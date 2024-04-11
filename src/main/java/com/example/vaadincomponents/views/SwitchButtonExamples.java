@@ -16,8 +16,8 @@ import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "", layout = MainLayout.class)
-public class FirstView extends VerticalLayout {
-    FirstView(){
+public class SwitchButtonExamples extends VerticalLayout {
+    SwitchButtonExamples(){
         add(
                 title(),
                 getBasicSwitchButton(),
@@ -53,13 +53,13 @@ public class FirstView extends VerticalLayout {
         SwitchButton error = new SwitchButton();
         error.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         error.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
-        return new VerticalLayout(new H3("Small contrast button"), error);
+        return new VerticalLayout(new H3("Small contrast vartiant theme button"), error);
     }
 
     private Component errorThemeVariantSwitchButton() {
         SwitchButton errorSwitchButton = new SwitchButton();
         errorSwitchButton.addThemeVariants(SwitchButtonVariant.LUMO_ERROR);
-        return errorSwitchButton;
+        return new VerticalLayout(new H3("Error lumo variant switch button"), errorSwitchButton);
     }
 
     private Component threeNormalButtons() {
@@ -78,7 +78,7 @@ public class FirstView extends VerticalLayout {
         TextField textField = getDisabledTextField();
         textField.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
-        return new HorizontalLayout(textField, switchButton);
+        return new VerticalLayout(new H3("Disabled text field and swtitch button: "), new HorizontalLayout(textField, switchButton));
     }
 
     private static TextField getDisabledTextField() {
@@ -141,7 +141,7 @@ public class FirstView extends VerticalLayout {
 
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("rounded");
-        return new HorizontalLayout(switchButton, pending1);
+        return new VerticalLayout(new H3("Badge and switch button"), new HorizontalLayout(switchButton, pending1));
     }
     private Icon createIcon(VaadinIcon vaadinIcon) {
         Icon icon = vaadinIcon.create();
@@ -168,7 +168,7 @@ public class FirstView extends VerticalLayout {
     private Component switchAndTextFieldWithoutLabels() {
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("rounded");
-        return new HorizontalLayout(new TextField(), switchButton);
+        return new VerticalLayout(new H2("Rounded switch button"), new HorizontalLayout(new TextField(), switchButton));
     }
 
     private Component switchButtonTextFieldWithLabels() {
@@ -185,7 +185,7 @@ public class FirstView extends VerticalLayout {
         TextField textField = new TextField();
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("rounded");
-        return new HorizontalLayout(textField, switchButton);
+        return new VerticalLayout(new H3("Switch button and text-field"), new HorizontalLayout(textField, switchButton));
     }
 
     private Component fieldAndButtonWithLabel() {
@@ -204,14 +204,14 @@ public class FirstView extends VerticalLayout {
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_SUCCESS);
         switchButton.setRoundness("rounded");
         switchButton.setLabel("Label");
-        return switchButton;
+        return new VerticalLayout(new H3("Success switch button"), switchButton);
     }
 
     private Component contrastLumoVariantTheme(){
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
         switchButton.setRoundness("rounded");
-        return switchButton;
+        return new VerticalLayout(new H3("Contrast theme swithc button"), switchButton);
     }
 
 
