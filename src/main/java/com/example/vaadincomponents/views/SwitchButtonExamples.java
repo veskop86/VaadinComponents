@@ -30,7 +30,7 @@ public class SwitchButtonExamples extends VerticalLayout {
                 contrastLumoVariantTheme(),
                 successThemeVariantButton(),
                 errorThemeVariantSwitchButton(),
-                textFieldwithButton(),
+                textFieldWithButton(),
                 switchButtonTextFieldWithLabels(),
                 fieldAndButtonWithLabel(),
                 switchAndTextFieldWithoutLabels(),
@@ -42,7 +42,7 @@ public class SwitchButtonExamples extends VerticalLayout {
                 largeIcongWithIcon(),
                 smallRoundedButton(),
                 largeRoundedButtonWithIcon(),
-                disbledButtonithLabel(),
+                disabledButtonWithLabel(),
                 smallDisabledButtonWithLabel(),
                 threeNormalButtons(),
                 smallErrorButton()
@@ -53,7 +53,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         SwitchButton error = new SwitchButton();
         error.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         error.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
-        return new VerticalLayout(new H3("Small contrast vartiant theme button"), error);
+        return new VerticalLayout(new H3("Small contrast variant theme button"), error);
     }
 
     private Component errorThemeVariantSwitchButton() {
@@ -78,7 +78,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         TextField textField = getDisabledTextField();
         textField.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
-        return new VerticalLayout(new H3("Disabled text field and swtitch button: "), new HorizontalLayout(textField, switchButton));
+        return new VerticalLayout(new H3("Disabled text field and switch button: "), new HorizontalLayout(textField, switchButton));
     }
 
     private static TextField getDisabledTextField() {
@@ -95,7 +95,7 @@ public class SwitchButtonExamples extends VerticalLayout {
     }
 
 
-    public Component disbledButtonithLabel(){
+    public Component disabledButtonWithLabel(){
         SwitchButton switchButton = getDisabledButton();
         TextField textField = getDisabledTextField();
         return new HorizontalLayout(textField, switchButton);
@@ -179,8 +179,9 @@ public class SwitchButtonExamples extends VerticalLayout {
         switchButton.setRoundness("rounded");
 
         H3 title = new H3("TextField and Button with labels - Positioning");
-        return new HorizontalLayout(title, textField, switchButton);
+        return new VerticalLayout(title ,new HorizontalLayout(textField, switchButton));
     }
+
     private Component switchButtonAndTextField(){
         TextField textField = new TextField();
         SwitchButton switchButton = new SwitchButton();
@@ -192,7 +193,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         return new HorizontalLayout(new Button("Text"), new TextField("Text"));
     }
 
-    private Component textFieldwithButton() {
+    private Component textFieldWithButton() {
         TextField textField = new TextField();
         Button button = new Button("button");
         return new HorizontalLayout(button, textField);
@@ -211,7 +212,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         SwitchButton switchButton = new SwitchButton();
         switchButton.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
         switchButton.setRoundness("rounded");
-        return new VerticalLayout(new H3("Contrast theme swithc button"), switchButton);
+        return new VerticalLayout(new H3("Contrast theme switch button"), switchButton);
     }
 
 
@@ -222,12 +223,9 @@ public class SwitchButtonExamples extends VerticalLayout {
             return buttonWithIcons;
     }
 
-
     private Component title() {
         return new H2("Examples of Switch Buttons:");
     }
-
-
 
     private Component getButtonWithOnOff() {
         SwitchButton onOffButton = new SwitchButton();
@@ -236,7 +234,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         Button enableDisable = new Button("Enable/Disable" ,event -> onOffButton.setEnabled(!onOffButton.isEnabled()));
         return new HorizontalLayout(onOffButton, enableDisable);
     }
-
+    
     private Component getButtonWithSomeValues() {
         SwitchButton buttonWithDollarAndPercentage = new SwitchButton();
         buttonWithDollarAndPercentage.setRightValue("€");

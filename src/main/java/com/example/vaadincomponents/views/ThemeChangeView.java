@@ -28,7 +28,6 @@ public class ThemeChangeView extends VerticalLayout {
         changeThemeSwitchButton.addValueChangeListener(event -> {
             Notification.show("Button value - "  + event.getValue());
             setTheme(event.getValue());
-
         });
         return new VerticalLayout(new H2("Change application theme using switch button"), changeThemeSwitchButton);
     }  
