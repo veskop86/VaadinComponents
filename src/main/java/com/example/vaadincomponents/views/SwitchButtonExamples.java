@@ -4,7 +4,6 @@ import com.example.vaadincomponents.components.SwitchButton;
 import com.example.vaadincomponents.components.SwitchButtonVariant;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
@@ -54,7 +53,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton error = new SwitchButton();
         error.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         error.addThemeVariants(SwitchButtonVariant.LUMO_CONTRAST);
-        return new Div(new H3("Small contrast button"), error);
+        return new VerticalLayout(new H3("Small contrast button"), error);
     }
 
     private Component errorThemeVariantSwitchButton() {
@@ -69,7 +68,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton large = new SwitchButton();
         large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
-        return  new HorizontalLayout(large ,switchButton, smallSwitchButton);
+        return  new VerticalLayout(new H3("Three types of button: large, normal and small"), new HorizontalLayout(large ,switchButton, smallSwitchButton));
     }
 
     private Component smallDisabledButtonWithLabel() {
@@ -110,7 +109,6 @@ public class FirstView extends VerticalLayout {
         largeRoundedWithIcons.setRightValue(VaadinIcon.CAMERA.create());
         largeRoundedWithIcons.setRoundness("rounded");
         return new VerticalLayout(new H3("Large rounded button with icons"), largeRoundedWithIcons);
-        
     }
 
     private Component smallRoundedButton() {
@@ -133,7 +131,7 @@ public class FirstView extends VerticalLayout {
         SwitchButton smallSwitch = new SwitchButton();
         smallSwitch.addThemeVariants(SwitchButtonVariant.LUMO_SMALL);
         smallSwitch.setLeftValue(VaadinIcon.ALARM.create());
-        return new VerticalLayout(new H3("Small button  with icon"),  smallSwitch );
+        return new VerticalLayout(new H3("Small button with icon"),  smallSwitch );
     }
 
     private Component badgeAndButton() {
@@ -159,11 +157,11 @@ public class FirstView extends VerticalLayout {
         large.addThemeVariants(SwitchButtonVariant.LUMO_LARGE);
         SwitchButton switchButton = new SwitchButton();
         switchButton.setRoundness("rounded");
-        return  new HorizontalLayout( large ,switchButton, small);
+        return new VerticalLayout(new H3("Three rounded buttons"),new  HorizontalLayout( large ,switchButton, small));
     }
 
     private Component switchAndFieldWithLabel() {
-            return new HorizontalLayout(new TextField("Label"), new SwitchButton());
+            return new VerticalLayout(new H3("Comparing switch button with text field"),new HorizontalLayout(new TextField("Label"), new SwitchButton()));
     }
 
 
