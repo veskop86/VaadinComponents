@@ -45,7 +45,7 @@ public class MainLayout extends AppLayout {
 
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
-        SideNavItem switchButton = new SideNavItem("SwitchButton", FirstView.class);
+        SideNavItem switchButton = new SideNavItem("Switch Buttons", SwitchButtonExamples.class);
         SideNavItem forms = new SideNavItem("Forms", FormView.class);
         SideNavItem personForm = new SideNavItem("Person Form", FormPersonView.class);
         SideNavItem testSwitchButton = new SideNavItem("TestSwitchButton", TestSwitchButtonListener.class);
@@ -72,6 +72,5 @@ public class MainLayout extends AppLayout {
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
-        
     }
 }

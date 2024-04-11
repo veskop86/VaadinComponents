@@ -1,17 +1,14 @@
     import { css } from 'lit';
     import { color, colorBase } from '../color.js';
-    import { } from '../sizing.js';
-    import { } from '../spacing.js';
-    import { } from '../typography';
-    import { } from '../style';
+    import {  } from '../sizing.js';
+    import {  } from '../spacing.js';
+    import {  } from '../typography';
+    import {  } from '../style';
 
     export const switchbuttonstyles = css`
             :host{
-
                 --highlight-color: hsl(0, 0%, 100%, 0.29);
                 --highlight-width: .3rem;
-
-
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
 
@@ -33,7 +30,7 @@
 
                 /* Padding depends of button-size var depends of buttons-size variable */
                 --slider-padding:  calc(var(--button-size) / 9);
-
+                
                 /* Height of thumb is of sum text-height and slider-padding */
                 /* Thumb should hover text span and it's also should be square with border-radius */
                 --thumb-height: calc(var(--text-height) + var(--slider-padding));
@@ -52,12 +49,7 @@
                 
                 --margin: var(--lumo-space-xs);
 
-                /* Background color of unchecked slider */
-                --unchecked-slider-color: #ccc;
-                
-                --label-color:  hsla(214, 42%, 18%, 0.69);
 
-                --label-hover-color: var(--lumo-body-text-color);
                 /* Font styling */
                 font-family: var(--lumo-font-family);
                 font-weight: var(--vaadin-button-font-weight, 500);
@@ -73,19 +65,32 @@
                 padding: var(--lumo-space-xs) 0;
 
                 --text-container-padding: calc(var(--slider-padding) * 1.5);
-                
-                /* sliders background color of disabled button */
-                --disabled-background-color: gray;
 
+                /* Colors of button  */
+
+                /* Background color of unchecked slider */
+                --unchecked-slider-color: #ccc;
                 --button-checked-background-color:var(--lumo-primary-color);
+
+                /*--unchecked-slider-color: hsla(214, 61%, 25%, 0.05); */
+
+                --label-color:  hsla(214, 42%, 18%, 0.69);
+
+                --label-hover-color: var(--lumo-body-text-color);
 
                 /* Colors for slider background,themes success error contrast */
                 --slider-success-background-color: var(--lumo-success-color);
                 --slider-contrast-background-color:var(--lumo-shade);
                 --slider-error-background-color: var(--lumo-error-color);
 
-                /* Thumbs backgroound color  */
+                /* Thumbs background color  */
                 --thumb-background-color: white;
+
+                /* sliders background color input:checked of disabled button */
+                --disabled-background-color: gray;
+
+                /* Sliders background-color input not checked disabled color */
+                --disabled-background-unchecked-color: var(--lumo-contrast-30pct);
 
                 /*  Border-radius variables */
 
@@ -96,9 +101,8 @@
                 --slider-border-radius: var(--lumo-border-radius-m);
                 
                 /* Border-radius of thumb and slider for rounded button */
-                --button-rounded-border-radius: calc(var(--button-size) / 2);
 
-                
+                --button-rounded-border-radius: calc(var(--button-size) / 2);
             }
 
             /* Container is div element for placing whole html including part label.
@@ -109,7 +113,7 @@
                 position: relative;
                 bottom: 4px;
             }
-            
+
             /*This is switch-button without label.   */
 
             .switch {
@@ -121,12 +125,13 @@
             }
 
             /* Rules for hiding checkbox */
-            
+
             .switch input {
                 opacity: 0;
                 width: 0;
                 height: 0;
             }
+
             /* Slider is place where thumb is moving from one side to another */
 
             .slider {
@@ -159,8 +164,8 @@
                 -webkit-transition: var(--transition-duration);
                 transition: var(--transition-duration);
                 border-radius: var(--thumb-border-radius);
-                z-index: 1;
                 box-sizing: border-box;
+                z-index: 1;
             }
 
            /* When input is checked,slider background-color is changed  */
@@ -185,7 +190,7 @@
                 position: absolute;
                 bottom: calc(var(--slider-padding));
                 width: calc(var(--button-width));
-                z-index: 1;
+             /*   z-index: 1; */
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -210,6 +215,7 @@
                 text-align: center;
                 overflow: hidden;
                 cursor: pointer;
+                
             }
 
             /*  Thumb is  (slider::before)
@@ -236,6 +242,7 @@
                 visibility: visible;
                 opacity:1;
             }
+
             input:checked ~ .text-container > .right {
                 visibility: hidden;
                 opacity: 0;
@@ -308,8 +315,8 @@
             :host([statesVisible~='both']) input:checked + .slider{
                 background-color: var(--unchecked-slider-color);
             }
-
-            :host([statesVisible~='both']) .slider::before {
+            
+            :host([statesVisible~='both']) .text {
                 z-index: 1;
             }
 
@@ -326,7 +333,6 @@
             }
 
             :host([statesVisible~='both'])  input ~ .text-container > .right{
-             
                 visibility: visible;
                 opacity: 1;
                 transition: none;
@@ -342,18 +348,20 @@
 
             /* Themes primary,secondary and tertiary.  */
 
-            /* Themes error, success, contrast */
+
+            /* Themes error, success and  contrast */
             :host([theme~='error']) input:checked + .slider{
                 background-color: var(--slider-error-background-color);
             }
 
             :host([theme~='success'])  .slider{
-                background-color: var(--disabled-background-color);
+                  background-color: var(--disabled-background-color);
             }
-            :host([theme~='success']) input:checked + .slider{
 
+            :host([theme~='success']) input:checked + .slider{
                  background-color:  var(--slider-success-background-color);
             }
+
             :host([theme~='success']) .slider::before{
                  --highlight-color: hsl(0, 0%, 100%, 0.47);
             }
@@ -378,10 +386,12 @@
             :host([theme~='small']) [part='label'] {
                 font-size: var(--lumo-font-size-xs);
             }
+
             :host([theme~='large']){
                 --button-size: var(--lumo-size-l);
                 --highlight-width: .33rem;
             }
+
             :host([theme~='large']:not([roundness='rounded']))  .slider::before{
                 border-radius: calc( var(--lumo-border-radius-m) / 4);
             }
@@ -394,7 +404,7 @@
             :host(:hover:not([readonly]):not([focused])) [part="label"] {
                 color:var(--label-hover-color);
             }
-            
+
             /* Hovered   */
             label:hover .slider::before{
                 box-shadow: 0 0 0 var(--highlight-width) var(--highlight-color);
@@ -417,7 +427,7 @@
             }
             
             :host([disabled]) input + .slider {
-                background-color: var(--lumo-contrast-30pct);
+                background-color: var(--disabled-background-unchecked-color);
                 cursor: not-allowed;
                 opacity: 0.7;
             }
@@ -433,7 +443,6 @@
               
             :host([focus-ring])  {
                 box-shadow: 0 0 2px red;
-                
               }
 
             :host([theme~='primary'][focus-ring]) {
@@ -454,4 +463,5 @@
                  height: var(--lumo-icon-size-s);
                  box-sizing: border-box;
             }
+
         `;
