@@ -25,7 +25,7 @@ public class FormView extends VerticalLayout{
         );
 
     }
-
+    
     private Component getForm6() {
         FormLayout formLayout = new FormLayout();
         TextField firstName =  new TextField();

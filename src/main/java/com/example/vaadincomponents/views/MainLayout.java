@@ -52,8 +52,18 @@ public class MainLayout extends AppLayout {
         SideNavItem positioningSwitchButton = new SideNavItem("Positioning button", SwitchButtonPositioningView.class);
         SideNavItem switchButtonWithIcons = new SideNavItem("Switch buttons with Icons", SwitchButtonWithIcons.class);
         SideNavItem themeChangeView = new SideNavItem("Theme change page", ThemeChangeView.class);
+        SideNavItem vaadinButtons = new SideNavItem("Vaadin buttons ", VaadinButtonsView.class);
 
-        nav.addItem(switchButton, forms, personForm, testSwitchButton, positioningSwitchButton, switchButtonWithIcons, themeChangeView);
+        nav.addItem(
+            switchButton,
+            forms,
+            personForm,
+            testSwitchButton,
+            positioningSwitchButton,
+            switchButtonWithIcons,
+            themeChangeView,
+            vaadinButtons
+            );
 
         return nav;
     }

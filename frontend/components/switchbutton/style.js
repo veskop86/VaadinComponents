@@ -11,7 +11,7 @@
                 --highlight-width: .3rem;
                 --button-size: var(--lumo-size-m);
                 --small-button-size: var(--lumo-size-s);
-
+                
                 --lumo-base-color: #fff;
                 --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
                 --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
@@ -54,6 +54,7 @@
                 font-family: var(--lumo-font-family);
                 font-weight: var(--vaadin-button-font-weight, 500);
                 color: var(--lumo-body-text-color);
+                outline: none;
 
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
@@ -82,7 +83,7 @@
                 --slider-success-background-color: var(--lumo-success-color);
                 --slider-contrast-background-color:var(--lumo-shade);
                 --slider-error-background-color: var(--lumo-error-color);
-
+                
                 /* Thumbs background color  */
                 --thumb-background-color: white;
 
@@ -91,6 +92,10 @@
 
                 /* Sliders background-color input not checked disabled color */
                 --disabled-background-unchecked-color: var(--lumo-contrast-30pct);
+                
+                /* Copied from vaadin button  */
+                --background: var(--_lumo-button-background);   
+                --_lumo-button-background: var(--vaadin-button-background, var(--lumo-contrast-5pct));
 
                 /*  Border-radius variables */
 
@@ -122,7 +127,8 @@
                 width: var(--button-width);
                 height: var(--button-height);
                 border-radius: var(--slider-border-radius);
-            }
+                
+            }   
 
             /* Rules for hiding checkbox */
 
@@ -130,6 +136,7 @@
                 opacity: 0;
                 width: 0;
                 height: 0;
+                
             }
 
             /* Slider is place where thumb is moving from one side to another */
@@ -144,7 +151,7 @@
                 bottom: 0;
                 background-color: var(--unchecked-slider-color);
                 -webkit-transition: var(--transition-duration);
-                transition: var(--transition-duration);
+                transition: background-color var(--transition-duration);
                 border-radius:  var(--slider-border-radius);
                 box-sizing: border-box;
             }
@@ -214,10 +221,9 @@
                 width: calc(var(--text-width));
                 text-align: center;
                 overflow: hidden;
-                cursor: pointer;
-                
+                cursor: pointer;     
             }
-
+            
             /*  Thumb is  (slider::before)
                 Css style for hide left, right text or icon. Default states - thumb on left side - unchecked, thumb on right side checked button */
 
@@ -266,7 +272,7 @@
             :host([has-label])::before {
                   margin-top: calc(var(--lumo-font-size-s) * 1.5);
             }
-
+            
             /* This is rules for styling label part. Must be same as vaadin labels for fields */
             [part='label'] {
                 align-self: flex-start;
@@ -347,8 +353,20 @@
                For example component could be small and error. */
 
             /* Themes primary,secondary and tertiary.  */
+            :host([theme~='primary']) .switch {
+                background-color: hsla(214, 61%, 25%, 0.1);
+                opacity: 0;
+            }
 
 
+            :host([theme~='primary']) .slider{
+                background-color: hsla(214, 100%, 43%, 1);
+                
+            }
+            :host([theme~='primary']) .slider::before{
+                opacity:1;
+            }
+            
             /* Themes error, success and  contrast */
             :host([theme~='error']) input:checked + .slider{
                 background-color: var(--slider-error-background-color);
@@ -437,17 +455,10 @@
              }
 
             /* Focus keyboard  on component */
-            :host([focus-ring]) .slider  {
+           :host([focus-ring]) .slider  {
                 box-shadow: 0 0 0 var(--_focus-ring-width) var(--_focus-ring-color);
-            }
-              
-            :host([focus-ring])  {
-                box-shadow: 0 0 2px red;
-              }
-
-            :host([theme~='primary'][focus-ring]) {
-                box-shadow: 0 0 0 1px var(--lumo-base-color), 0 0 0 3px var(--lumo-primary-color-50pct);
-                }
+            } 
+            
 
            /* Style for vaadin icons  */
            [part]::slotted(vaadin-icon) {
@@ -456,12 +467,11 @@
                  height: var(--lumo-icon-size-m);
                  box-sizing: border-box;
             }
-
+            
             :host([theme~='small']) [part]::slotted(vaadin-icon){
                  display: inline-block;
                  width: var(--lumo-icon-size-s);
                  height: var(--lumo-icon-size-s);
                  box-sizing: border-box;
             }
-
         `;

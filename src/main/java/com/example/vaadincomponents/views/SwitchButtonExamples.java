@@ -45,8 +45,16 @@ public class SwitchButtonExamples extends VerticalLayout {
                 disabledButtonWithLabel(),
                 smallDisabledButtonWithLabel(),
                 threeNormalButtons(),
-                smallErrorButton()
+                smallErrorButton(),
+                primaryButton()
         );
+    }
+
+    private Component primaryButton() {
+        SwitchButton switchButton = new SwitchButton();
+        switchButton.addThemeVariants(SwitchButtonVariant.LUMO_PRIMARY);
+        switchButton.setRoundness("rounded");
+        return switchButton;
     }
 
     private Component smallErrorButton() {
@@ -258,7 +266,7 @@ public class SwitchButtonExamples extends VerticalLayout {
         Button enableDisable = new Button("Enable/Disable" ,event -> disabledSwitchButton.setEnabled(!disabledSwitchButton.isEnabled()));
         return new HorizontalLayout(disabledSwitchButton, enableDisable);
     }
-
+    
     private HorizontalLayout getRoundedSwitchButton() {
         SwitchButton roundedSwitchButton = new SwitchButton();
         roundedSwitchButton.setRoundness("rounded");

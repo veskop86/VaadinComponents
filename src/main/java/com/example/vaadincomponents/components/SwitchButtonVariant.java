@@ -24,9 +24,9 @@ public enum SwitchButtonVariant implements ThemeVariant {
     //@formatter:off
     LUMO_SMALL("small"),
     LUMO_LARGE("large"),
- /*   LUMO_TERTIARY("tertiary"),
+    LUMO_TERTIARY("tertiary"),
     LUMO_TERTIARY_INLINE("tertiary-inline"),
-    LUMO_PRIMARY("primary"), */
+    LUMO_PRIMARY("primary"),
     LUMO_SUCCESS("success"),
     LUMO_ERROR("error"),
     LUMO_CONTRAST("contrast"),

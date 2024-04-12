@@ -4,136 +4,86 @@
  * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
  */
 import { ActiveMixin } from '@vaadin/a11y-base/src/active-mixin.js';
-import { DelegateFocusMixin } from '@vaadin/a11y-base/src/delegate-focus-mixin.js';
-import { CheckedMixin } from '@vaadin/field-base/src/checked-mixin.js';
-import { InputController } from '@vaadin/field-base/src/input-controller.js';
-import { LabelMixin } from '@vaadin/field-base/src/label-mixin.js';
-import { LabelledInputController } from '@vaadin/field-base/src/labelled-input-controller.js';
+import { FocusMixin } from '@vaadin/a11y-base/src/focus-mixin.js';
+import { TabindexMixin } from '@vaadin/a11y-base/src/tabindex-mixin.js';
 
 /**
- * A mixin providing common checkbox functionality.
+ * A mixin providing common button functionality.
  *
  * @polymerMixin
  * @mixes ActiveMixin
- * @mixes CheckedMixin
- * @mixes DelegateFocusMixin
- * @mixes LabelMixin
+ * @mixes FocusMixin
+ * @mixes TabindexMixin
  */
-export const SwitchButtonMixin = (superclass) =>
-    class SwitchButtonMixinClass extends LabelMixin(CheckedMixin(DelegateFocusMixin(ActiveMixin(superclass)))) {
-        static get properties() {
-            return {
-                /**
-                 * True if the checkbox is in the indeterminate state which means
-                 * it is not possible to say whether it is checked or unchecked.
-                 * The state is reset once the user switches the checkbox by hand.
-                 *
-                 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
-                 *
-                 * @type {boolean}
-                 */
-                indeterminate: {
-                    type: Boolean,
-                    notify: true,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-
-                /**
-                 * The name of the checkbox.
-                 *
-                 * @type {string}
-                 */
-                name: {
-                    type: String,
-                    value: '',
-                },
-
-                /**
-                 * Indicates whether the element can be focused and where it participates in sequential keyboard navigation.
-                 *
-                 * @override
-                 * @protected
-                 */
-                tabindex: {
-                    type: Number,
-                    value: 0,
-                    reflectToAttribute: true,
-                },
-            };
-        }
-
-        /** @override */
-        static get delegateProps() {
-            return [...super.delegateProps, 'indeterminate'];
-        }
-
-        /** @override */
-        static get delegateAttrs() {
-            return [...super.delegateAttrs, 'name'];
-        }
-
-        constructor() {
-            super();
-
-            this._setType('checkbox');
-
-            // Set the string "on" as the default value for the checkbox following the HTML specification:
-            // https://html.spec.whatwg.org/multipage/input.html#dom-input-value-default-on
-            this.value = 'on';
-        }
-
-        /** @protected */
-        ready() {
-            super.ready();
-
-            this.addController(
-                new InputController(this, (input) => {
-                    this._setInputElement(input);
-                    this._setFocusElement(input);
-                    this.stateTarget = input;
-                    this.ariaTarget = input;
-                }),
-            );
-            this.addController(new LabelledInputController(this.inputElement, this._labelController));
-        }
-
+export const SwitchButtonMixin = (superClass) =>
+  class SwitchButtonMixinClass extends ActiveMixin(TabindexMixin(FocusMixin(superClass))) {
+    static get properties() {
+      return {
         /**
-         * Override method inherited from `ActiveMixin` to prevent setting
-         * `active` attribute when clicking a link placed inside the label.
+         * Indicates whether the element can be focused and where it participates in sequential keyboard navigation.
          *
-         * @param {Event} event
-         * @return {boolean}
-         * @protected
          * @override
-         */
-        _shouldSetActive(event) {
-            if (event.target.localName === 'a') {
-                return false;
-            }
-
-            return super._shouldSetActive(event);
-        }
-
-        /**
-         * Override method inherited from `CheckedMixin` to reset
-         * `indeterminate` state checkbox is toggled by the user.
-         *
-         * @param {boolean} checked
          * @protected
-         * @override
          */
-        _toggleChecked(checked) {
-            if (this.indeterminate) {
-                this.indeterminate = false;
-            }
+        tabindex: {
+          type: Number,
+          value: 0,
+          reflectToAttribute: true,
+        },
+      };
+    }
 
-            super._toggleChecked(checked);
-        }
+    /**
+     * By default, `Space` is the only possible activation key for a focusable HTML element.
+     * Nonetheless, the button is an exception as it can be also activated by pressing `Enter`.
+     * See the "Keyboard Support" section in https://www.w3.org/TR/wai-aria-practices/examples/button/button.html.
+     *
+     * @protected
+     * @override
+     */
+    get _activeKeys() {
+      return ['Enter', ' '];
+    }
 
-        /**
-         * Fired when the checkbox is checked or unchecked by the user.
-         *
-         * @event change
-         */
-    };
+    /** @protected */
+    ready() {
+      super.ready();
+
+      // By default, if the user hasn't provided a custom role,
+      // the role attribute is set to "button".
+      if (!this.hasAttribute('role')) {
+        this.setAttribute('role', 'button');
+      }
+    }
+
+    /**
+     * Since the button component is designed on the base of the `[role=button]` attribute,
+     * and doesn't have a native <button> inside, in order to be fully accessible from the keyboard,
+     * it should manually fire the `click` event once an activation key is pressed,
+     * as it follows from the WAI-ARIA specifications:
+     * https://www.w3.org/TR/wai-aria-practices-1.1/#button
+     *
+     * According to the UI Events specifications,
+     * the `click` event should be fired exactly on `keydown`:
+     * https://www.w3.org/TR/uievents/#event-type-keydown
+     *
+     * @param {KeyboardEvent} event
+     * @protected
+     * @override
+     */
+    _onKeyDown(event) {
+      super._onKeyDown(event);
+
+      if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
+        return;
+      }
+
+      if (this._activeKeys.includes(event.key)) {
+        event.preventDefault();
+
+        // `DisabledMixin` overrides the standard `click()` method
+        // so that it doesn't fire the `click` event when the element is disabled.
+        this.click();
+      }
+    }
+  };
