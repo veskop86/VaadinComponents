@@ -8,7 +8,6 @@ import { switchbuttonstyles } from "./style";
 import { SwitchButtonMixin } from './switch-button-mixin';
 import { defineCustomElement } from '@vaadin/component-base/src/define.js';
 
-/*  Razlika se izmedju js i ts klase   */
 
 class SwitchButton extends SwitchButtonMixin(ElementMixin(ThemableMixin(PolylitMixin(LitElement)))) {
 

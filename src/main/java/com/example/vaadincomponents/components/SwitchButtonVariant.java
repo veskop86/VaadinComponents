@@ -33,7 +33,7 @@ public enum SwitchButtonVariant implements ThemeVariant {
     LUMO_ICON("icon"),
     MATERIAL_CONTAINED("contained"),
     MATERIAL_OUTLINED("outlined");
-        
+          
     private final String variant;
 
     SwitchButtonVariant(String variant) {

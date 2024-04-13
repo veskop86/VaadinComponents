@@ -7,18 +7,24 @@ import com.vaadin.flow.component.shared.HasThemeVariant;
 import com.vaadin.flow.component.shared.ThemeVariant;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.ElementFactory;
+import com.vaadin.flow.dom.PropertyChangeListener;
 
 @Tag("switch-button")
 @JsModule("./components/switchbutton/SwitchButton.js")
-public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasThemeVariant<SwitchButtonVariant>,ThemeVariant, HasLabel {
+public class SwitchButton extends AbstractSinglePropertyField<SwitchButton, Boolean> implements HasThemeVariant<SwitchButtonVariant>,ThemeVariant, HasLabel, Focusable<SwitchButton> {
+
+    private static final PropertyChangeListener NO_OP = event -> {
+    };
     public SwitchButton() {
-        super("checked",  false, true);
-       
+        super("checked",  true, true);
+
     }
 
     public void setBothStatesVisible(){
         getElement().setAttribute("statesVisible", "both");
     }
+    
+
     public void setLabel(String label){
         Element span =  ElementFactory.createSpan(label);
         span.setAttribute("slot", "label");

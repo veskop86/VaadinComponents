@@ -3,6 +3,7 @@ package com.example.vaadincomponents.views;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -13,8 +14,15 @@ public class VaadinButtonsView extends VerticalLayout {
 
     VaadinButtonsView(){
         add(
-            allThemeVariantsButtons()
+                allThemeVariantsButtons(),
+                checkbox()
+
         );
+    }
+
+    private Component checkbox() {
+        Checkbox checkbox =  new Checkbox();
+        return  checkbox;
     }
 
     private Component allThemeVariantsButtons() {

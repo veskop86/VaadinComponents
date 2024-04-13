@@ -15,7 +15,7 @@ public class ButtonWithVariableBackgroundColor extends VerticalLayout {
                 backgroundColorPicker()
         );
     }
-
+    
     private Component backgroundColorPicker() {
         return new H2("Color picker");
     }
